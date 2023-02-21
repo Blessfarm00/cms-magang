@@ -66,6 +66,10 @@ Route::get('/test',function(){
     return view('pages.Administrator.Kuliner.test');
 });
 
+Route::get('/inventori',function(){
+    return view('pages.Administrator.inventori.index');
+});
+
 Route::group([
     'prefix' => 'kuliner',
 ], function () {

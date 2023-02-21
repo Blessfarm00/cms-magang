@@ -39,7 +39,7 @@
         </li><!-- End Contact Page Nav -->
 
         <li class="nav-item">
-            <a class="nav-link collapsed" href="pages-register.html">
+            <a class="nav-link {{ Request::is('inventori') ? 'active' : '' }}" href="{{ url('inventori') }}">
                 <i <span class='bi bi-archive'></span></i>
                 <span>Inventori</span>
             </a>
