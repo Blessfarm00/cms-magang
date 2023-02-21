@@ -6245,16 +6245,16 @@
         },
         {
             "name": "yajra/laravel-datatables-editor",
-            "version": "v1.25.1",
+            "version": "v1.25.3",
             "source": {
                 "type": "git",
                 "url": "https://github.com/yajra/laravel-datatables-editor.git",
-                "reference": "29edf8690273f07d431ae7197b986336933401d4"
+                "reference": "0428a8bbb578321f459dee9f9ba19bbdce966322"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/yajra/laravel-datatables-editor/zipball/29edf8690273f07d431ae7197b986336933401d4",
-                "reference": "29edf8690273f07d431ae7197b986336933401d4",
+                "url": "https://api.github.com/repos/yajra/laravel-datatables-editor/zipball/0428a8bbb578321f459dee9f9ba19bbdce966322",
+                "reference": "0428a8bbb578321f459dee9f9ba19bbdce966322",
                 "shasum": ""
             },
             "require": {
@@ -6304,7 +6304,7 @@
             ],
             "support": {
                 "issues": "https://github.com/yajra/laravel-datatables-editor/issues",
-                "source": "https://github.com/yajra/laravel-datatables-editor/tree/v1.25.1"
+                "source": "https://github.com/yajra/laravel-datatables-editor/tree/v1.25.3"
             },
             "funding": [
                 {
@@ -6312,11 +6312,15 @@
                     "type": "custom"
                 },
                 {
+                    "url": "https://github.com/yajra",
+                    "type": "github"
+                },
+                {
                     "url": "https://www.patreon.com/yajra",
                     "type": "patreon"
                 }
             ],
-            "time": "2022-03-05T03:31:02+00:00"
+            "time": "2023-02-20T16:20:02+00:00"
         },
         {
             "name": "yajra/laravel-datatables-fractal",

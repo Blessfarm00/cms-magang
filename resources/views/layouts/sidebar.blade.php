@@ -1,94 +1,77 @@
 <!-- ======= Sidebar ======= -->
 <aside id="sidebar" class="sidebar">
 
+
+
+<div class="text-center">
+<img src="../images/profil.jpeg" alt="" width="100" height="100" class="center">
+</div>
+
     <ul class="sidebar-nav" id="sidebar-nav">
 
         <li class="nav-item">
             <a class="nav-link {{ Request::is('dashboard') ? 'active' : '' }}" href="{{ url('dashboard') }}">
-                <i class="bi bi-grid"></i>
+                <i <span class="bi bi-house-door"></span></i>
                 <span>Dashboard</span>
             </a>
         </li><!-- End Dashboard Nav -->
 
-        <li class="nav-item">
-            <a class="nav-link collapsed" data-bs-target="#forms-nav" data-bs-toggle="collapse" href="#">
-                <i class="bi bi-journal-text"></i><span>Warehouse</span><i class="bi bi-chevron-down ms-auto"></i>
-            </a>
-            <ul id="forms-nav" class="nav-content collapse " data-bs-parent="#sidebar-nav">
-                <li>
-                    <a class="nav-link {{ Request::is('barang') ? 'active' : '' }}" href="{{ url('barang') }}">
-                        <i class="bi bi-circle"></i><span>Barang</span>
-                    </a>
-                </li>
-                <li>
-                    <a href="forms-layouts.html">
-                        <i class="bi bi-circle"></i><span>Form Layouts</span>
-                    </a>
-                </li>
-                <li>
-                    <a href="forms-editors.html">
-                        <i class="bi bi-circle"></i><span>Form Editors</span>
-                    </a>
-                </li>
-                <li>
-                    <a href="forms-validation.html">
-                        <i class="bi bi-circle"></i><span>Form Validation</span>
-                    </a>
-                </li>
-            </ul>
-        </li><!-- End Forms Nav -->
-
-
-        <li class="nav-heading">Pages</li>
 
         <li class="nav-item">
             <a class="nav-link collapsed" href="{{ url('test') }}">
-                <i class="bi bi-person"></i>
-                <span>WOI</span>
+                <i <span class="bi bi-person"></span></i>
+                <span>User</span>
             </a>
         </li><!-- End Profile Page Nav -->
 
         <li class="nav-item">
             <a class="nav-link collapsed" href="pages-faq.html">
-                <i class="bi bi-question-circle"></i>
-                <span>F.A.Q</span>
+                <i <span class='bi bi-clipboard-check'></span></i>
+                <span>Absensi</span>
             </a>
         </li><!-- End F.A.Q Page Nav -->
 
         <li class="nav-item">
             <a class="nav-link collapsed" href="pages-contact.html">
-                <i class="bi bi-envelope"></i>
-                <span>Contact</span>
+                <i <span class="bi bi-menu-up"></span></i>
+                <span>Menu</span>
             </a>
         </li><!-- End Contact Page Nav -->
 
         <li class="nav-item">
             <a class="nav-link collapsed" href="pages-register.html">
-                <i class="bi bi-card-list"></i>
-                <span>Register</span>
+                <i <span class='bi bi-archive'></span></i>
+                <span>Inventori</span>
             </a>
         </li><!-- End Register Page Nav -->
 
         <li class="nav-item">
             <a class="nav-link collapsed" href="pages-login.html">
-                <i class="bi bi-box-arrow-in-right"></i>
-                <span>Login</span>
+                <i <span class="bi bi-clipboard-data"></span></i>
+                <span>Pengambilan Barang</span>
             </a>
         </li><!-- End Login Page Nav -->
 
         <li class="nav-item">
             <a class="nav-link collapsed" href="pages-error-404.html">
-                <i class="bi bi-dash-circle"></i>
-                <span>Error 404</span>
+                <i <span class="bi bi-plus-circle"></span></i>
+                <span>Pemasukan</span>
             </a>
         </li><!-- End Error 404 Page Nav -->
 
         <li class="nav-item">
             <a class="nav-link collapsed" href="pages-blank.html">
-                <i class="bi bi-file-earmark"></i>
-                <span>Blank</span>
+                <i <span class="bi bi-dash-circle"></span></i>
+                <span>Pengeluaran</span>
             </a>
         </li><!-- End Blank Page Nav -->
+
+        <li class="nav-item">
+            <a class="nav-link collapsed" href="pages-blank.html">
+                <i <span class="bi bi-box-arrow-right"></span></span></i>
+                <span>Logout</span>
+            </a>
+        </li>
 
     </ul>
 
