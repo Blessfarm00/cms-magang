@@ -70,6 +70,23 @@ Route::get('/inventori',function(){
     return view('pages.Administrator.inventori.index');
 });
 
+Route::get('/absensi', function () {
+    return view('pages.Administrator.absensi.index');
+});
+
+Route::get('/pengambilan', function () {
+    return view('pages.Administrator.pengambilan.index');
+});
+
+Route::get('/pengeluaran', function () {
+    return view('pages.Administrator.pengeluaran.index');
+});
+
+Route::get('/pemasukan', function () {
+    return view('pages.Administrator.pemasukan.index');
+});
+
+
 Route::group([
     'prefix' => 'kuliner',
 ], function () {

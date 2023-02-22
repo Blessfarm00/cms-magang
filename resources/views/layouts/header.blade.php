@@ -41,11 +41,7 @@
 <body>
 
   <!-- ======= Header ======= -->
-  <header id="header" class="header fixed-top d-flex align-items-center bg-primary" >
-  <style>
-  {background-color:#0112FE;}
-  </style>
-
+  <header id="header" class="header fixed-top d-flex align-items-center " style="background-color:#0112FE">
     <div class="d-flex align-items-center justify-content-between">
       <a href="index.html" class="logo d-flex align-items-center">
         <img src="../images/rona.jpeg" alt="">
@@ -63,7 +59,7 @@
             <i class="bi bi-search"></i>
           </a>
         </li><!-- End Search Icon-->
-        
+
 
         <li class="nav-item dropdown">
 

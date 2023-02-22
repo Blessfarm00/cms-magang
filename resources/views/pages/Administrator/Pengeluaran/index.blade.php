@@ -2,9 +2,9 @@
 
 @section('container')
 
-<h1>Tabel Iventory</h1>
+<h1>Tabel Pengeluaran</h1>
 <div>
-    <h5>Melihat data Iventory</h5>
+    <h5>Melihat data Pengeluaran</h5>
     <div class="card-tools">
         <a href="#" class="btn btn-success">Tambah Data<i class="fas fa-plus-square"></i></a>
         <a href="#" class="btn btn-success">Print<i class="fas fa-plus-square"></i></a>
@@ -14,12 +14,9 @@
         <thead style="background-color:#0112FE">
             <tr>
                 <th scope="col" style="color:white">No</th>
-                <th scope="col" style="color:white">Kode Barang</th>
-                <th scope="col" style="color:white">Nama Barang</th>
-                <th scope="col" style="color:white">Harga</th>
-                <th scope="col" style="color:white">Stok</th>
-                <th scope="col" style="color:white">Satuan</th>
-                <th scope="col" style="color:white">Gambar</th>
+                <th scope="col" style="color:white">ID Pengeluaran </th>
+                <th scope="col" style="color:white">Tanggal</th>
+                <th scope="col" style="color:white">Detail</th>
                 <th colspan="2" scope="col" style="color:white">Aksi</th>
             </tr>
         </thead>
@@ -29,11 +26,8 @@
                 <td>Mark</td>
                 <td>12.00</td>
                 <td>Hadir</td>
-                <td>..</td>
-                <td>..</td>
-                <td>..</td>
-                  <td><a href="#" class="btn btn-warning">Edit</a>
-                <a href="#" class="btn btn-danger">Delete</a>
+                <td><a href="#" class="btn btn-warning">Edit</a>
+                    <a href="#" class="btn btn-danger">Delete</a>
                 </td>
             </tr>
             <tr>
@@ -41,9 +35,6 @@
                 <td>Jacob</td>
                 <td>08.00</td>
                 <td>Hadir</td>
-                <td>..</td>
-                <td>..</td>
-                <td>..</td>
                 <td><a href="#" class="btn btn-warning">Edit</a>
                     <a href="#" class="btn btn-danger">Delete</a>
                 </td>
@@ -53,9 +44,6 @@
                 <td>Syafik</td>
                 <td>17.00</td>
                 <td>Hadir</td>
-                <td>..</td>
-                <td>..</td>
-                <td>..</td>
                 <td><a href="#" class="btn btn-warning">Edit</a>
                     <a href="#" class="btn btn-danger">Delete</a>
                 </td>

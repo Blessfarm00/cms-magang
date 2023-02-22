@@ -3,9 +3,9 @@
 
 
 
-<div class="text-center">
-<img src="../images/profil.jpeg" alt="" width="100" height="100" class="center">
-</div>
+    <div class="text-center">
+        <img src="../images/profil.jpeg" alt="" width="100" height="100" class="center">
+    </div>
 
     <ul class="sidebar-nav" id="sidebar-nav">
 
@@ -25,7 +25,7 @@
         </li><!-- End Profile Page Nav -->
 
         <li class="nav-item">
-            <a class="nav-link collapsed" href="pages-faq.html">
+            <a class="nav-link {{ Request::is('absensi') ? 'active' : '' }}" href="{{ url('absensi') }}">
                 <i <span class='bi bi-clipboard-check'></span></i>
                 <span>Absensi</span>
             </a>
@@ -46,21 +46,21 @@
         </li><!-- End Register Page Nav -->
 
         <li class="nav-item">
-            <a class="nav-link collapsed" href="pages-login.html">
+            <a class="nav-link {{ Request::is('pengambilan') ? 'active' : '' }}" href="{{ url('pengambilan') }}">
                 <i <span class="bi bi-clipboard-data"></span></i>
                 <span>Pengambilan Barang</span>
             </a>
-        </li><!-- End Login Page Nav -->
+        </li>
 
         <li class="nav-item">
-            <a class="nav-link collapsed" href="pages-error-404.html">
+            <a class="nav-link {{ Request::is('pemasukan') ? 'active' : '' }}" href="{{ url('pemasukan') }}">
                 <i <span class="bi bi-plus-circle"></span></i>
                 <span>Pemasukan</span>
             </a>
         </li><!-- End Error 404 Page Nav -->
 
         <li class="nav-item">
-            <a class="nav-link collapsed" href="pages-blank.html">
+            <a class="nav-link {{ Request::is('pengeluaran') ? 'active' : '' }}" href="{{ url('pengeluaran') }}">
                 <i <span class="bi bi-dash-circle"></span></i>
                 <span>Pengeluaran</span>
             </a>
