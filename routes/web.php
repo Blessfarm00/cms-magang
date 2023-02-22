@@ -70,20 +70,40 @@ Route::get('/inventori',function(){
     return view('pages.Administrator.inventori.index');
 });
 
+Route::get('/inventori.create',function(){
+    return view('pages.Administrator.inventori.create');
+});
+
 Route::get('/absensi', function () {
     return view('pages.Administrator.absensi.index');
+});
+
+Route::get('/absensi.create', function () {
+    return view('pages.Administrator.absensi.create');
 });
 
 Route::get('/pengambilan', function () {
     return view('pages.Administrator.pengambilan.index');
 });
 
+Route::get('/pengambilan.create', function () {
+    return view('pages.Administrator.pengambilan.create');
+});
+
 Route::get('/pengeluaran', function () {
     return view('pages.Administrator.pengeluaran.index');
 });
 
+Route::get('/pengeluaran.create', function () {
+    return view('pages.Administrator.pengeluaran.create');
+});
+
 Route::get('/pemasukan', function () {
     return view('pages.Administrator.pemasukan.index');
+});
+
+Route::get('/pemasukan.create', function () {
+    return view('pages.Administrator.pemasukan.create');
 });
 
 
