@@ -4,9 +4,9 @@
 
 <div class="card">
     <div class="card-body">
-        <h5 class="card-header text-center">Table Pengambilan</h5><br>
+        <h5 class="card-header text-center">Table Menu</h5><br>
         <div class="card-tools">
-            <a href="pengambilan.create" class="btn btn-success">Tambah Data<i class="fas fa-plus-square"></i></a>
+            <a href="menu.create" class="btn btn-success">Tambah Data<i class="fas fa-plus-square"></i></a>
             <a href="#" class="btn btn-success">Print<i class="fas fa-plus-square"></i></a>
         </div>
         <hr>
@@ -14,10 +14,11 @@
             <thead style="background-color:#0112FE">
                 <tr>
                     <th scope="col" style="color:white">No</th>
-                    <th scope="col" style="color:white">ID Pengambilan </th>
-                    <th scope="col" style="color:white">ID Inventori</th>
-                    <th scope="col" style="color:white">Jumlah</th>
-                    <th scope="col" style="color:white">Keterangan</th>
+                    <th scope="col" style="color:white">id Prooduk</th>
+                    <th scope="col" style="color:white">Nama Produk</th>
+                    <th scope="col" style="color:white">Harga</th>
+                    <th scope="col" style="color:white">Gambar</th>
+                    <th scope="col" style="color:white">Deskripsi</th>
                     <th colspan="2" scope="col" style="color:white">Aksi</th>
                 </tr>
             </thead>
@@ -28,7 +29,10 @@
                     <td></td>
                     <td></td>
                     <td></td>
+                    <td></td>
+                    <td></td>
                     <td><a href="#" class="btn btn-warning">Edit</a>
+                        <a href="#" class="btn btn-dark">Detail</a>
                         <a href="#" class="btn btn-danger">Delete</a>
                     </td>
                 </tr>

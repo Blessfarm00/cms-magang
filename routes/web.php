@@ -62,8 +62,12 @@ Route::group([
  
 });
 
-Route::get('/test',function(){
-    return view('pages.Administrator.Kuliner.test');
+Route::get('/user',function(){
+    return view('pages.Administrator.user.index');
+});
+
+Route::get('/user.create', function () {
+    return view('pages.Administrator.user.create');
 });
 
 Route::get('/inventori',function(){
@@ -106,6 +110,17 @@ Route::get('/pemasukan.create', function () {
     return view('pages.Administrator.pemasukan.create');
 });
 
+Route::get('/menu', function () {
+    return view('pages.Administrator.menu.index');
+});
+
+Route::get('/menu.create', function () {
+    return view('pages.Administrator.menu.create');
+});
+
+Route::get('/print', function () {
+    return view('pages.Administrator.print.laporan');
+});
 
 Route::group([
     'prefix' => 'kuliner',

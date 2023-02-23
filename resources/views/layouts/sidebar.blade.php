@@ -1,12 +1,6 @@
 <!-- ======= Sidebar ======= -->
 <aside id="sidebar" class="sidebar">
 
-
-
-    <div class="text-center">
-        <img src="../images/profil.jpeg" alt="" width="100" height="100" class="center">
-    </div>
-
     <ul class="sidebar-nav" id="sidebar-nav">
 
         <li class="nav-item">
@@ -18,7 +12,7 @@
 
 
         <li class="nav-item">
-            <a class="nav-link collapsed" href="{{ url('test') }}">
+            <a class="nav-link {{ Request::is('user') ? 'active' : '' }}" href="{{ url('user') }}">
                 <i <span class="bi bi-person"></span></i>
                 <span>User</span>
             </a>
@@ -32,7 +26,7 @@
         </li><!-- End F.A.Q Page Nav -->
 
         <li class="nav-item">
-            <a class="nav-link collapsed" href="pages-contact.html">
+            <a class="nav-link {{ Request::is('menu') ? 'active' : '' }}" href="{{ url('menu') }}">
                 <i <span class="bi bi-menu-up"></span></i>
                 <span>Menu</span>
             </a>
@@ -65,13 +59,6 @@
                 <span>Pengeluaran</span>
             </a>
         </li><!-- End Blank Page Nav -->
-
-        <li class="nav-item">
-            <a class="nav-link collapsed" href="pages-blank.html">
-                <i <span class="bi bi-box-arrow-right"></span></span></i>
-                <span>Logout</span>
-            </a>
-        </li>
 
     </ul>
 
