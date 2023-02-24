@@ -62,6 +62,10 @@ Route::group([
  
 });
 
+Route::get('/dashboard',function(){
+    return view('pages.dashboard');
+});
+
 Route::get('/user',function(){
     return view('pages.Administrator.user.index');
 });

@@ -1,9 +1,11 @@
-@extends('layouts.app')
+@extends('layouts.main')
 
-@section('title','Dashboard')
-@section('content_header_title','Dashboard')
+@section('container')
 
-@section('main-content')
-    <div class="row">
+<div class="card">
+    <div class="card-body">
+        <h5 class="card-header text-center">Dashboard</h5><br>
+        
     </div>
+
 @endsection
