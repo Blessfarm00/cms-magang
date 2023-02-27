@@ -11,7 +11,7 @@ class UserController extends Controller
 
     public function index()
     {
-        return view('pages.Administrator.Absensi.index');
+        return view('pages.Administrator.pengambilan.index');
     }
 
     public function create(Request $request)
@@ -22,25 +22,25 @@ class UserController extends Controller
             'per_page' => 999,
             'limit' => 999,
         ])->getData()->data;
-        return view('pages.Administrator.Absensi.create')->with('absen', $data);
+        return view('pages.Administrator.pengambilan.create')->with('roles', $data);
     }
 
     public function store(request $request)
     {
-        // dd($request->all());horihjdfiolkgkdflhjdk;ohj
+        // dd($request->all());
         // $data = user::create ($request->all());
         // if($request->hasFile('avatar')){
         //     $request->file('avatar')->move('img/', $request-> file('foto')->getClientOriginalName());
         //     $data->foto = $request->file('avatar')->getClientOriginalName();
         //     $data->save();
         // }
-        $this->validate($request, [ 
-            'id_user' => 'required|unique:absensies|max:255|min:3',
-            'tanggal' => 'date',
-            'keterangan' => 'required',
+        $this->validate($request, [
+            'id_inventori' => 'numeric|min:6|max:30',
+            'jumlah' => '',
+            'keterangan' => '',
         ]);
 
-        // $path =$request->file('avatar')->store('public/images');
+        // // $path =$request->file('avatar')->store('public/images');
         // $file = $request->file('avatar');
         // //mengambil nama file
         // $nama_file = asset('img/avatars') . '/' . $file->getClientOriginalName();
@@ -51,75 +51,46 @@ class UserController extends Controller
         // // $user->save();
 
         $gateway = new Gateway();
-        $storeRole = $gateway->post('/api/cms/manage/absensi', [
-            "id_user" => $request->get('id_user'),
-            "tanggal" => $request->get('tanggal'),
-            "keterangan" => $request->get('keterangan'),
-        ])->getData();
-        dd($storeRole);
-        return redirect('/admin')->with('success', 'Data Berhasil Di Tambahkan');
+        return redirect('/pengambilan')->with('success', 'Data Berhasil Di Tambahkan');
     }
 
     public function edit($id)
     {
 
         $gateway = new Gateway();
-        $user = $gateway->get('/api/cms/manage/absensi/' . $id)->getData()->data;
-        $absen = $gateway->get('/api/cms/manage/absensi', [
+        $user = $gateway->get('/api/cms/manage/pengambilan/' . $id)->getData()->data;
+        $roles = $gateway->get('/api/cms/manage/role', [
             'page' => 1,
             'per_page' => 999,
             'limit' => 999,
         ])->getData()->data;
-        return view('pages.Administrator.Absensi.edit', compact('absen', 'absensi'));
-
+        return view('pages.Administrator.pengambilan.edit', compact('pengambilan', 'pengambilan'));
     }
 
     public function update(Request $request, $id)
     {
         // dd($request->all());
-        // $nama_file = '';
-        // if ($request->file('avatar')) {
-        //     $file = $request->file('avatar');
-        //     //mengambil nama file
-        //     $nama_file = asset('img/avatars') . '/' . $file->getClientOriginalName();
-
-        //     //memindahkan file ke folder tujuan
-        //     $file->move('img/avatars', $file->getClientOriginalName());
-        // }
-
-        // $password = '';
-        // if ($request->password != null) {
-        //     $password = $request->password;
-        // }
-
         $gateway = new Gateway();
-        $storeRole = $gateway->put('/api/cms/manage/absensi/' . $id, [
-            "id_user" => $request->get('id_user'),
-            "tanggal" => $request->get('tanggal'),
-            "keterangan" => $request->get('keterangan'),
-            // "avatar" => $nama_file,
-            // "birthDate" => $request->get('birthdate'),
-            // "password" => $password,
-            // "roleId" => $request->get('roleId'),
+        $storeRole = $gateway->put('/api/cms/manage/pengambilan/' . $id, [
+            "pengambilan" => $request->get('pengambilan'),
         ])->getData();
-            dd($storeRole);
+        dd($storeRole);
         if ($storeRole->success) {
-            return redirect('/goldlne')->with('success', 'Data Berhasil Di Tambahkan');
+            return redirect('/pengambilan')->with('success', 'Data Berhasil Di Tambahkan');
         } else {
-            return redirect('/midlane')->with('error', 'Data Gagal Di Tambahkan');
+            return redirect('/pengambilan')->with('error', 'Data Gagal Di Tambahkan');
         }
-
     }
 
     public function delete($id)
     {
         $gateway = new Gateway();
 
-        $deleteRole = $gateway->delete('/api/cms/manage/user/' . $id);
+        $deleteRole = $gateway->delete('/api/cms/manage/pengambilan/' . $id);
         if (!$deleteRole->getData()->success) {
-            return redirect('/role')->with('error', $deleteRole->getData()->message);
+            return redirect('/pengambilan')->with('error', $deleteRole->getData()->message);
         }
-        return redirect('/admin')->with('success', 'Admin Deleted');
+        return redirect('/pengambilan')->with('success', 'Admin Deleted');
     }
 
     public function fnGetData(Request $request)
@@ -127,7 +98,7 @@ class UserController extends Controller
         $gateway = new Gateway();
 
         $page = $request->input('start') / $request->input('length') + 1;
-        $data = $gateway->get('/api/cms/manage/user', [
+        $data = $gateway->get('/api/cms/manage/pengambilan', [
             'page' => $page,
             'per_page' => $request->input('length'),
             'limit' => $request->input('length'),
@@ -147,8 +118,6 @@ class UserController extends Controller
                 $btn = '<a class="btn btn-default" href="admin/' . $data->userId . '">Edit</a>';
                 $btn .= ' <button class="btn btn-danger btn-xs btnDelete" style="padding: 5px 6px;" onclick="fnDelete(this,' . $data->userId . ')">Delete</button>';
                 return $btn;
-            })
-            ->rawColumns(['avatar', 'action'])
-            ->make(true);
+            });
     }
 }
