@@ -32,15 +32,15 @@ class LoginController extends Controller
         $gateway = new Gateway();
 
         if (!\Cache::has('token-app')) {
-            $token = $gateway->post('/api/cms/token', [
-                'client_key' => 'clientKeyBackOffice',
+            $token = $gateway->post('/api/token', [
+                'client_key' => 'clientKeyCMS',
                 'secret_key' => 'secret'
             ]);
             \Cache::add('token-app', $token->getData()->data->token, 2592000);;
         }
 
         $this->validate($request, $this->role);
-        $response = $gateway->post('/api/cms/login', $request->all())->getData();
+        $response = $gateway->post('/api/login', $request->all())->getData();
         if (!$response->success) {
             $error = array('email' => $request['message']);
             $username = $this->username();

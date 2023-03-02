@@ -14,24 +14,31 @@
             <thead style="background-color:#0112FE">
                 <tr>
                     <th scope="col" style="color:white">No</th>
-                    <th scope="col" style="color:white">ID Pengeluaran</th>
                     <th scope="col" style="color:white">Pengeluaran</th>
-                    <th scope="col" style="color:white">Tanggal</th>
                     <th scope="col" style="color:white">Rincian</th>
+                    <th scope="col" style="color:white">Waktu</th>
                     <th colspan="2" scope="col" style="color:white">Aksi</th>
                 </tr>
             </thead>
             <tbody class="table-group-divider">
-                <tr>
-                    <th scope="row"></th>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td><a href="#" class="btn btn-warning">Edit</a>
-                        <a href="#" class="btn btn-danger">Delete</a>
-                    </td>
-                </tr>
+                @foreach ($pengeluarans['data']['items'] as $pengeluaran)
+
+                        <tr>
+                            <td>{{ $loop->iteration }}</td>
+                            <td>{{ $pengeluaran['pengeluaran'] }}</td>
+                            <td>{{ $pengeluaran['rincian'] }}</td>
+                            <td>{{ date('l, d-m-y', strtotime($pengeluaran['created_at'])) }}</td>
+                            <td>
+                                <a href="/pengeluarans/{{ $pengeluaran['id'] }}/edit" class="btn btn-warning">Edit</a>
+        
+                                <form action="/pengeluarans/{{ $pengeluaran['id'] }}" method="post" class="d-inline">
+                                    @method('DELETE')
+                                @csrf
+                                    <button class="btn btn-danger" onclick="return confirm('Yakin Akan Menghapus Data..?')" type="submit">Delete</button>
+                                </form>
+                            </td>
+                        </tr>
+                    @endforeach
             </tbody>
         </table>
     </div>

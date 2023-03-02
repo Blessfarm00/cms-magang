@@ -1,7 +1,7 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
-use App\Http\Controllers\KulinerController;
+use App\Http\Controllers\FrontendController;
 
 /*
 |--------------------------------------------------------------------------
@@ -17,6 +17,7 @@ use App\Http\Controllers\KulinerController;
 Route::get('/', function () {
     return redirect()->route('login');
 })->name('landing');
+
 
 Route::group([
     'middleware' => 'guest',
@@ -62,6 +63,10 @@ Route::group([
  
 });
 
+Route::get('/register',function(){
+    return view('layouts.auth.register');
+});
+
 Route::get('/dashboard',function(){
     return view('pages.dashboard');
 });
@@ -74,13 +79,17 @@ Route::get('/user.create', function () {
     return view('pages.Administrator.user.create');
 });
 
-Route::get('/inventori',function(){
-    return view('pages.Administrator.inventori.index');
-});
+// Route::get('/inventori',function(){
+//     return view('pages.Administrator.inventori.index');
+// });
 
 Route::get('/inventori.create',function(){
     return view('pages.Administrator.inventori.create');
 });
+
+Route::get('inventori', 'App\Http\Controllers\InventoriController@getInventori');
+
+// Route::resource('testing', FrontendController::class);
 
 Route::get('/absensi', function () {
     return view('pages.Administrator.absensi.index');
@@ -98,17 +107,21 @@ Route::get('/pengambilan.create', function () {
     return view('pages.Administrator.pengambilan.create');
 });
 
-Route::get('/pengeluaran', function () {
-    return view('pages.Administrator.pengeluaran.index');
-});
+// Route::get('/pengeluaran', function () {
+//     return view('pages.Administrator.pengeluaran.index');
+// });
+Route::get('pengeluaran', 'App\Http\Controllers\PengeluaranController@getPengeluaran');
 
 Route::get('/pengeluaran.create', function () {
     return view('pages.Administrator.pengeluaran.create');
 });
 
-Route::get('/pemasukan', function () {
-    return view('pages.Administrator.pemasukan.index');
-});
+// Route::get('/pemasukan', function () {
+//     return view('pages.Administrator.pemasukan.index');
+// });
+
+Route::get('pemasukan', 'App\Http\Controllers\PemasukanController@getPemasukan');
+
 
 Route::get('/pemasukan.create', function () {
     return view('pages.Administrator.pemasukan.create');
@@ -125,6 +138,7 @@ Route::get('/menu.create', function () {
 Route::get('/print', function () {
     return view('pages.Administrator.print.laporan');
 });
+
 
 Route::group([
     'prefix' => 'kuliner',
