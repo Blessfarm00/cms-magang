@@ -26,9 +26,9 @@
         </li><!-- End F.A.Q Page Nav -->
 
         <li class="nav-item">
-            <a class="nav-link {{ Request::is('menu') ? 'active' : '' }}" href="{{ url('menu') }}">
+            <a class="nav-link {{ Request::is('produk') ? 'active' : '' }}" href="{{ url('produk') }}">
                 <i <span class="bi bi-menu-up"></span></i>
-                <span>Menu</span>
+                <span>Produk</span>
             </a>
         </li><!-- End Contact Page Nav -->
 

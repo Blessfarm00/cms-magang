@@ -7,7 +7,7 @@
                 <h5 class="card-header text-center">Table Pemasukan</h5><br>
         
                 <div class="card-tools">
-                    <a href="pemasukan.create" class="btn btn-success">Tambah Data<i class="fas fa-plus-square"></i></a>
+                    <a href="/pemasukan/create" class="btn btn-success">Tambah Data<i class="fas fa-plus-square"></i></a>
                     <a href="#" class="btn btn-success">Print<i class="fas fa-plus-square"></i></a>
                 </div>
                 <hr>

@@ -6,7 +6,7 @@
     <div class="card-body">
         <h5 class="card-header text-center">Table Pengeluaran</h5><br>
         <div class="card-tools">
-            <a href="pengeluaran.create" class="btn btn-success">Tambah Data<i class="fas fa-plus-square"></i></a>
+            <a href="test/create" class="btn btn-success">Tambah Data<i class="fas fa-plus-square"></i></a>
             <a href="#" class="btn btn-success">Print<i class="fas fa-plus-square"></i></a>
         </div>
         <hr>
@@ -23,22 +23,22 @@
             <tbody class="table-group-divider">
                 @foreach ($pengeluarans['data']['items'] as $pengeluaran)
 
-                        <tr>
-                            <td>{{ $loop->iteration }}</td>
-                            <td>{{ $pengeluaran['pengeluaran'] }}</td>
-                            <td>{{ $pengeluaran['rincian'] }}</td>
-                            <td>{{ date('l, d-m-y', strtotime($pengeluaran['created_at'])) }}</td>
-                            <td>
-                                <a href="/pengeluarans/{{ $pengeluaran['id'] }}/edit" class="btn btn-warning">Edit</a>
-        
-                                <form action="/pengeluarans/{{ $pengeluaran['id'] }}" method="post" class="d-inline">
-                                    @method('DELETE')
-                                @csrf
-                                    <button class="btn btn-danger" onclick="return confirm('Yakin Akan Menghapus Data..?')" type="submit">Delete</button>
-                                </form>
-                            </td>
-                        </tr>
-                    @endforeach
+                <tr>
+                    <td>{{ $loop->iteration }}</td>
+                    <td>{{ $pengeluaran['pengeluaran'] }}</td>
+                    <td>{{ $pengeluaran['rincian'] }}</td>
+                    <td>{{ date('l, d-m-y', strtotime($pengeluaran['created_at'])) }}</td>
+                    <td>
+                        <a href="/pengeluarans/{{ $pengeluaran['id'] }}/edit" class="btn btn-warning">Edit</a>
+
+                        <form action="/pengeluarans/{{ $pengeluaran['id'] }}" method="post" class="d-inline">
+                            @method('DELETE')
+                            @csrf
+                            <button class="btn btn-danger" onclick="return confirm('Yakin Akan Menghapus Data..?')" type="submit">Delete</button>
+                        </form>
+                    </td>
+                </tr>
+                @endforeach
             </tbody>
         </table>
     </div>
