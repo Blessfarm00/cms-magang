@@ -29,6 +29,15 @@ class ProdukController extends Controller
         ])->getBody();
         return view('pages.Administrator.Produk.create')->with('produk', $data);
     }
+
+    public function edit($id)
+    {
+        $gateway = new Gateway();
+        $produk = $gateway->get('https://api-rona-coffe.000webhostapp.com/api/produk' . $id)->getData();
+        // dd($produk);
+        return view('pages.Administrator.Produk.edit', compact('produk'));
+    }
+    
     public function store(Request $request)
     {
         // dd($request->all());

@@ -20,6 +20,14 @@ class PengambilanController extends Controller
         return view('pages.Administrator.Pengambilan.index',  ['pengambilan_barangs' => $pengambilan_barangs]);
     }
 
+    public function edit($id)
+    {
+        $gateway = new Gateway();
+        $pengambilan = $gateway->get('https://api-rona-coffe.000webhostapp.com/api/pengambilan' . $id)->getData();
+        // dd($pengambilan);
+        return view('pages.Administrator.Pengambilan.edit', compact('pengambilan'));
+    }
+
     public function create()
     {
         $client = new Client();
@@ -33,13 +41,13 @@ class PengambilanController extends Controller
         $response = $client->request('GET', 'https://api-rona-coffe.000webhostapp.com/api/pengambilan');
         $statusCode = $response->getStatusCode();
         $body = $response->getBody()->getContents();
-        $inventori = json_decode($body, true);
+        $pengambilan = json_decode($body, true);
 
-        // dd($inventori);
+        // dd($pengambilan);
 
 
 
-        return view('pages.Administrator.Pengambilan.create')->with('pengambilan', $data, 'inventoris', $inventori);
+        return view('pages.Administrator.Pengambilan.create')->with('pengambilan', $data, 'pengambilans', $pengambilan);
     }
     public function store(Request $request)
     {

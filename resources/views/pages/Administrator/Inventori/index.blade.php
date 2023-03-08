@@ -35,7 +35,7 @@
                     <td>{{ $inventori['harga'] }}</td>
                     <td>{{ $inventori['satuan'] }}</td>
                     <td>
-                        <a href="/inventoris/{{ $inventori['id'] }}/edit" class="btn btn-warning">Edit</a>
+                        <a href="/inventori/{{ $inventori['id'] }}/edit" class="btn btn-warning">Edit</a>
 
                         <form action="/inventoris/{{ $inventori['id'] }}" method="post" class="d-inline">
                             @method('DELETE')

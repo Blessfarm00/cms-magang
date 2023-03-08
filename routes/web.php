@@ -1,4 +1,4 @@
-<?php
+<!-- <?php
 
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\FrontendController;
@@ -29,24 +29,23 @@ use App\Http\Controllers\FrontendController;
 //      Route::post('/register', 'RegisterController@register')->name('register');
 // });
 
-// Route::group([
-//     'middleware' => 'auth',
-//     'namespace' => 'App\Http\Controllers',
-// ], function () {
-//     Route::get('/dashboard', 'DashboardController@index')->name('dashboard');
-//     Route::post('logout', 'Auth\LoginController@logout')->name('logout');
+Route::group([
+    'namespace' => 'App\Http\Controllers',
+], function () {
+    Route::get('/dashboard', 'DashboardController@index')->name('dashboard');
+    Route::post('logout', 'Auth\LoginController@logout')->name('logout');
 
-//     Route::group([
-//         'prefix' => 'admin',
-//     ], function () {
-//         Route::get('/', 'UserController@index')->name('index.admin');
-//         Route::get('/fn_get_data', 'UserController@fnGetData');
-//         Route::get('/create', 'UserController@create');
-//         Route::post('/create', 'UserController@store');
-//         Route::get('/{id}', 'UserController@edit');
-//         Route::post('/{id}', 'UserController@update');
-//         Route::get('delete/{id}', 'UserController@delete');
-//     });
+    // Route::group([
+    //     'prefix' => 'admin',
+    // ], function () {
+    //     Route::get('/', 'UserController@index')->name('index.admin');
+    //     Route::get('/fn_get_data', 'UserController@fnGetData');
+    //     Route::get('/create', 'UserController@create');
+    //     Route::post('/create', 'UserController@store');
+    //     Route::get('/{id}', 'UserController@edit');
+    //     Route::post('/{id}', 'UserController@update');
+    //     Route::get('delete/{id}', 'UserController@delete');
+    // });
 
 //     Route::group([
 //         'prefix' => 'role',
@@ -61,7 +60,7 @@ use App\Http\Controllers\FrontendController;
 //     });
 
  
-// });
+});
 
 // Route::get('/register',function(){
 //     return view('layouts.auth.register');
@@ -69,6 +68,10 @@ use App\Http\Controllers\FrontendController;
 
 // Route::get('/dashboard',function(){
 //     return view('pages.dashboard');
+// });
+
+// Route::get('/404',function(){
+//     return view('errors.404');
 // });
 
 // Route::get('/user',function(){
@@ -152,41 +155,46 @@ use App\Http\Controllers\FrontendController;
 //     Route::get('delete/{id}', 'InventoriController@delete');
 // });
 
-// Route::group([
-//     'prefix' => 'inventori',
-// ],
-//     function () {
 
-//     }
-// );
 
 Route::get('/inventori', 'App\Http\Controllers\InventoriController@index');
 Route::get('/fn_get_data', 'App\Http\Controllers\InventoriController@fnGetData');
 Route::get('/inventori/create', 'App\Http\Controllers\InventoriController@create');
 Route::post('/create', 'App\Http\Controllers\InventoriController@store');
-// Route::get('/{id}', 'App\Http\Controllers\InventoriController@edit');
-// Route::post('/{id}', 'App\Http\Controllers\InventoriController@update');
-// Route::get('delete/{id}', 'App\Http\Controllers\InventoriController@delete');
-// Route::resource('/inventori', App\Http\Controllers\InventoriController::class );
+Route::get('/inventori/{id}/edit', 'App\Http\Controllers\InventoriController@edit');
+Route::post('/inventori/{id}', 'App\Http\Controllers\InventoriController@delete');
+
+
+// Route::group([
+//     'prefix' => 'inventori',
+// ], function () {
+//     Route::get('/{id}', 'App\Http\Controllers\InventoriController@edit');
+//     // Route::post('/{id}', 'KulinerController@update');
+//     // Route::get('delete/{id}', 'KulinerController@delete');
+// });
 
 
 Route::get('/pemasukan', 'App\Http\Controllers\PemasukanController@index');
 Route::get('/fn_get_data', 'App\Http\Controllers\PemasukanController@fnGetData');
 Route::get('/pemasukan/create', 'App\Http\Controllers\PemasukanController@create');
 Route::post('/pemasukan', 'App\Http\Controllers\PemasukanController@store');
+Route::get('/pemasukan/{id}/edit', 'App\Http\Controllers\PemasukanController@edit');
 // Route::resource('/pemasukan', App\Http\Controllers\PemasukanController::class);
 
 Route::get('/pengambilan', 'App\Http\Controllers\PengambilanController@index');
 Route::get('/fn_get_data', 'App\Http\Controllers\PengambilanController@fnGetData');
 Route::get('/pengambilan/create', 'App\Http\Controllers\PengambilanController@create');
 Route::post('/pengambilan', 'App\Http\Controllers\PengambilanController@store');
+Route::get('/pengambilan/{id}/edit', 'App\Http\Controllers\PengambilanController@edit');
 
 Route::get('/produk', 'App\Http\Controllers\ProdukController@index');
 Route::get('/fn_get_data', 'App\Http\Controllers\ProdukController@fnGetData');
 Route::get('/produk/create', 'App\Http\Controllers\ProdukController@create');
 Route::post('/produk', 'App\Http\Controllers\ProdukController@store');
+Route::get('/produk/{id}/edit', 'App\Http\Controllers\ProdukController@edit');
 
 Route::get('/pengeluaran', 'App\Http\Controllers\PengeluaranController@index');
 Route::get('/fn_get_data', 'App\Http\Controllers\PengeluaranController@fnGetData');
 Route::get('/test/create', 'App\Http\Controllers\PengeluaranController@create');
 Route::post('/pengeluaran', 'App\Http\Controllers\PengeluaranController@store');
+Route::get('/pengeluaran/{id}/edit', 'App\Http\Controllers\PengeluaranController@edit');

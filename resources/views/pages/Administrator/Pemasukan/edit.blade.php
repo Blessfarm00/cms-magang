@@ -13,7 +13,7 @@
                     <div class="card-body">
                         <div class="mb-5">
                             <label for="exampleInputPassword1" class="form-label" style="text-align: center;">Pemasukan</label>
-                            <input type="number" name="pemasukan" class="form-control @error('pemasukan') is-invalid @enderror" id="pemasukan" value="{{ old('pemasukan') }}" autofocus placeholder="Rp. ">
+                            <input type="number" name="pemasukan" class="form-control @error('pemasukan') is-invalid @enderror" id="pemasukan" value="{{ $pemasukan->pemasukan }}" autofocus placeholder="Rp. ">
                             @error('pemasukan')
                             <div class="invalid-feedback">
                                 {{ $message }}

@@ -29,6 +29,15 @@ class PemasukanController extends Controller
         return view('pages.Administrator.Pemasukan.create')->with('pemasukan', $data);
     }
 
+    public function edit($id)
+    {
+        $gateway = new Gateway();
+        $pemasukan = $gateway->get('https://api-rona-coffe.000webhostapp.com/api/pemasukan' . $id)->getData();
+        // dd($pemasukan);
+        return view('pages.Administrator.Pemasukan.edit')->with('pemasukan', $pemasukan);
+
+    }
+
     public function store(Request $request)
     {
         // $validate = $request->validate([

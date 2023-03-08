@@ -27,8 +27,40 @@ class InventoriController extends Controller
             'per_page' => 999,
             'limit' => 999,
         ])->getBody();
-        return view('pages.Administrator.Inventori.create')->with('inventori', $data);
+        return view('pages.Administrator.Inventori.create')->with('inventoris', $data);
     }
+
+    public function edit($id)
+    {
+        $gateway = new Gateway();
+        $inventori = $gateway->get('https://api-rona-coffe.000webhostapp.com/api/inventory' . $id)->getData();
+        // dd($inventori);
+        return view('pages.Administrator.Inventori.edit', compact('inventori'));
+    }
+            
+    public function update(Request $request, $id)
+    {
+        $gateway = new Gateway();
+        $store = $gateway->put('https://api-rona-coffe.000webhostapp.com/api/inventory' . $id, [
+            "kd_barang" => $request->get('kd_barang'),
+            "nama_barang" => $request->get('nama_barang'),
+            "stok" => $request->get('stok'),
+            "harga" => $request->get('harga'),
+            "satuan" => $request->get('satuan'),
+        ])->getData();
+        // dd($store);
+        return redirect('/inventori')->with('success', 'Data Berhasil Di Tambahkan');
+    }
+    
+
+    public function delete($id)
+    {
+        $gateway = new Gateway();
+
+        $delete = $gateway->delete('https://api-rona-coffe.000webhostapp.com/api/inventory' . $id);
+        return redirect('/inventori')->with('success', 'Inventori Deleted');
+    }
+
     public function store(Request $request)
     {
         

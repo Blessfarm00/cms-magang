@@ -28,6 +28,15 @@ class PengeluaranController extends Controller
         ])->getBody()->data;
         return view('pages.Administrator.Pengeluaran.create')->with('pengeluaran', $data);
     }
+
+    public function edit($id)
+    {
+        $gateway = new Gateway();
+        $pengeluaran = $gateway->get('https://api-rona-coffe.000webhostapp.com/api/pengeluaran' . $id)->getData();
+        // dd($pengeluaran);
+        return view('pages.Administrator.Pengeluaran.edit', compact('pengeluaran'));
+    }
+
     public function store(Request $request)
     {
 
