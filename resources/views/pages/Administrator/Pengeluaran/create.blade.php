@@ -22,7 +22,7 @@
                         </div>
                         <div class="mb-5">
                             <label for="exampleInputPassword1" class="form-label" style="text-align: center;">Rincian</label>
-                            <input type="text" name="rincian" class="form-control @error('rincian') is-invalid @enderror" id="rincian" value="{{ old('rincian') }}" autofocus placeholder="Rp. ">
+                            <input type="text" name="rincian" class="form-control @error('rincian') is-invalid @enderror" id="rincian" value="{{ old('rincian') }}" autofocus placeholder="Rincian">
                             @error('rincian')
                             <div class="invalid-feedback">
                                 {{ $message }}

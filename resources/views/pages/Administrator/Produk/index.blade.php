@@ -16,8 +16,8 @@
                     <th scope="col" style="color:white">No</th>
                     <th scope="col" style="color:white">Nama Produk</th>
                     <th scope="col" style="color:white">Harga</th>
-                    <th scope="col" style="color:white">Gambar</th>
                     <th scope="col" style="color:white">Deskripsi</th>
+                    <th scope="col" style="color:white">Gambar</th>
                     <th colspan="2" scope="col" style="color:white">Aksi</th>
                 </tr>
             </thead>

@@ -1,4 +1,4 @@
-<!-- <?php
+<?php
 
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\FrontendController;
@@ -160,7 +160,7 @@ Route::group([
 Route::get('/inventori', 'App\Http\Controllers\InventoriController@index');
 Route::get('/fn_get_data', 'App\Http\Controllers\InventoriController@fnGetData');
 Route::get('/inventori/create', 'App\Http\Controllers\InventoriController@create');
-Route::post('/create', 'App\Http\Controllers\InventoriController@store');
+Route::post('/inventori', 'App\Http\Controllers\InventoriController@store');
 Route::get('/inventori/{id}/edit', 'App\Http\Controllers\InventoriController@edit');
 Route::post('/inventori/{id}', 'App\Http\Controllers\InventoriController@delete');
 

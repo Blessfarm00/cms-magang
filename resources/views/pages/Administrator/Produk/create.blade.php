@@ -6,7 +6,7 @@
     <div class="row">
         <div class="col-md-2"></div>
         <div class="col-md-8 mt-5">
-            <form action="/produk" method="post">
+            <form action="/produk" method="post" enctype="multipart/form-data">
                 @csrf
                 <div class="card">
                     <h5 class="card-header text-center">produk</h5><br>
@@ -30,23 +30,24 @@
                             @enderror
                         </div>
                         <div class="mb-5">
-                            <label for="exampleInputPassword1" class="form-label" style="text-align: center;">Images</label>
-                            <input type="text" name="gambar" class="form-control @error('gambar') is-invalid @enderror" id="gambar" value="{{ old('gambar') }}" autofocus placeholder="gambar">
-                            @error('gambar')
-                            <div class="invalid-feedback">
-                                {{ $message }}
-                            </div>
-                            @enderror
-                        </div>
-                        <div class="mb-5">
-                            <label for="exampleInputPassword1" class="form-label" style="text-align: center;">Deskrisi</label>
-                            <input type="text" name="deskripsi" class="form-control @error('deskripsi') is-invalid @enderror" id="deskripsi" value="{{ old('deskripsi') }}" autofocus placeholder="deskropsi ">
+                            <label for="exampleInputPassword1" class="form-label" style="text-align: center;">Deskripsi</label>
+                            <input type="text" name="deskripsi" class="form-control @error('deskripsi') is-invalid @enderror" id="deskripsi" value="{{ old('deskripsi') }}" autofocus placeholder="deskripsi ">
                             @error('deskripsi')
                             <div class="invalid-feedback">
                                 {{ $message }}
                             </div>
                             @enderror
                         </div>
+                        <div class="mb-5">
+                            <label for="gambar" class="form-label">Foto Barang</label>
+                            <input type="file" class="form-control @error('gambar') is-invalid @enderror" id="gambar" name="gambar" value="{{ old('gambar') }}" autofocus>
+                            @error('gambar')
+                            <div class="invalid-feedback">
+                                {{ $message }}
+                            </div>
+                            @enderror
+                        </div>
+
 
                         <div class="d-grid gap-2 d-md-flex justify-content-md-end">
                             <button class="btn btn-primary" type="submit">Button</button>
