@@ -29,7 +29,7 @@
                     <td>{{ $pengeluaran['rincian'] }}</td>
                     <td>{{ date('l, d-m-y', strtotime($pengeluaran['created_at'])) }}</td>
                     <td>
-                        <a href="/pengeluarans/{{ $pengeluaran['id'] }}/edit" class="btn btn-warning">Edit</a>
+                        <a href="/pengeluaran/{{ $pengeluaran['id'] }}/edit" class="btn btn-warning">Edit</a>
 
                         <form action="/pengeluarans/{{ $pengeluaran['id'] }}" method="post" class="d-inline">
                             @method('DELETE')

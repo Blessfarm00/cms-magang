@@ -45,8 +45,6 @@ class PengambilanController extends Controller
 
         // dd($pengambilan);
 
-
-
         return view('pages.Administrator.Pengambilan.create')->with('pengambilan', $data, 'pengambilans', $pengambilan);
     }
     public function store(Request $request)

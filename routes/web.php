@@ -14,20 +14,20 @@ use App\Http\Controllers\FrontendController;
 // |
 //  */
 
-// Route::get('/', function () {
-//     return redirect()->route('login');
-// })->name('landing');
+Route::get('/', function () {
+    return redirect()->route('login');
+})->name('landing');
 
 
-// Route::group([
-//     'middleware' => 'guest',
-//     'namespace' => 'App\Http\Controllers\Auth',
-// ], function () {
-//     Route::get('/login', 'LoginController@showLoginForm')->name('login');
-//     Route::post('/login', 'LoginController@authenticate')->name('authenticate');
-//      Route::get('/register', 'RegisterController@showRegistrationForm')->name('register');
-//      Route::post('/register', 'RegisterController@register')->name('register');
-// });
+Route::group([
+    'middleware' => 'guest',
+    'namespace' => 'App\Http\Controllers\Auth',
+], function () {
+    Route::get('/login', 'LoginController@showLoginForm')->name('login');
+    Route::post('/login', 'LoginController@authenticate')->name('authenticate');
+     Route::get('/register', 'RegisterController@showRegistrationForm')->name('register');
+     Route::post('/register', 'RegisterController@register')->name('register');
+});
 
 Route::group([
     'namespace' => 'App\Http\Controllers',
@@ -155,7 +155,12 @@ Route::group([
 //     Route::get('delete/{id}', 'InventoriController@delete');
 // });
 
-
+Route::get('/user', 'App\Http\Controllers\UserController@index');
+Route::get('/fn_get_data', 'App\Http\Controllers\InventoriController@fnGetData');
+Route::get('/user/create', 'App\Http\Controllers\UserController@create');
+Route::post('/user', 'App\Http\Controllers\UserController@store');
+Route::get('/user/{id}/edit', 'App\Http\Controllers\UserController@edit');
+Route::post('/user/{id}', 'App\Http\Controllers\UserController@delete');
 
 Route::get('/inventori', 'App\Http\Controllers\InventoriController@index');
 Route::get('/fn_get_data', 'App\Http\Controllers\InventoriController@fnGetData');

@@ -9,10 +9,10 @@
             <form action="/pengambilan" method="post">
                 @csrf
                 <div class="card">
-                    <h5 class="card-header text-center">Pengambilan</h5><br>
+                    <h5 class="card-header text-center">Edit Data Pengambilan</h5><br>
                     <div class="card-body">
                         @foreach($pengambilan as $pengambilans)
-                        {{$pengambilans->id}}    
+                        {{-- {{$pengambilans->id}}     --}}
                         <div class="mb-5">
                             <label for="exampleInputPassword1" class="form-label" style="text-align: center;">ID Invontori</label>
                             <select class="form-select" name="inventori_id" aria-label="Default select example">
@@ -45,10 +45,11 @@
                             </div>
                             @enderror
                         </div>
-                        <div class="d-grid gap-2 d-md-flex justify-content-md-end">
-                            <button class="btn btn-primary" type="submit">Button</button>
-                        </div>
                         @endforeach
+                        <div class="d-grid gap-2 d-md-flex justify-content-md-end">
+                            <button class="btn btn-primary" type="submit">Simpan</button>
+                        </div>
+                        
                     </div>
                 </div>
 

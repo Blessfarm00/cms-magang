@@ -9,8 +9,10 @@
             <form action="/pemasukan" method="post">
                 @csrf
                 <div class="card">
-                    <h5 class="card-header text-center">Pemasukan</h5><br>
+                    <h5 class="card-header text-center">Edit Data Pemasukan</h5><br>
                     <div class="card-body">
+                    @foreach($pemasukan as $pemasukans)
+                    {{-- {{$pemasukans->id}}  --}}
                         <div class="mb-5">
                             <label for="exampleInputPassword1" class="form-label" style="text-align: center;">Pemasukan</label>
                             <input type="number" name="pemasukan" class="form-control @error('pemasukan') is-invalid @enderror" id="pemasukan" value="{{ $pemasukan->pemasukan }}" autofocus placeholder="Rp. ">
@@ -20,10 +22,11 @@
                             </div>
                             @enderror
                         </div>
+                        @endforeach
                         <div class="d-grid gap-2 d-md-flex justify-content-md-end">
                             <button class="btn btn-primary" type="submit">Simpan</button>
                         </div>
-
+                    
                     </div>
                 </div>
 

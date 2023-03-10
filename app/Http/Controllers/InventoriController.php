@@ -21,12 +21,12 @@ class InventoriController extends Controller
 
     public function create()
     {
-        $client = new Client();
-        $data = $client->post('https://api-rona-coffe.000webhostapp.com/api/inventory', [
+        $gateway = new Gateway();
+        $data = $gateway->post('https://api-rona-coffe.000webhostapp.com/api/inventory', [
             'page' => 1,
             'per_page' => 999,
             'limit' => 999,
-        ])->getBody();
+        ])->getData();
         return view('pages.Administrator.Inventori.create')->with('inventoris', $data);
     }
 
@@ -48,16 +48,16 @@ class InventoriController extends Controller
             "harga" => $request->get('harga'),
             "satuan" => $request->get('satuan'),
         ])->getData();
-        // dd($store);
+        dd($store);
         return redirect('/inventori')->with('success', 'Data Berhasil Di Tambahkan');
     }
     
 
     public function delete($id)
     {
-        $gateway = new Gateway();
+        $client = new Client();
 
-        $delete = $gateway->delete('https://api-rona-coffe.000webhostapp.com/api/inventory' . $id);
+        $delete = $client->delete('https://api-rona-coffe.000webhostapp.com/api/inventory' . $id);
         return redirect('/inventori')->with('success', 'Inventori Deleted');
     }
 

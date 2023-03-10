@@ -72,16 +72,25 @@ class produkController extends Controller
             'deskripsi' => 'max:255|min:3',
             'gambar' => 'image|mimes:jpeg,png,jpg,gif,svg|max:5048',
 
-        ]);
 
+
+        ]);
+        // $path = $request->file('gambar_kuliner')->store('public/images');
+        $file = $request->file('gambar');
+        //mengambil nama file
+        $nama_file = asset('img') . '/' . $file->getClientOriginalName();
+
+        //memindahkan file ke folder tujuan
+        $file->move('img', $file->getClientOriginalName());
+        // dd($request);
 
         $gateway = new Gateway();
         // dd($gateway);
         $store = $gateway->post('https://api-rona-coffe.000webhostapp.com/api/produk', [
-            "nama_produk" => $request->get('kd_barang'),
+            "nama_produk" => $request->get('nama_produk'),
             "harga" => $request->get('harga'),
             "deskripsi" => $request->get('deskripsi'),
-            "gambar" => $request->get('gambar'),
+            "gambar" => $nama_file,
             
         ])->getData();
 

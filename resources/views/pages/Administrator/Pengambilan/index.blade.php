@@ -30,9 +30,9 @@
                 <td>{{ $pengambilan_barang['keterangan'] }}</td>
                 <td>{{ date('l, d-m-y', strtotime($pengambilan_barang['created_at'])) }}</td>
                 <td>
-                    <a href="/pengambilan_barangs/{{ $pengambilan_barang['id'] }}/edit" class="btn btn-warning">Edit</a>
+                    <a href="/pengambilan_barang/{{ $pengambilan_barang['id'] }}/edit" class="btn btn-warning">Edit</a>
 
-                    <form action="/pengambilan_barangs/{{ $pengambilan_barang['id'] }}" method="post" class="d-inline">
+                    <form action="/pengambilan_barang/{{ $pengambilan_barang['id'] }}" method="post" class="d-inline">
                         @method('DELETE')
                         @csrf
                         <button class="btn btn-danger" onclick="return confirm('Yakin Akan Menghapus Data..?')" type="submit">Delete</button>

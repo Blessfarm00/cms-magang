@@ -31,14 +31,14 @@
                     <td>{{ $produk['deskripsi'] }}</td>
                     <td>
                         @if ($produk['gambar'])
-                        <img id="myImg" src="{{ url('images') . '/' . $produk['gambar'] }}" alt="{{ $produk ['nama_produk'] }}" style="max-width:80px">
+                        <img id="myImg" src="{{ url('img') . '/' . $produk['gambar'] }}" alt="{{ $produk ['nama_produk'] }}" style="max-width:80px">
                         
                         @endif
                     </td>
                     <td>
-                        <a href="/produks/{{ $produk['id'] }}/edit" class="btn btn-warning">Edit</a>
+                        <a href="/produk/{{ $produk['id'] }}/edit" class="btn btn-warning">Edit</a>
 
-                        <form action="/produks/{{ $produk['id'] }}" method="post" class="d-inline">
+                        <form action="/produk/{{ $produk['id'] }}" method="post" class="d-inline">
                             @method('DELETE')
                             @csrf
                             <button class="btn btn-danger" onclick="return confirm('Yakin Akan Menghapus Data..?')" type="submit">Delete</button>

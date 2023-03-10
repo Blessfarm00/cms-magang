@@ -28,9 +28,9 @@
                             <td>{{ $pemasukan['pemasukan'] }}</td>
                             <td>{{ date('l, d-m-y', strtotime($pemasukan['created_at'])) }}</td>
                             <td>
-                                <a href="/pemasukans/{{ $pemasukan['id'] }}/edit" class="btn btn-warning">Edit</a>
+                                <a href="/pemasukan/{{ $pemasukan['id'] }}/edit" class="btn btn-warning">Edit</a>
         
-                                <form action="/pemasukans/{{ $pemasukan['id'] }}" method="post" class="d-inline">
+                                <form action="/pemasukan/{{ $pemasukan['id'] }}" method="post" class="d-inline">
                                     @method('DELETE')
                                 @csrf
                                     <button class="btn btn-danger" onclick="return confirm('Yakin Akan Menghapus Data..?')" type="submit">Delete</button>
