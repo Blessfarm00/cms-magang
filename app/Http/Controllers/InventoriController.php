@@ -10,7 +10,7 @@ class InventoriController extends Controller
 {
     public function index(){
         $client = new Client();
-        $response = $client->request('GET','https://api-rona-coffe.000webhostapp.com/api/inventory');
+        $response = $client->request('GET','https://syafikmaulafaiz.000webhostapp.com/api/cms/inventory');
         $statusCode = $response->getStatusCode();
         $body = $response->getBody()->getContents();
         $inventoris = json_decode($body, true);
@@ -22,7 +22,7 @@ class InventoriController extends Controller
     public function create()
     {
         $gateway = new Gateway();
-        $data = $gateway->post('https://api-rona-coffe.000webhostapp.com/api/inventory', [
+        $data = $gateway->post('https://syafikmaulafaiz.000webhostapp.com/api/cms/inventory', [
             'page' => 1,
             'per_page' => 999,
             'limit' => 999,
@@ -33,7 +33,7 @@ class InventoriController extends Controller
     public function edit($id)
     {
         $gateway = new Gateway();
-        $inventori = $gateway->get('https://api-rona-coffe.000webhostapp.com/api/inventory' . $id)->getData();
+        $inventori = $gateway->get('https://syafikmaulafaiz.000webhostapp.com/api/cms/inventory' . $id)->getData();
         // dd($inventori);
         return view('pages.Administrator.Inventori.edit', compact('inventori'));
     }
@@ -41,7 +41,7 @@ class InventoriController extends Controller
     public function update(Request $request, $id)
     {
         $gateway = new Gateway();
-        $store = $gateway->put('https://api-rona-coffe.000webhostapp.com/api/inventory' . $id, [
+        $store = $gateway->put('https://syafikmaulafaiz.000webhostapp.com/api/cms/inventory' . $id, [
             "kd_barang" => $request->get('kd_barang'),
             "nama_barang" => $request->get('nama_barang'),
             "stok" => $request->get('stok'),
@@ -57,7 +57,7 @@ class InventoriController extends Controller
     {
         $client = new Client();
 
-        $delete = $client->delete('https://api-rona-coffe.000webhostapp.com/api/inventory' . $id);
+        $delete = $client->delete('https://syafikmaulafaiz.000webhostapp.com/api/cms/inventory' . $id);
         return redirect('/inventori')->with('success', 'Inventori Deleted');
     }
 
@@ -75,7 +75,7 @@ class InventoriController extends Controller
 
         $gateway = new Gateway();
         // dd($gateway);
-        $store = $gateway->post('https://api-rona-coffe.000webhostapp.com/api/inventory', [
+        $store = $gateway->post('https://syafikmaulafaiz.000webhostapp.com/api/cms/inventory', [
             "kd_barang" => $request->get('kd_barang'),
             "nama_barang" => $request->get('nama_barang'),
             "stok" => $request->get('stok'),

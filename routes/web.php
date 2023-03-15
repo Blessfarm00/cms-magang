@@ -14,20 +14,20 @@ use App\Http\Controllers\FrontendController;
 // |
 //  */
 
-Route::get('/', function () {
-    return redirect()->route('login');
-})->name('landing');
+// Route::get('/', function () {
+//     return redirect()->route('login');
+// })->name('landing');
 
 
-Route::group([
-    'middleware' => 'guest',
-    'namespace' => 'App\Http\Controllers\Auth',
-], function () {
+// Route::group([
+//     'middleware' => 'guest',
+//     'namespace' => 'App\Http\Controllers\Auth',
+// ], function () {
     Route::get('/login', 'LoginController@showLoginForm')->name('login');
     Route::post('/login', 'LoginController@authenticate')->name('authenticate');
      Route::get('/register', 'RegisterController@showRegistrationForm')->name('register');
      Route::post('/register', 'RegisterController@register')->name('register');
-});
+// });
 
 Route::group([
     'namespace' => 'App\Http\Controllers',

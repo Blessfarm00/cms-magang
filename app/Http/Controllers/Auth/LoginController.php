@@ -18,7 +18,7 @@ class LoginController extends Controller
     {
         $username = $this->username();
 
-        return view('auth.login', compact('username'));
+        return view('layouts.auth.login', compact('username'));
     }
 
     private function username()
@@ -32,7 +32,7 @@ class LoginController extends Controller
         $gateway = new Gateway();
 
         if (!\Cache::has('token-app')) {
-            $token = $gateway->post('/api/token', [
+            $token = $gateway->post('https://syafikmaulafaiz.000webhostapp.com/api/cms/login', [
                 'client_key' => 'clientKeyCMS',
                 'secret_key' => 'secret'
             ]);
@@ -40,12 +40,12 @@ class LoginController extends Controller
         }
 
         $this->validate($request, $this->role);
-        $response = $gateway->post('/api/login', $request->all())->getData();
+        $response = $gateway->post('https://syafikmaulafaiz.000webhostapp.com/api/cms/login', $request->all())->getData();
         if (!$response->success) {
             $error = array('email' => $request['message']);
             $username = $this->username();
 
-            return view('auth.login', compact('error', 'username'));
+            return view('layouts.auth.login', compact('error', 'username'));
         }
         Session::put('auth', $response->data);
 

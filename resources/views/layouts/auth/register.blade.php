@@ -76,7 +76,7 @@
                     <div class="col-12">
                       <label for="yourName" class="form-label">Your Name</label>
                       <input type="text" name="name" class="form-control @error ('name') is-invalid @enderror  " id="yourName" required>
-                      @error('name')g
+                      @error('name')
                         <div class="invalid-feedback">{{ $messae }}</div>
                     @enderror
                     </div>

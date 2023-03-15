@@ -50,7 +50,7 @@ class RegisterController extends Controller
      */
     public function showRegistrationForm()
     {
-        return view('auth.register');
+        return view('layouts.auth.register');
     }
 
     /**
@@ -62,9 +62,10 @@ class RegisterController extends Controller
     protected function validator(array $data)
     {
         return Validator::make($data, [
-            'name' => ['required', 'string', 'max:255'],
+            'nama_user' => ['required', 'string', 'max:255'],
             'email' => ['required', 'string', 'email', 'max:255'],
-            'password' => ['required', 'string', 'min:4', 'confirmed'],
+            'password' => ['required', 'string', 'min:4','password_confirmation'],
+            'password_confirmation' => ['confirmed'],
         ]);
     }
 
@@ -82,7 +83,7 @@ class RegisterController extends Controller
         if ($user->getData()->status == "fail") {
             $messageBag = new MessageBag($user->getData()->data);
 
-            return view('auth.register', ['errors' => $messageBag]);
+            return view('layputs.auth.register', ['errors' => $messageBag]);
         }
 
         $this->guard()->login($user);
