@@ -32,7 +32,7 @@ class LoginController extends Controller
         $gateway = new Gateway();
 
         if (!\Cache::has('token-app')) {
-            $token = $gateway->post('https://syafikmaulafaiz.000webhostapp.com/api/cms/login', [
+            $token = $gateway->post('https://syafikmaulafaiz.000webhostapp.com/api/token', [
                 'client_key' => 'clientKeyCMS',
                 'secret_key' => 'secret'
             ]);

@@ -70,6 +70,10 @@ Route::group([
 //     return view('pages.dashboard');
 // });
 
+// Route::get('/',function(){
+//     return view('pages.dashboard');
+// });
+
 // Route::get('/404',function(){
 //     return view('errors.404');
 // });
@@ -94,9 +98,9 @@ Route::group([
 
 // Route::resource('testing', FrontendController::class);
 
-// Route::get('/absensi', function () {
-//     return view('pages.Administrator.absensi.index');
-// });
+Route::get('/register', function () {
+    return view('pages.Administrator.register');
+});
 
 // Route::get('/absensi.create', function () {
 //     return view('pages.Administrator.absensi.create');
