@@ -26,6 +26,8 @@
                 <tr>
                     <td>{{ $loop->iteration }}</td>
                     <td>{{ $pengeluaran['pengeluaran'] }}</td>
+                    <td>{{ $pengeluaran['inventori_id'] }}</td>
+                    <td>{{ $pengeluaran['jumlah'] }}</td>
                     <td>{{ $pengeluaran['rincian'] }}</td>
                     <td>{{ date('l, d-m-y', strtotime($pengeluaran['created_at'])) }}</td>
                     <td>

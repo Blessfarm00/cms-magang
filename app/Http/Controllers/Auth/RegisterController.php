@@ -83,7 +83,7 @@ class RegisterController extends Controller
         if ($user->getData()->status == "fail") {
             $messageBag = new MessageBag($user->getData()->data);
 
-            return view('layputs.auth.register', ['errors' => $messageBag]);
+            return view('layouts.auth.register', ['errors' => $messageBag]);
         }
 
         $this->guard()->login($user);

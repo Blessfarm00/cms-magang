@@ -14,7 +14,7 @@ class UserController extends Controller
 
     public function index(){
         $client = new Client();
-        $response = $client->request('GET','https://api-rona-coffe.000webhostapp.com/api/inventory');
+        $response = $client->request('GET','https://syafikmaulafaiz.000webhostapp.com/api/cms/user');
         $statusCode = $response->getStatusCode();
         $body = $response->getBody()->getContents();
         $inventoris = json_decode($body, true);

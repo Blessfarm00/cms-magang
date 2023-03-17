@@ -12,7 +12,7 @@ class pengeluaranController extends Controller
     public function index()
     {
         $client = new Client();
-        $response = $client->request('GET', 'https://api-rona-coffe.000webhostapp.com/api/pengeluaran');
+        $response = $client->request('GET', 'https://syafikmaulafaiz.000webhostapp.com/api/cms/pengeluaran');
         $statusCode = $response->getStatusCode();
         $body = $response->getBody()->getContents();
         $pengeluarans = json_decode($body, true);
@@ -23,7 +23,7 @@ class pengeluaranController extends Controller
     public function create()
     {
         $client = new Client();
-        $data = $client->post('https://api-rona-coffe.000webhostapp.com/api/pengeluaran', [
+        $data = $client->post('https://syafikmaulafaiz.000webhostapp.com/api/cms/pengeluaran', [
             'page' => 1,
             'per_page' => 999,
             'limit' => 999,
@@ -34,7 +34,7 @@ class pengeluaranController extends Controller
     public function edit($id)
     {
         $gateway = new Gateway();
-        $pengeluaran = $gateway->get('https://api-rona-coffe.000webhostapp.com/api/pengeluaran' . $id)->getData();
+        $pengeluaran = $gateway->get('https://syafikmaulafaiz.000webhostapp.com/api/cms/pengeluaran' . $id)->getData();
         // dd($pengeluaran);
         return view('pages.Administrator.Pengeluaran.edit')->with('pengeluaran', $pengeluaran);
     }
@@ -57,7 +57,7 @@ class pengeluaranController extends Controller
 
         $gateway = new Gateway();
         // dd($gateway);
-        $pengeluaran = $gateway->post('https://api-rona-coffe.000webhostapp.com/api/pengeluaran', [
+        $pengeluaran = $gateway->post('https://syafikmaulafaiz.000webhostapp.com/api/cms/pengeluaran', [
             "pengeluaran" => $request->get('pengeluaran'),
             "rincian" => $request->get('rincian'),
         ])->getData();

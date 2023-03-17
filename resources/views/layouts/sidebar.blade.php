@@ -26,13 +26,6 @@
         </li><!-- End F.A.Q Page Nav -->
 
         <li class="nav-item">
-            <a class="nav-link {{ Request::is('produk') ? 'active' : '' }}" href="{{ url('produk') }}">
-                <i <span class="bi bi-menu-up"></span></i>
-                <span>Produk</span>
-            </a>
-        </li><!-- End Contact Page Nav -->
-
-        <li class="nav-item">
             <a class="nav-link {{ Request::is('inventori') ? 'active' : '' }}" href="{{ url('inventori') }}">
                 <i <span class='bi bi-archive'></span></i>
                 <span>Inventori</span>
@@ -45,13 +38,6 @@
                 <span>Pengambilan Barang</span>
             </a>
         </li>
-
-        <li class="nav-item">
-            <a class="nav-link {{ Request::is('pemasukan') ? 'active' : '' }}" href="{{ url('pemasukan') }}">
-                <i <span class="bi bi-plus-circle"></span></i>
-                <span>Pemasukan</span>
-            </a>
-        </li><!-- End Error 404 Page Nav -->
 
         <li class="nav-item">
             <a class="nav-link {{ Request::is('pengeluaran') ? 'active' : '' }}" href="{{ url('pengeluaran') }}">

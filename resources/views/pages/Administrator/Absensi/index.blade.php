@@ -15,22 +15,30 @@
                     <thead style="background-color:#0112FE">
                         <tr>
                             <th scope="col" style="color:white">No</th>
-                            <th scope="col" style="color:white">ID Absensi</th>
-                            <th scope="col" style="color:white">Nama</th>
+                            <th scope="col" style="color:white">ID User</th>
+                            <th scope="col" style="color:white">Jam Masuk</th>
+                            <th scope="col" style="color:white">Jam Pulang</th>
                             <th scope="col" style="color:white">Tanggal</th>
-                            <th scope="col" style="color:white">Keterangan</th>
+                            <th scope="col" style="color:white">Rincian</th>
                             <th colspan="2" scope="col" style="color:white">Aksi</th>
                         </tr>
                     </thead>
                     <tbody class="table-group-divider">
                         <tr>
-                            <th scope="row">1</th>
-                            <td>1233</td>
-                            <td>Faiz Ptk</td>
-                            <td>22/02/2023</td>
-                            <td>Hadir</td>
-                            <td><a href="#" class="btn btn-warning">Edit</a>
-                                <a href="#" class="btn btn-danger">Delete</a>
+                            <td>{{ $loop->iteration }}</td>
+                            <td>{{ $absensi['id_user'] }}</td>
+                            <td>{{ $absensi['jam_masuk'] }}</td>
+                            <td>{{ $absensi['jam_pulang'] }}</td>
+                            <td>{{ date('l, d-m-y', strtotime($absensi['created_at'])) }}</td>
+                            <td>{{ $absensi['keterangan'] }}</td>
+                            <td>
+                                <a href="/absensi/{{ $absensi['id'] }}/edit" class="btn btn-warning">Edit</a>
+        
+                                <form action="/absensi/{{ $absensi['id'] }}" method="post" class="d-inline">
+                                    @method('DELETE')
+                                    @csrf
+                                    <button class="btn btn-danger" onclick="return confirm('Yakin Akan Menghapus Data..?')" type="submit">Delete</button>
+                                </form>
                             </td>
                         </tr>
                     </tbody>

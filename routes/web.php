@@ -19,15 +19,15 @@ use App\Http\Controllers\FrontendController;
 // })->name('landing');
 
 
-// Route::group([
-//     'middleware' => 'guest',
-//     'namespace' => 'App\Http\Controllers\Auth',
-// ], function () {
+Route::group([
+    // 'middleware' => 'guest',
+    'namespace' => 'App\Http\Controllers\Auth',
+], function () {
     Route::get('/login', 'LoginController@showLoginForm')->name('login');
     Route::post('/login', 'LoginController@authenticate')->name('authenticate');
      Route::get('/register', 'RegisterController@showRegistrationForm')->name('register');
      Route::post('/register', 'RegisterController@register')->name('register');
-// });
+});
 
 Route::group([
     'namespace' => 'App\Http\Controllers',
@@ -90,17 +90,10 @@ Route::group([
 //     return view('pages.Administrator.inventori.index');
 // });
 
-// Route::post('inventori', 'App\Http\Controllers\InventoriController@store');
 
-// Route::get('inventori', 'App\Http\Controllers\InventoriController@getInventori');
-
-// Route::resource('inventori', App\Http\Controllers\InventoriController::class);
-
-// Route::resource('testing', FrontendController::class);
-
-Route::get('/register', function () {
-    return view('pages.Administrator.register');
-});
+// Route::get('/register', function () {
+//     return view('pages.Administrator.register');
+// });
 
 // Route::get('/absensi.create', function () {
 //     return view('pages.Administrator.absensi.create');
@@ -183,24 +176,11 @@ Route::post('/inventori/{id}', 'App\Http\Controllers\InventoriController@delete'
 // });
 
 
-Route::get('/pemasukan', 'App\Http\Controllers\PemasukanController@index');
-Route::get('/fn_get_data', 'App\Http\Controllers\PemasukanController@fnGetData');
-Route::get('/pemasukan/create', 'App\Http\Controllers\PemasukanController@create');
-Route::post('/pemasukan', 'App\Http\Controllers\PemasukanController@store');
-Route::get('/pemasukan/{id}/edit', 'App\Http\Controllers\PemasukanController@edit');
-// Route::resource('/pemasukan', App\Http\Controllers\PemasukanController::class);
-
 Route::get('/pengambilan', 'App\Http\Controllers\PengambilanController@index');
 Route::get('/fn_get_data', 'App\Http\Controllers\PengambilanController@fnGetData');
 Route::get('/pengambilan/create', 'App\Http\Controllers\PengambilanController@create');
 Route::post('/pengambilan', 'App\Http\Controllers\PengambilanController@store');
 Route::get('/pengambilan/{id}/edit', 'App\Http\Controllers\PengambilanController@edit');
-
-Route::get('/produk', 'App\Http\Controllers\ProdukController@index');
-Route::get('/fn_get_data', 'App\Http\Controllers\ProdukController@fnGetData');
-Route::get('/produk/create', 'App\Http\Controllers\ProdukController@create');
-Route::post('/produk', 'App\Http\Controllers\ProdukController@store');
-Route::get('/produk/{id}/edit', 'App\Http\Controllers\ProdukController@edit');
 
 Route::get('/pengeluaran', 'App\Http\Controllers\PengeluaranController@index');
 Route::get('/fn_get_data', 'App\Http\Controllers\PengeluaranController@fnGetData');

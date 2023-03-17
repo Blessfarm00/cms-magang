@@ -11,7 +11,7 @@ class PengambilanController extends Controller
     public function index()
     {
         $client = new Client();
-        $response = $client->request('GET', 'https://api-rona-coffe.000webhostapp.com/api/pengambilan');
+        $response = $client->request('GET', 'https://syafikmaulafaiz.000webhostapp.com/api/cms/pengambilan');
         $statusCode = $response->getStatusCode();
         $body = $response->getBody()->getContents();
         $pengambilan_barangs = json_decode($body, true);
@@ -23,7 +23,7 @@ class PengambilanController extends Controller
     public function edit($id)
     {
         $gateway = new Gateway();
-        $pengambilan = $gateway->get('https://api-rona-coffe.000webhostapp.com/api/pengambilan' . $id)->getData();
+        $pengambilan = $gateway->get('https://syafikmaulafaiz.000webhostapp.com/api/cms/pengambilan' . $id)->getData();
         // dd($pengambilan);
         return view('pages.Administrator.Pengambilan.edit', compact('pengambilan'));
     }
@@ -31,14 +31,14 @@ class PengambilanController extends Controller
     public function create()
     {
         $client = new Client();
-        $data = $client->post('https://api-rona-coffe.000webhostapp.com/api/pengambilan', [
+        $data = $client->post('https://syafikmaulafaiz.000webhostapp.com/api/cms/pengambilan', [
             'page' => 1,
             'per_page' => 999,
             'limit' => 999,
         ])->getBody();
 
         $client = new Client();
-        $response = $client->request('GET', 'https://api-rona-coffe.000webhostapp.com/api/pengambilan');
+        $response = $client->request('GET', 'https://syafikmaulafaiz.000webhostapp.com/api/cms/pengambilan');
         $statusCode = $response->getStatusCode();
         $body = $response->getBody()->getContents();
         $pengambilan = json_decode($body, true);
@@ -64,7 +64,7 @@ class PengambilanController extends Controller
 
         $gateway = new Gateway();
         // dd($gateway);
-        $pengambilan = $gateway->post('https://api-rona-coffe.000webhostapp.com/api/pengambilan ', [
+        $pengambilan = $gateway->post('https://syafikmaulafaiz.000webhostapp.com/api/cms/pengambilan', [
             "inventori_id" => $request->get('inventori_id'), 
             "jumlah" => $request->get('jumlah'),
             "keterangan" => $request->get('keterangan'),

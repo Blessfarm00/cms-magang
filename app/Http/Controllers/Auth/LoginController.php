@@ -17,7 +17,7 @@ class LoginController extends Controller
     public function showLoginForm()
     {
         $username = $this->username();
-
+        // dd($username);
         return view('layouts.auth.login', compact('username'));
     }
 
