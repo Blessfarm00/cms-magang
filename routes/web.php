@@ -25,9 +25,8 @@ Route::group([
 ], function () {
     Route::get('/login', 'LoginController@showLoginForm')->name('login');
     Route::post('/login', 'LoginController@authenticate')->name('authenticate');
-    // Route::post('/logout', 'LoginController@logout');
+    Route::post('/logout', 'LoginController@logout');
     Route::post('logout', 'LoginController@ogout')->name('logout');
-    Route::post('/test', 'LoginController@test');
     //  Route::get('/register', 'RegisterController@showRegistrationForm')->name('register');
     //  Route::post('/register', 'RegisterController@register')->name('register');
 });
@@ -65,69 +64,6 @@ Route::group([
  
 });
 
-// Route::get('/register',function(){
-//     return view('layouts.auth.register');
-// });
-
-// Route::get('/dashboard',function(){
-//     return view('pages.dashboard');
-// });
-
-// Route::get('/',function(){
-//     return view('pages.dashboard');
-// });
-
-// Route::get('/404',function(){
-//     return view('errors.404');
-// });
-
-// Route::get('/user',function(){
-//     return view('pages.Administrator.user.index');
-// });
-
-// Route::get('/user.create', function () {
-//     return view('pages.Administrator.user.create');
-// });
-
-// Route::get('/inventori',function(){
-//     return view('pages.Administrator.inventori.index');
-// });
-
-
-// Route::get('/register', function () {
-//     return view('pages.Administrator.register');
-// });
-
-// Route::get('/absensi.create', function () {
-//     return view('pages.Administrator.absensi.create');
-// });
-
-// Route::get('/pengambilan', function () {
-//     return view('pages.Administrator.pengambilan.index');
-// });
-
-// Route::get('/pengambilan.create', function () {
-//     return view('pages.Administrator.pengambilan.create');
-// });
-
-// Route::get('pengambilan', 'App\Http\Controllers\PengambilanController@getPengambilan');
-
-
-// Route::get('/pemasukan', function () {
-//     return view('pages.Administrator.pemasukan.index');
-// });
-
-
-
-
-// Route::get('/pengeluaran.create', function () {
-//     return view('pages.Administrator.pengeluaran.create');
-// });
-
-// Route::get('/produk', function () {
-//     return view('pages.Administrator.produk.index');
-// });
-
 // // });
 
 // Route::get('/print', function () {
@@ -160,24 +96,21 @@ Route::get('/fn_get_data', 'App\Http\Controllers\InventoriController@fnGetData')
 Route::get('/user/create', 'App\Http\Controllers\UserController@create');
 Route::post('/user', 'App\Http\Controllers\UserController@store');
 Route::get('/user/{id}/edit', 'App\Http\Controllers\UserController@edit');
-Route::post('/user/{id}', 'App\Http\Controllers\UserController@delete');
+Route::delete('/user/{id}', 'App\Http\Controllers\UserController@delete');
 
 Route::get('/inventori', 'App\Http\Controllers\InventoriController@index');
 Route::get('/fn_get_data', 'App\Http\Controllers\InventoriController@fnGetData');
 Route::get('/inventori/create', 'App\Http\Controllers\InventoriController@create');
 Route::post('/inventori', 'App\Http\Controllers\InventoriController@store');
 Route::get('/inventori/{id}/edit', 'App\Http\Controllers\InventoriController@edit');
-Route::post('/inventori/{id}', 'App\Http\Controllers\InventoriController@delete');
+Route::post('/inventori/{id}/', 'App\Http\Controllers\InventoriController@delete');
 
-
-// Route::group([
-//     'prefix' => 'inventori',
-// ], function () {
-//     Route::get('/{id}', 'App\Http\Controllers\InventoriController@edit');
-//     // Route::post('/{id}', 'KulinerController@update');
-//     // Route::get('delete/{id}', 'KulinerController@delete');
-// });
-
+Route::get('/absensi', 'App\Http\Controllers\AbsensiController@index');
+Route::get('/fn_get_data', 'App\Http\Controllers\AbsensiController@fnGetData');
+Route::get('/absensi/create', 'App\Http\Controllers\AbsensiController@create');
+Route::post('/absensi', 'App\Http\Controllers\AbsensiController@store');
+Route::get('/absensi/{id}/edit', 'App\Http\Controllers\AbsensiController@edit');
+Route::post('/absensi/{id}', 'App\Http\Controllers\AbsensiController@delete');
 
 Route::get('/pengambilan', 'App\Http\Controllers\PengambilanController@index');
 Route::get('/fn_get_data', 'App\Http\Controllers\PengambilanController@fnGetData');

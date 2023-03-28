@@ -14,19 +14,19 @@
                         @foreach($inventori as $data)
                         {{-- {{$data->id}}  --}}
                         <div class="mb-3">
-                            <label for="exampleInputPassword1" class="form-label" style="text-align: center;">Nama Barang</label>
-                            <input type="text" name="nama_barang" class="form-control @error('nama_barang') is-invalid @enderror" id="nama_barang"value="{{ $inventori->nama_barang }}" autofocus placeholder="Nama Barang">
-                            @error('nama_barang')
+                            <label for="exampleInputPassword1" class="form-label" style="text-align: center;">Kode Barang</label>
+                            <input type="text" name="kd_barang" class="form-control @error('kd_barang') is-invalid @enderror" id="kd_barang" value="{{ $inventori->kd_barang }}" autofocus placeholder="Kode Barang">
+                            @error('kd_barang')
                             <div class="invalid-feedback">
                                 {{ $message }}
                             </div>
                             @enderror
                         </div>
-                       
+                        
                         <div class="mb-3">
-                            <label for="exampleInputPassword1" class="form-label" style="text-align: center;">Kode Barang</label>
-                            <input type="text" name="kd_barang" class="form-control @error('kd_barang') is-invalid @enderror" id="kd_barang" value="{{ $inventori->kd_barang }}" autofocus placeholder="Kode Barang">
-                            @error('kd_barang')
+                            <label for="exampleInputPassword1" class="form-label" style="text-align: center;">Nama Barang</label>
+                            <input type="text" name="nama_barang" class="form-control @error('nama_barang') is-invalid @enderror" id="nama_barang"value="{{ $inventori->nama_barang }}" autofocus placeholder="Nama Barang">
+                            @error('nama_barang')
                             <div class="invalid-feedback">
                                 {{ $message }}
                             </div>

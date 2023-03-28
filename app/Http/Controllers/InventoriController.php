@@ -105,9 +105,27 @@ class InventoriController extends Controller
 
     public function delete($id)
     {
-        $client = new Client();
-
-        $delete = $client->delete('https://syafikmaulafaiz.000webhostapp.com/api/cms/inventory' . $id);
+        $gateway = new Gateway();
+        $gateway->setHeaders([
+            'Authorization' => 'Bearer ' . Session::get('auth')->token,
+            'Accept' => 'application/json',
+        ]);
+        // dd($gateway);
+        $deleteInventori = $gateway->delete('https://syafikmaulafaiz.000webhostapp.com/api/cms/inventory' . $id);
         return redirect('/inventori')->with('success', 'Inventori Deleted');
     }
+
+    // public function delete($id)
+    // {
+    //     $gateway = new Gateway();
+    //     $gateway->setHeaders([
+    //         'Authorization' => 'Bearer ' . Session::get('auth')->token,
+    //         'Accept' => 'application/json',
+    //     ]);
+    //     $deleteInventori = $gateway->delete('https://syafikmaulafaiz.000webhostapp.com/api/cms/inventory' . $id);
+    //     if (!$deleteInventori->getData()->success) {
+    //         return redirect('/role')->with('error', $deleteInventori->getData()->message);
+    //     }
+    //     return redirect('/inventori')->with('success', 'Inventori Deleted');
+    // }
 }

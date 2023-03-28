@@ -46,8 +46,8 @@
             </a>
         </li><!-- End Blank Page Nav -->
         <li>
-            <a class="dropdown-item d-flex align-items-center" href="/test">
-                <i class="bi bi-box-arrow-right"></i>
+            <a class="nav-link {{ Request::is('logout') ? 'active' : '' }}" href="{{ url('logout') }}">
+                <i <span class="bi bi-box-arrow-in-right"></span></i>
                 <span>Sign Out</span>
             </a>
         </li>

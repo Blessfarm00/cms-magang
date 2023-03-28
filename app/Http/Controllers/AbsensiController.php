@@ -8,19 +8,37 @@ use \Yajra\DataTables\DataTables;
 use Auth;
 use App\Http\Controllers\Controller;
 use GuzzleHttp\Client;
+use Illuminate\Support\Facades\Session;
 
 class AbsensiController extends Controller
 {
 
     public function index(){
-        $client = new Client();
-        $response = $client->request('GET','https://syafikmaulafaiz.000webhostapp.com/api/cms/absensi');
-        $statusCode = $response->getStatusCode();
-        $body = $response->getBody()->getContents();
-        $absensis = json_decode($body, true);
-        // dd($absensis);
+        $gateway = new Gateway();
+        $gateway->setHeaders([
+            'Authorization' => 'Bearer ' . Session::get('auth')->token,
+            'Accept' => 'application/json',
+        ]);
+        // dd($gateway);
 
-        return view('pages.Administrator.Absensi.index',  ['absensis'=>$absensis]);
+        $response = $gateway->get('https://kedairona.000webhostapp.com/api/cms/absensi');
+        $body = $response->getData()->data;
+        // dd($body);
+        return view('pages.Administrator.Absensi.index',  ['absensis'=>$body]);
+    }
+
+    public function delete($id)
+    {
+        $gateway = new Gateway();
+        
+        $gateway->setHeaders([
+            'Authorization' => 'Bearer ' . Session::get('auth')->token,
+            'Accept' => 'application/json',
+        ]);
+        // dd($gateway);
+        $deleteAbsensi = $gateway->delete('https://kedairona.000webhostapp.com/api/cms/absensi/' .$id);
+        dd($deleteAbsensi);
+        return redirect('/absensi')->with('success', 'absensi Deleted');
     }
 
 }

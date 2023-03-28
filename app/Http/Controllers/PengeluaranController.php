@@ -6,7 +6,6 @@ use GuzzleHttp\Client;
 use App\Services\Gateway;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
-use Illuminate\Support\Facades\Request as FacadesRequest;
 use Illuminate\Support\Facades\Session;
 
 class PengeluaranController extends Controller

@@ -22,9 +22,6 @@ class PengambilanController extends Controller
 
         $response = $gateway->get('https://kedairona.000webhostapp.com/api/cms/pengambilan');
         $body = $response->getData()->data;
-        // dd($body);
-        // $inventoris = json_decode($body, true);
-        // dd($inventoris);
         return view('pages.Administrator.Pengambilan.index',  ['pengambilan_barangs' => $body]);
     }
 
@@ -50,14 +47,6 @@ class PengambilanController extends Controller
             'limit' => 999,
         ])->getData();
 
-        // $client = new Client();
-        // $response = $client->request('GET', 'https://kedairona.000webhostapp.com/api/cms/pengambilan');
-        // $statusCode = $response->getStatusCode();
-        // $body = $response->getBody()->getContents();
-        // $pengambilan = json_decode($body, true);
-
-        // dd($pengambilan);
-
         return view('pages.Administrator.Pengambilan.create')->with('pengambilan_barangs', $data);
     }
     public function store(Request $request)
@@ -69,7 +58,7 @@ class PengambilanController extends Controller
     //     ]);
 
         $this->validate($request, [
-            'inventori_id' => 'required|integer',
+            'inventori_id' => '',
             'jumlah' => 'required|integer|min:1',
             'keterangan' => 'nullable|string',
         ]);
@@ -83,7 +72,7 @@ class PengambilanController extends Controller
         $gateway = new Gateway();
         // dd($gateway);
         $pengambilan = $gateway->post('https://kedairona.000webhostapp.com/api/cms/pengambilan', [
-            "inventori_id" => $request->get('inventori_id'), 
+            // "inventori_id" => $request->get('inventori_id'), 
             "jumlah" => $request->get('jumlah'),
             "keterangan" => $request->get('keterangan'),
         ])->getData();

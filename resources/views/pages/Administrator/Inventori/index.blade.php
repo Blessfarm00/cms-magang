@@ -40,7 +40,7 @@
                     <td>
                         <a href="/inventori/{{ $inventori->id }}/edit" class="btn btn-warning">Edit</a>
 
-                        <form action="/inventoris/{{ $inventori->id }}" method="post" class="d-inline">
+                        <form action="/inventori/{{ $inventori->id }}" method="post" class="d-inline">
                             @method('DELETE')
                             @csrf
                             <button class="btn btn-danger" onclick="return confirm('Yakin Akan Menghapus Data..?')" type="submit">Delete</button>
