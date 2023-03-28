@@ -1,28 +1,42 @@
 <?php
 
 namespace App\Http\Controllers;
-use Illuminate\Http\Request;
-use App\Services\Gateway;
-use App\Http\Controllers\Controller;
+
 use GuzzleHttp\Client;
+use App\Services\Gateway;
+use Illuminate\Http\Request;
+use App\Http\Controllers\Controller;
+use Illuminate\Support\Facades\Request as FacadesRequest;
+use Illuminate\Support\Facades\Session;
 
 class InventoriController extends Controller
 {
-    public function index(){
-        $client = new Client();
-        $response = $client->request('GET','https://syafikmaulafaiz.000webhostapp.com/api/cms/inventory');
-        $statusCode = $response->getStatusCode();
-        $body = $response->getBody()->getContents();
-        $inventoris = json_decode($body, true);
+    public function index()
+    {
+        $gateway = new Gateway();
+        $gateway->setHeaders([
+            'Authorization' => 'Bearer ' . Session::get('auth')->token,
+            'Accept' => 'application/json',
+        ]);
+        // dd($gateway);
+
+        $response = $gateway->get('https://kedairona.000webhostapp.com/api/cms/inventory');
+        $body = $response->getData()->data;
+        // dd($body);
+        // $inventoris = json_decode($body, true);
         // dd($inventoris);
 
-        return view('pages.Administrator.Inventori.index',  ['inventoris'=>$inventoris]);
+        return view('pages.Administrator.Inventori.index',  ['inventoris' => $body]);
     }
 
     public function create()
     {
         $gateway = new Gateway();
-        $data = $gateway->post('https://syafikmaulafaiz.000webhostapp.com/api/cms/inventory', [
+        $gateway->setHeaders([
+            'Authorization' => 'Bearer ' . Session::get('auth')->token,
+            'Accept' => 'application/json',
+        ]);
+        $data = $gateway->get('https://kedairona.000webhostapp.com/api/cms/inventory', [
             'page' => 1,
             'per_page' => 999,
             'limit' => 999,
@@ -30,40 +44,9 @@ class InventoriController extends Controller
         return view('pages.Administrator.Inventori.create')->with('inventoris', $data);
     }
 
-    public function edit($id)
-    {
-        $gateway = new Gateway();
-        $inventori = $gateway->get('https://syafikmaulafaiz.000webhostapp.com/api/cms/inventory' . $id)->getData();
-        // dd($inventori);
-        return view('pages.Administrator.Inventori.edit', compact('inventori'));
-    }
-            
-    public function update(Request $request, $id)
-    {
-        $gateway = new Gateway();
-        $store = $gateway->put('https://syafikmaulafaiz.000webhostapp.com/api/cms/inventory' . $id, [
-            "kd_barang" => $request->get('kd_barang'),
-            "nama_barang" => $request->get('nama_barang'),
-            "stok" => $request->get('stok'),
-            "harga" => $request->get('harga'),
-            "satuan" => $request->get('satuan'),
-        ])->getData();
-        dd($store);
-        return redirect('/inventori')->with('success', 'Data Berhasil Di Tambahkan');
-    }
-    
-
-    public function delete($id)
-    {
-        $client = new Client();
-
-        $delete = $client->delete('https://syafikmaulafaiz.000webhostapp.com/api/cms/inventory' . $id);
-        return redirect('/inventori')->with('success', 'Inventori Deleted');
-    }
-
     public function store(Request $request)
     {
-        
+
         $this->validate($request, [
             'kd_barang' => 'required|unique:inventories|max:255|min:3',
             'nama_barang' => 'required|max:255|min:3',
@@ -74,8 +57,11 @@ class InventoriController extends Controller
 
 
         $gateway = new Gateway();
-        // dd($gateway);
-        $store = $gateway->post('https://syafikmaulafaiz.000webhostapp.com/api/cms/inventory', [
+        $gateway->setHeaders([
+            'Authorization' => 'Bearer ' . Session::get('auth')->token,
+            'Accept' => 'application/json',
+        ]);
+        $store = $gateway->post('https://kedairona.000webhostapp.com/api/cms/inventory', [
             "kd_barang" => $request->get('kd_barang'),
             "nama_barang" => $request->get('nama_barang'),
             "stok" => $request->get('stok'),
@@ -85,7 +71,43 @@ class InventoriController extends Controller
 
         return redirect('/inventori')->with('success', 'Data Berhasil Di Tambahkan');
     }
+
+    public function edit($id)
+    {
+        $gateway = new Gateway();
+        $gateway->setHeaders([
+            'Authorization' => 'Bearer ' . Session::get('auth')->token,
+            'Accept' => 'application/json',
+        ]);
+        $inventori = $gateway->get('https://kedairona.000webhostapp.com/api/cms/inventory/' . $id)->getData();
+        // dd($inventori);
+        return view('pages.Administrator.Inventori.edit', ['inventori' => $inventori]);
+    }
+
+    public function update(Request $request, $id)
+    {
+        $gateway = new Gateway();
+        $gateway->setHeaders([
+            'Authorization' => 'Bearer ' . Session::get('auth')->token,
+            'Accept' => 'application/json',
+        ]);
+        $store = $gateway->put('https://kedairona.000webhostapp.com/api/cms/inventory' . $id, [
+            "kd_barang" => $request->get('kd_barang'),
+            "nama_barang" => $request->get('nama_barang'),
+            "stok" => $request->get('stok'),
+            "harga" => $request->get('harga'),
+            "satuan" => $request->get('satuan'),
+        ])->getData();
+        dd($store);
+        return redirect('/inventori')->with('success', 'Data Berhasil Di Tambahkan');
+    }
+
+
+    public function delete($id)
+    {
+        $client = new Client();
+
+        $delete = $client->delete('https://syafikmaulafaiz.000webhostapp.com/api/cms/inventory' . $id);
+        return redirect('/inventori')->with('success', 'Inventori Deleted');
+    }
 }
-
-
-

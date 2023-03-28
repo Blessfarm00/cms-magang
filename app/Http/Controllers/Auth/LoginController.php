@@ -16,44 +16,48 @@ class LoginController extends Controller
 
     public function showLoginForm()
     {
-        $username = $this->username();
-        // dd($username);
-        return view('layouts.auth.login', compact('username'));
+        // $gateway = new Gateway();
+        return view('layouts.auth.login');
     }
 
-    private function username()
-    {
-        return 'email';
-    }
+    // private function username()
+    // {
+    //     return 'email';
+    // }
 
     public function authenticate(Request $request)
     {
 
         $gateway = new Gateway();
 
-        if (!\Cache::has('token-app')) {
-            $token = $gateway->post('https://syafikmaulafaiz.000webhostapp.com/api/token', [
-                'client_key' => 'clientKeyCMS',
-                'secret_key' => 'secret'
-            ]);
-            \Cache::add('token-app', $token->getData()->data->token, 2592000);;
-        }
+        $token = $gateway->post('https://kedairona.000webhostapp.com/api/token', [
+            'client_key' => 'clientKeyCMS',
+            'secret_key' => 'secret',
+        ]);
 
-        $this->validate($request, $this->role);
-        $response = $gateway->post('https://syafikmaulafaiz.000webhostapp.com/api/cms/login', $request->all())->getData();
-        if (!$response->success) {
-            $error = array('email' => $request['message']);
-            $username = $this->username();
+        $result = $token->getData()->data;
+        // dd($result);
+        $this->validate($request, [
+            'email' => 'required|email|string',
+            'password' => 'required|string|min:4',
+        ]);
+        $gateway->setHeaders([
+            'Authorization' => 'Bearer ' . $result->token,
+            'Accept' => 'application/json',
+        ]);
 
-            return view('layouts.auth.login', compact('error', 'username'));
-        }
-        Session::put('auth', $response->data);
+        $response =  $gateway->post('https://kedairona.000webhostapp.com/api/cms/login', [
+            'email' => $request->get('email'),
+            'password' => $request->get('password'),
+        ]);
+
+        // dd($response);
+        Session::put('auth', $response->getData()->data);
+        return view('pages.dashboard');
 
         // $gateway = new Gateway();
         // $responsePrivileges = $gateway->get('/api/cms/auth/my-privileges')->getData();
         // Session::put('privileges', $responsePrivileges->data);
-
-        return redirect('dashboard');
     }
 
     public function register(Request $request)
@@ -71,5 +75,3 @@ class LoginController extends Controller
         return redirect('/login');
     }
 }
-
-

@@ -24,30 +24,33 @@
             </thead>
             <tbody>
 
+                {{-- @php
+                    dd($inventoris->items);
+                @endphp --}}
 
-                @foreach ($inventoris['data']['items'] as $inventori)
+                @foreach ($inventoris->items as $inventori)
 
                 <tr>
                     <td>{{ $loop->iteration }}</td>
-                    <td>{{ $inventori['kd_barang'] }}</td>
-                    <td>{{ $inventori['nama_barang'] }}</td>
-                    <td>{{ $inventori['stok'] }}</td>
-                    <td>{{ $inventori['harga'] }}</td>
-                    <td>{{ $inventori['satuan'] }}</td>
+                    <td>{{ $inventori->kd_barang }}</td>
+                    <td>{{ $inventori->nama_barang}}</td>
+                    <td>{{ $inventori->harga }}</td>
+                    <td>{{ $inventori->stok }}</td>
+                    <td>{{ $inventori->satuan }}</td>
                     <td>
-                        <a href="/inventori/{{ $inventori['id'] }}/edit" class="btn btn-warning">Edit</a>
+                        <a href="/inventori/{{ $inventori->id }}/edit" class="btn btn-warning">Edit</a>
 
-                        <form action="/inventoris/{{ $inventori['id'] }}" method="post" class="d-inline">
+                        <form action="/inventoris/{{ $inventori->id }}" method="post" class="d-inline">
                             @method('DELETE')
-                        @csrf
+                            @csrf
                             <button class="btn btn-danger" onclick="return confirm('Yakin Akan Menghapus Data..?')" type="submit">Delete</button>
                         </form>
                     </td>
                 </tr>
-            @endforeach
+                @endforeach
 
             </tbody>
         </table>
     </div>
 
-@endsection
+    @endsection

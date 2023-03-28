@@ -69,7 +69,7 @@
                                         <p class="text-center small">Enter your Email & password to login</p>
                                     </div>
 
-                                    <form class="row g-3 needs-validation" action="login/proses" method="post" novalidate>
+                                    <form class="row g-3 needs-validation" action="login" method="post" novalidate>
                                         @csrf
                                         <div class="col-12">
                                             <label for="yourEmail" class="form-label">Email</label>

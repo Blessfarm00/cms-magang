@@ -16,24 +16,31 @@
                     <th scope="col" style="color:white">No</th>
                     <th scope="col" style="color:white">Pengeluaran</th>
                     <th scope="col" style="color:white">Rincian</th>
-                    <th scope="col" style="color:white">Waktu</th>
+                    <th scope="col" style="color:white">Tanggal</th>
+                    <th scope="col" style="color:white">jumlah</th>
                     <th colspan="2" scope="col" style="color:white">Aksi</th>
                 </tr>
             </thead>
             <tbody class="table-group-divider">
-                @foreach ($pengeluarans['data']['items'] as $pengeluaran)
+                {{-- @php
+                    dd($pengeluarans->items);
+                @endphp --}}
+
+                @foreach ($pengeluarans->items as $pengeluaran)
+
 
                 <tr>
                     <td>{{ $loop->iteration }}</td>
-                    <td>{{ $pengeluaran['pengeluaran'] }}</td>
-                    <td>{{ $pengeluaran['inventori_id'] }}</td>
-                    <td>{{ $pengeluaran['jumlah'] }}</td>
-                    <td>{{ $pengeluaran['rincian'] }}</td>
-                    <td>{{ date('l, d-m-y', strtotime($pengeluaran['created_at'])) }}</td>
+                    <td>{{ $pengeluaran->pengeluaran }}</td>
+                    <td>{{ $pengeluaran->inventori_id}}</td>
+                    <td>{{ $pengeluaran->jumlah }}</td>
+                    <td>{{ $pengeluaran->rincian }}</td>
+                    <td>{{ $pengeluaran->jumlah }}</td>
+                    <td>{{ date('l, d-m-y', strtotime($pengeluaran->created_at)) }}</td>
                     <td>
-                        <a href="/pengeluaran/{{ $pengeluaran['id'] }}/edit" class="btn btn-warning">Edit</a>
+                        <a href="/pengeluaran/{{ $pengeluaran->id }}/edit" class="btn btn-warning">Edit</a>
 
-                        <form action="/pengeluarans/{{ $pengeluaran['id'] }}" method="post" class="d-inline">
+                        <form action="/pengeluarans/{{ $pengeluaran->id }}" method="post" class="d-inline">
                             @method('DELETE')
                             @csrf
                             <button class="btn btn-danger" onclick="return confirm('Yakin Akan Menghapus Data..?')" type="submit">Delete</button>

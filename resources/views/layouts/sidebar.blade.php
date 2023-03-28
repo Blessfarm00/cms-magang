@@ -18,12 +18,12 @@
             </a>
         </li><!-- End Profile Page Nav -->
 
-        <li class="nav-item">
-            <a class="nav-link {{ Request::is('absensi') ? 'active' : '' }}" href="{{ url('absensi') }}">
-                <i <span class='bi bi-clipboard-check'></span></i>
-                <span>Absensi</span>
-            </a>
-        </li><!-- End F.A.Q Page Nav -->
+            <li class="nav-item">
+                <a class="nav-link {{ Request::is('absensi') ? 'active' : '' }}" href="{{ url('absensi') }}">
+                    <i <span class='bi bi-clipboard-check'></span></i>
+                    <span>Absensi</span>
+                </a>
+            </li><!-- End F.A.Q Page Nav -->
 
         <li class="nav-item">
             <a class="nav-link {{ Request::is('inventori') ? 'active' : '' }}" href="{{ url('inventori') }}">
@@ -45,6 +45,12 @@
                 <span>Pengeluaran</span>
             </a>
         </li><!-- End Blank Page Nav -->
+        <li>
+            <a class="dropdown-item d-flex align-items-center" href="/test">
+                <i class="bi bi-box-arrow-right"></i>
+                <span>Sign Out</span>
+            </a>
+        </li>
 
     </ul>
 

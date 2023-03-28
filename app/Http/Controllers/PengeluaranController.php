@@ -2,66 +2,111 @@
 
 namespace App\Http\Controllers;
 
+use GuzzleHttp\Client;
 use App\Services\Gateway;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
-use GuzzleHttp\Client;
+use Illuminate\Support\Facades\Request as FacadesRequest;
+use Illuminate\Support\Facades\Session;
 
-class pengeluaranController extends Controller
+class PengeluaranController extends Controller
 {
     public function index()
     {
-        $client = new Client();
-        $response = $client->request('GET', 'https://syafikmaulafaiz.000webhostapp.com/api/cms/pengeluaran');
-        $statusCode = $response->getStatusCode();
-        $body = $response->getBody()->getContents();
-        $pengeluarans = json_decode($body, true);
-        // dd($pengeluarans);
+        $gateway = new Gateway();
+        $gateway->setHeaders([
+            'Authorization' => 'Bearer ' . Session::get('auth')->token,
+            'Accept' => 'application/json',
+        ]);
+        // dd($gateway);
 
-        return view('pages.Administrator.Pengeluaran.index',  ['pengeluarans' => $pengeluarans]);
+        $response = $gateway->get('https://kedairona.000webhostapp.com/api/cms/pengeluaran');
+        $body = $response->getData()->data;
+        // dd($body);
+        // $inventoris = json_decode($body, true);
+        // dd($inventoris);
+
+        return view('pages.Administrator.Pengeluaran.index',  ['pengeluarans' => $body]);
     }
+
     public function create()
     {
-        $client = new Client();
-        $data = $client->post('https://syafikmaulafaiz.000webhostapp.com/api/cms/pengeluaran', [
+        $gateway = new Gateway();
+        $gateway->setHeaders([
+            'Authorization' => 'Bearer ' . Session::get('auth')->token,
+            'Accept' => 'application/json',
+        ]);
+        $data = $gateway->get('https://kedairona.000webhostapp.com/api/cms/pengeluaran', [
             'page' => 1,
             'per_page' => 999,
             'limit' => 999,
-        ])->getBody();
-        return view('pages.Administrator.Pengeluaran.create')->with('pengeluaran', $data);
+        ])->getData();
+        return view('pages.Administrator.Pengeluaran.create')->with('pengeluarans', $data);
+    }
+
+    public function store(Request $request)
+    {
+
+        $this->validate($request, [
+            'pengeluaran' => 'numeric',
+            'tanggal' => 'date',
+            'inventori_id' => '',
+            'jumlah' => 'numeric',
+            'rincian' => 'string'
+        ]);
+
+
+        $gateway = new Gateway();
+        $gateway->setHeaders([
+            'Authorization' => 'Bearer ' . Session::get('auth')->token,
+            'Accept' => 'application/json',
+        ]);
+        $store = $gateway->post('https://kedairona.000webhostapp.com/api/cms/pengeluaran', [
+            "pengeluaran" => $request->get('pengeluaran'),
+            "tanggal" => $request->get('tanggal'),
+            "jumlah" => $request->get('jumlah'),
+            "rincian" => $request->get('rincian'),
+        ])->getData();
+
+        return redirect('/pengeluaran')->with('success', 'Data Berhasil Di Tambahkan');
     }
 
     public function edit($id)
     {
         $gateway = new Gateway();
-        $pengeluaran = $gateway->get('https://syafikmaulafaiz.000webhostapp.com/api/cms/pengeluaran' . $id)->getData();
-        // dd($pengeluaran);
-        return view('pages.Administrator.Pengeluaran.edit')->with('pengeluaran', $pengeluaran);
+        $gateway->setHeaders([
+            'Authorization' => 'Bearer ' . Session::get('auth')->token,
+            'Accept' => 'application/json',
+        ]);
+        $inventori = $gateway->get('https://kedairona.000webhostapp.com/api/cms/pengeluaran/' . $id)->getData();
+        // dd($inventori);
+        return view('pages.Administrator.Inventori.edit', ['inventori' => $inventori]);
     }
 
-    public function store(Request $request)
+    public function update(Request $request, $id)
     {
-        // $validate = $request->validate([
-        //     'pengeluaran' => 'required|max:255|min:3',
-        // ]);
-
-        // $this->validate($request, [
-        //     'pengeluaran' => 'required|numeric|max:255',
-        // ]);
-
-        $this->validate($request, [
-            'pengeluaran' => 'required|numeric',
-            'rincian' => 'required|max:255|min:3'
-        ]);
-
-
         $gateway = new Gateway();
-        // dd($gateway);
-        $pengeluaran = $gateway->post('https://syafikmaulafaiz.000webhostapp.com/api/cms/pengeluaran', [
-            "pengeluaran" => $request->get('pengeluaran'),
-            "rincian" => $request->get('rincian'),
+        $gateway->setHeaders([
+            'Authorization' => 'Bearer ' . Session::get('auth')->token,
+            'Accept' => 'application/json',
+        ]);
+        $store = $gateway->put('https://kedairona.000webhostapp.com/api/cms/pengeluaran' . $id, [
+            "kd_barang" => $request->get('kd_barang'),
+            "nama_barang" => $request->get('nama_barang'),
+            "stok" => $request->get('stok'),
+            "harga" => $request->get('harga'),
+            "satuan" => $request->get('satuan'),
         ])->getData();
+        dd($store);
+        return redirect('/inventori')->with('success', 'Data Berhasil Di Tambahkan');
+    }
 
-        return redirect('/pengeluaran')->with('success', 'Data Berhasil Di Tambahkan');
+
+    public function delete($id)
+    {
+        $client = new Client();
+
+        $delete = $client->delete('https://syafikmaulafaiz.000webhostapp.com/api/cms/pengeluaran' . $id);
+        return redirect('/inventori')->with('success', 'Pengeluaran Deleted');
     }
 }

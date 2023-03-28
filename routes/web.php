@@ -25,15 +25,18 @@ Route::group([
 ], function () {
     Route::get('/login', 'LoginController@showLoginForm')->name('login');
     Route::post('/login', 'LoginController@authenticate')->name('authenticate');
-     Route::get('/register', 'RegisterController@showRegistrationForm')->name('register');
-     Route::post('/register', 'RegisterController@register')->name('register');
+    // Route::post('/logout', 'LoginController@logout');
+    Route::post('logout', 'LoginController@ogout')->name('logout');
+    Route::post('/test', 'LoginController@test');
+    //  Route::get('/register', 'RegisterController@showRegistrationForm')->name('register');
+    //  Route::post('/register', 'RegisterController@register')->name('register');
 });
 
 Route::group([
     'namespace' => 'App\Http\Controllers',
 ], function () {
     Route::get('/dashboard', 'DashboardController@index')->name('dashboard');
-    Route::post('logout', 'Auth\LoginController@logout')->name('logout');
+    
 
     // Route::group([
     //     'prefix' => 'admin',
