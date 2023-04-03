@@ -1,85 +1,68 @@
-@extends('layouts.app')
+@extends('layouts.main')
 
-@section('title','Edit Admin')
-@section('content_header_title','Edit Admin')
+@section('container')
 
-@section('main-content')
-    <div class="box box-primary">
-        <div class="box-header with-border">
-            <h3 class="box-title">Admin</h3>
-            <div class="box-tools">
-                test
-            </div>
-        </div>
-        <div class="box-body">
-            <form action="" id="form" method="POST" enctype="multipart/form-data">
+<div class="container">
+    <div class="row">
+        <div class="col-md-2"></div>
+        <div class="col-md-8 mt-5">
+
+            @php
+                dd($user);
+            @endphp
+            <form action="/user/{{ $user->data->id }}" method="post" enctype="multipart/form-data">
                 @csrf
-                <div class="form-group">
-                    <label for="employeeFirstName">Name<span class="text-red">*</label>
-                    <input type="text" class="form-control" name="name" value="{{ $user->name }}" required>
-                @error('name')
-                    <div class="alert alert-danger">{{ $message }}</div>
-                @enderror
+                <div class="card">
+                    <h5 class="card-header text-center">User</h5><br>
+                    <div class="card-body">
+                        <div class="mb-3">
+                            <label for="exampleInputPassword1" class="form-label" style="text-align: center;">Nama User</label>
+                            <input type="text" class="form-control" @error('nama_user') is-invalid @enderror" id="nama_user" value="{{ $user->data->nama_user }}" autofocus placeholder="Nama User">
+                            @error('nama_user')
+                            <div class="invalid-feedback">
+                                {{ $message }}
+                            </div>
+                            @enderror
+                        <div class="mb-3">
+                            <label for="exampleInputPassword1" class="form-label" style="text-align: center;">Email</label>
+                            <input type="text" class="form-control"  @error('email') is-invalid @enderror" id="email" value="{{ $user->data->email }}" autofocus placeholder="Email">
+                            @error('email')
+                            <div class="invalid-feedback">
+                                {{ $message }}
+                            </div>
+                        <div class="mb-3">
+                            <label for="exampleInputPassword1" class="form-label" style="text-align: center;">Gambar</label>
+                            <input type="text" class="form-control" @error('gambar') is-invalid @enderror" id="gambar" value="{{ $user->data->gambar }}" autofocus placeholder="Gambar">
+                            @error('gambar')
+                            <div class="invalid-feedback">
+                                {{ $message }}
+                            </div>
+                        <div class="mb-3">
+                            <label for="exampleInputPassword1" class="form-label" style="text-align: center;">No HP</label>
+                            <input type="text" class="form-control" @error('no_hp') is-invalid @enderror" id="no_hp" value="{{ $user->data->no_hp }}" autofocus placeholder="No Hp">
+                            @error('no_hp')
+                            <div class="invalid-feedback">
+                                {{ $message }}
+                            </div>
+                        <div class="mb-5">
+                            <label for="exampleInputPassword1" class="form-label" style="text-align: center;">Posisi</label>
+                            <input type="text" class="form-control" @error('posisi') is-invalid @enderror" id="posisi" value="{{ $user->data->posisi }}" autofocus placeholder="Posisi">
+                            @error('posisi')
+                            <div class="invalid-feedback">
+                                {{ $message }}
+                            </div>
+                        <div class="d-grid gap-2 d-md-flex justify-content-md-end">
+                            <button class="btn btn-primary" type="button">Simpan</button>
+                        </div>
+
+                    </div>
                 </div>
-               
-                <div class="form-group">
-                    <label for="employeeFirstName">Role<span class="text-red">*</label>
-                    <select class="form-control" name="roleId" id="cars" value="{{ old('roleId') }}" >
-                    @foreach ($roles->items as $role)
-                        <option value="{{$role->roleId}}" {{ $user->roleId == $role->roleId ? 'selected':'' }} >{{$role->name}}</option>
-                    @endforeach
-                    </select>
-                @error('roleId')
-                    <div class="alert alert-danger">{{ $message }}</div>
-                @enderror
-                </div>
-                <div class="form-group">
-                    <label for="employeeFirstName">Username<span class="text-red">*</label>
-                    <input type="text" class="form-control" name="username" value="{{ $user->username }}" required>
-                @error('username')
-                    <div class="alert alert-danger">{{ $message }}</div>
-                @enderror
-                </div>  
-                <div class="form-group">
-                    <label for="employeeFirstName">Email<span class="text-red">*</label>
-                    <input type="email" class="form-control" name="email" value="{{ $user->email }}" required>
-                @error('email')
-                    <div class="alert alert-danger">{{ $message }}</div>
-                @enderror
-                </div>
-                <div class="form-group">
-                    <label for="employeeFirstName">Avatar</label>
-                    <br>
-                    <img src="{{ $user->avatar }}" alt="" width="150px">
-                    <input type="file" class="form-control" name="avatar"  accept="image/*" >
-                <h5><span class="text-red">*Silahkan diisi jika anda ingin mengganti image</h5>
-                </div>  
-                <div class="form-group">
-                    <label for="employeeFirstName">Birthdate<span class="text-red">*</label>
-                    <input type="date" class="form-control" name="birthdate" value="{{ $user->birthDate }}" required>
-                @error('birthdate')
-                   <div class="alert alert-danger">{{ $message }}</div>
-                @enderror
-                </div>
-                <div class="form-group">
-                    <label for="employeeFirstName">Password</label>
-                    <input type="password" class="form-control" name="password"  >
-                <h5><span class="text-red">*Silakan diisi jika anda ingin mengubah password</h5>
-                </div>                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                  
-                <div class="form-group">
-                    <label for="employeeFirstName">ComfirmPassword </label>
-                    <input type="password" class="form-control" name="confirmpassword" >
-               
-                </div>
+
             </form>
         </div>
-        <div class="box-footer">
-            <div class="pull-right">
-                <button class="btn btn-default" onclick="history.back()">Back</button>
-                <button class="btn btn-primary" form="form">Save</button>
-            </div>
-        </div>
+        <div class="col-md-2"></div>
     </div>
-@endsection
-@section('script')
+</div><br><br><br><br><br><br><br><br><br><br><br><br>
+
+
 @endsection

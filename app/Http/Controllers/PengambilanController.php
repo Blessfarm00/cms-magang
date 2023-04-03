@@ -29,9 +29,33 @@ class PengambilanController extends InventoriController
     public function edit($id)
     {
         $gateway = new Gateway();
-        $pengambilan = $gateway->get('https://kedairona.000webhostapp.com/api/cms/pengambilan' . $id)->getData();
-        // dd($pengambilan);
+        $gateway->setHeaders([
+            'Authorization' => 'Bearer ' . Session::get('auth')->token,
+            'Accept' => 'application/json',
+        ]);
+        // dd($gateway);
+        $pengambilan = $gateway->get('https://kedairona.000webhostapp.com/api/cms/pengambilan/' . $id)->getData();
+        //  dd($pengambilan);
         return view('pages.Administrator.Pengambilan.edit', compact('pengambilan'));
+    }
+
+    public function update(Request $request, $id)
+    {
+        $gateway = new Gateway();
+        $gateway->setHeaders([
+            'Authorization' => 'Bearer ' . Session::get('auth')->token,
+            'Accept' => 'application/json',
+        ]);
+        // dd($gateway);
+
+        $storePengambilan = $gateway->post('https://kedairona.000webhostapp.com/api/cms/pengambilan/update/' . $id, [
+            "inventori_id" => $request->get('inventori_id'), 
+            "jumlah" => $request->get('jumlah'),
+            "keterangan" => $request->get('keterangan'),
+            "tanggal" => $request->get('tanggal'),
+        ])->getData();
+        // dd($storePengambilan);
+        return redirect('/pengambilan')->with('success', 'Data Berhasil Di Tambahkan');
     }
 
     public function create()
@@ -46,7 +70,7 @@ class PengambilanController extends InventoriController
             'page' => 1,
             'per_page' => 999,
             'limit' => 999,
-        ])->getData();dd($data);
+        ])->getData();
 
         return view('pages.Administrator.Pengambilan.create')->with('inventory', $data);
     }

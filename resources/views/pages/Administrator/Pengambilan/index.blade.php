@@ -34,7 +34,7 @@
                 <td>{{ $pengambilan_barang->keterangan }}</td>
                 <td>{{ date('l, d-m-y', strtotime($pengambilan_barang->created_at)) }}</td>
                 <td>
-                    <a href="/pengambilan_barang/{{ $pengambilan_barang->id }}/edit" class="btn btn-warning">Edit</a>
+                    <a href="/pengambilan/{{ $pengambilan_barang->id }}/edit" class="btn btn-warning">Edit</a>
 
                     <form action="/pengambilan/{{ $pengambilan_barang->id }}" method="post" class="d-inline">
                         @csrf

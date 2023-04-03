@@ -69,7 +69,6 @@ class UserController extends Controller
             "avatar" => $request->get('avatar'),
             "no_hp" => $request->get('no_hp'),
             "posisi" => $request->get('posisi'),
-            "role_id" => $request->get('role_id'),
         ])->getData();
 
         return redirect('/user')->with('success', 'Data Berhasil Di Tambahkan');
@@ -82,7 +81,7 @@ class UserController extends Controller
             'Authorization' => 'Bearer ' . Session::get('auth')->token,
             'Accept' => 'application/json',
         ]);
-        $user = $gateway->get('https://kedairona.000webhostapp.com/api/cms/listUser/' . $id)->getData();
+        $user = $gateway->get('https://kedairona.000webhostapp.com/api/cms/user/' . $id)->getData();
         return view('pages.Administrator.User.edit', ['user' => $user]);
     }
 
@@ -93,14 +92,13 @@ class UserController extends Controller
             'Authorization' => 'Bearer ' . Session::get('auth')->token,
             'Accept' => 'application/json',
         ]);
-        $store = $gateway->put('https://kedairona.000webhostapp.com/api/cms/listUser' . $id, [
+        $store = $gateway->post('https://kedairona.000webhostapp.com/api/cms/user/update/' . $id, [
             "nama_user" => $request->get('nama_user'),
             "email" => $request->get('email'),
             "password" => $request->get('password'),
             "avatar" => $request->get('avatar'),
             "no_hp" => $request->get('no_hp'),
             "posisi" => $request->get('posisi'),
-            "role_id" => $request->get('role_id'),
         ])->getData();
         // dd($store);
         return redirect('/user')->with('success', 'Data Berhasil Di Tambahkan');
@@ -114,7 +112,7 @@ class UserController extends Controller
             'Authorization' => 'Bearer ' . Session::get('auth')->token,
             'Accept' => 'application/json',
         ]);
-        $deleteUser = $gateway->post('https://kedairona.000webhostapp.com/api/cms/listUser/delete/' . $id);
+        $deleteUser = $gateway->post('https://kedairona.000webhostapp.com/api/cms/user/delete/' . $id);
 
         return redirect('/user')->with('success', 'inventori Deleted');
     }

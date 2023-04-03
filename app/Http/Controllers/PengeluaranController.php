@@ -30,9 +30,31 @@ class PengeluaranController extends InventoriController
     public function edit($id)
     {
         $gateway = new Gateway();
-        $pengeluaran = $gateway->get('https://kedairona.000webhostapp.com/api/cms/pengeluaran' . $id)->getData();
+        $gateway->setHeaders([
+            'Authorization' => 'Bearer ' . Session::get('auth')->token,
+            'Accept' => 'application/json',
+        ]);
+        $pengeluaran = $gateway->get('https://kedairona.000webhostapp.com/api/cms/pengeluaran/' . $id)->getData();
         // dd($pengeluaran);
         return view('pages.Administrator.Pengeluaran.edit', compact('pengeluaran'));
+    }
+
+    public function update(Request $request, $id)
+    {
+        $gateway = new Gateway();
+        $gateway->setHeaders([
+            'Authorization' => 'Bearer ' . Session::get('auth')->token,
+            'Accept' => 'application/json',
+        ]);
+        $storePengeluaran = $gateway->post('https://kedairona.000webhostapp.com/api/cms/pengeluaran/update/' . $id, [
+            "pengeluaran" => $request->get('pengeluaran'),
+            "inventori_id" => $request->get('inventori_id'),
+            "rincian" => $request->get('rincian'),
+            "jumlah" => $request->get('jumlah'),
+            "tanggal" => $request->get('tanggal'),
+        ])->getData();
+        // dd($storePengeluaran);
+        return redirect('/pengeluaran')->with('success', 'Data Berhasil Di Tambahkan');
     }
 
     public function create()
