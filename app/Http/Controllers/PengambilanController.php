@@ -9,7 +9,7 @@ use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Request as FacadesRequest;
 use Illuminate\Support\Facades\Session;
 
-class PengambilanController extends Controller
+class PengambilanController extends InventoriController
 {
     public function index()
     {
@@ -23,6 +23,7 @@ class PengambilanController extends Controller
         $response = $gateway->get('https://kedairona.000webhostapp.com/api/cms/pengambilan');
         $body = $response->getData()->data;
         return view('pages.Administrator.Pengambilan.index',  ['pengambilan_barangs' => $body]);
+        
     }
 
     public function edit($id)
@@ -41,13 +42,13 @@ class PengambilanController extends Controller
             'Accept' => 'application/json',
         ]);
 
-        $data = $gateway->post('https://kedairona.000webhostapp.com/api/cms/pengambilan', [
+        $data = $gateway->get('https://kedairona.000webhostapp.com/api/cms/inventory', [
             'page' => 1,
             'per_page' => 999,
             'limit' => 999,
-        ])->getData();
+        ])->getData();dd($data);
 
-        return view('pages.Administrator.Pengambilan.create')->with('pengambilan_barangs', $data);
+        return view('pages.Administrator.Pengambilan.create')->with('inventory', $data);
     }
     public function store(Request $request)
     {
@@ -67,17 +68,39 @@ class PengambilanController extends Controller
         $gateway->setHeaders([
             'Authorization' => 'Bearer ' . Session::get('auth')->token,
             'Accept' => 'application/json',
+            
         ]);
 
         $gateway = new Gateway();
         // dd($gateway);
         $pengambilan = $gateway->post('https://kedairona.000webhostapp.com/api/cms/pengambilan', [
-            // "inventori_id" => $request->get('inventori_id'), 
+            
+            "inventori_id" => $request->get('inventori_id'), 
             "jumlah" => $request->get('jumlah'),
             "keterangan" => $request->get('keterangan'),
+            "tanggal" => $request->get('tanggal'),
+            
         ])->getData();
 
         return redirect('/pengambilan')->with('success', 'Data Berhasil Di Tambahkan');
     }
 
+    public function delete($id)
+    {
+        $gateway = new Gateway();
+        $gateway->setHeaders([
+            'Authorization' => 'Bearer ' . Session::get('auth')->token,
+            'Accept' => 'application/json',
+        ]);
+        $deletePengambilan = $gateway->post('https://kedairona.000webhostapp.com/api/cms/pengambilan/delete/' . $id);
+
+        return redirect('/pengambilan')->with('success', 'inventori Deleted');
+
+        // dd($deletePengambilan);
+    }
+
 }
+
+
+
+

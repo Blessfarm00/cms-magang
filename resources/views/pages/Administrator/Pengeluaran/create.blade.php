@@ -22,8 +22,8 @@
                         </div>
                         <div class="mb-3">
                             <label for="exampleInputPassword1" class="form-label" style="text-align: center;">Id Inventori</label>
-                            <input type="text" name="id_inventori" class="form-control @error('id_inventori') is-invalid @enderror" id="id_inventori" value="{{ old('id_inventori') }}" autofocus placeholder="id_inventori">
-                            @error('id_inventori')
+                            <input type="text" name="inventori_id" class="form-control @error('inventori_id') is-invalid @enderror" id="inventori_id" value="{{ old('inventori_id') }}" autofocus placeholder="inventori_id">
+                            @error('inventori_id')
                             <div class="invalid-feedback">
                                 {{ $message }}
                             </div>
@@ -40,7 +40,7 @@
                         </div>
                         <div class="mb-3">
                             <label for="exampleInputPassword1" class="form-label" style="text-align: center;">Jumlah</label>
-                            <input type="number" name="Jumlah" class="form-control @error('jumlah') is-invalid @enderror" id="jumlah" value="{{ old('jumlah') }}" autofocus placeholder="Jumlah">
+                            <input type="number" name="jumlah" class="form-control @error('jumlah') is-invalid @enderror" id="jumlah" value="{{ old('jumlah') }}" autofocus placeholder="Jumlah">
                             @error('jumlah')
                             <div class="invalid-feedback">
                                 {{ $message }}

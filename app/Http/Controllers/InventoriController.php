@@ -6,12 +6,18 @@ use GuzzleHttp\Client;
 use App\Services\Gateway;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
+use Illuminate\Foundation\Auth\User;
+use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Http;
 use Illuminate\Support\Facades\Request as FacadesRequest;
 use Illuminate\Support\Facades\Session;
 
+
+
+
 class InventoriController extends Controller
 {
-    public function index()
+        public function index()
     {
         $gateway = new Gateway();
         $gateway->setHeaders([
@@ -28,6 +34,7 @@ class InventoriController extends Controller
 
         return view('pages.Administrator.Inventori.index',  ['inventoris' => $body]);
     }
+
 
     public function create()
     {
@@ -98,7 +105,6 @@ class InventoriController extends Controller
             "harga" => $request->get('harga'),
             "satuan" => $request->get('satuan'),
         ])->getData();
-        dd($store);
         return redirect('/inventori')->with('success', 'Data Berhasil Di Tambahkan');
     }
 
@@ -110,22 +116,74 @@ class InventoriController extends Controller
             'Authorization' => 'Bearer ' . Session::get('auth')->token,
             'Accept' => 'application/json',
         ]);
-        // dd($gateway);
-        $deleteInventori = $gateway->delete('https://syafikmaulafaiz.000webhostapp.com/api/cms/inventory' . $id);
-        return redirect('/inventori')->with('success', 'Inventori Deleted');
+        $deleteInventori = $gateway->post('https://kedairona.000webhostapp.com/api/cms/inventory/delete/' . $id);
+  
+        return redirect('/inventori')->with('success', 'inventori Deleted');
     }
-
+ 
     // public function delete($id)
     // {
     //     $gateway = new Gateway();
-    //     $gateway->setHeaders([
-    //         'Authorization' => 'Bearer ' . Session::get('auth')->token,
-    //         'Accept' => 'application/json',
-    //     ]);
-    //     $deleteInventori = $gateway->delete('https://syafikmaulafaiz.000webhostapp.com/api/cms/inventory' . $id);
-    //     if (!$deleteInventori->getData()->success) {
-    //         return redirect('/role')->with('error', $deleteInventori->getData()->message);
-    //     }
-    //     return redirect('/inventori')->with('success', 'Inventori Deleted');
+
+    //     $delete = $gateway->delete('https://kedairona.000webhostapp.com/api/cms/inventory' . $id);
+    //     return redirect('/inventori')->with('success', 'Kuliner Deleted');
     // }
-}
+
+
+    //    public function delete($id)
+    // {
+    //     try {
+    //         $gateway = new Gateway();
+    //         $gateway->setHeaders([
+    //             'Authorization' => 'Bearer ' . Session::get('auth')->token,
+    //             'Accept' => 'application/json',
+    //         ]);
+    //         $deleteInventori = $gateway->delete('https://kedairona.000webhostapp.com/api/cms/inventory/' . $id);
+
+    //         if (!$deleteInventori->getData()->success) {
+    //             return redirect('/role')->with('error', $deleteInventori->getData()->message);
+    //         }
+    //         return redirect('/inventori')->with('success', 'Inventori Deleted');
+    //     } catch (\Throwable $e) {
+    //         return redirect('/inventori')->with('error', 'Failed to delete inventori: ' . $e->getMessage());
+    //     }
+    // }
+   
+    // public function delete($post_id )
+    // {
+        // $gateway = new Gateway();
+        // $gateway->setHeaders([
+        //     'Authorization' => 'Bearer ' . Session::get('auth')->token,
+        //     'Accept' => 'application/json',
+        // ]);
+        // $deleteInventori = $gateway->delete('https://kedairona.000webhostapp.com/api/cms/inventory/' . $id);
+        // if (!$gateway) {
+        //     return response()->json([
+        //         'message' => 'User not found'
+        //     ], 404);
+        // }
+        // $id->delete();
+        // return redirect()->back()->with('message', 'User has been deleted successfully!');
+        // $post_id = 1;
+        // $gateway = new Gateway();
+        // $gateway->setHeaders(['Accept' => 'application/json',]);    
+        // $response = Http::withHeaders([
+        //     'Authorization' => 'Bearer ' . Session::get('auth')->token
+        // ])->delete('https://kedairona.000webhostapp.com/api/cms/inventory/' . $post_id);
+        // return redirect('/inventori')->with('success', 'Inventori Deleted');
+        
+    // }
+
+        // public function delete($id)  
+        // {
+        //     $response = Http::withToken('<your_access_token>')->delete('https://syafikmaulafaiz.000webhostapp.com/api/cms/inventory' . $id);
+
+        //     if ($response->ok()) {
+        //         // API call was successful
+        //     } else {
+        //         // API call failed
+        //     }
+        // }
+
+        }
+    

@@ -41,110 +41,88 @@
 
     <!-- Sales Card -->
     <div class="col-xxl-4 col-xl-12">
-        <div class="card info-card sales-card">
 
-            <div class="filter">
-                <a class="icon" href="#" data-bs-toggle="dropdown"><i class="bi bi-three-dots"></i></a>
-                <ul class="dropdown-menu dropdown-menu-end dropdown-menu-arrow">
-                    <li class="dropdown-header text-start">
-                        <h6>Filter</h6>
-                    </li>
-
-                    <li><a class="dropdown-item" href="#">Today</a></li>
-                    <li><a class="dropdown-item" href="#">This Month</a></li>
-                    <li><a class="dropdown-item" href="#">This Year</a></li>
-                </ul>
-            </div>
-
+        <div class="card info-card customers-card">
             <div class="card-body">
-                <h5 class="card-title">Pengeluaran</span></h5>
-
+                <h5 class="card-title">Tabel User</span></h5>
+                <h6 class="card-subtitle mb-2 text-muted">User</h6>
                 <div class="d-flex align-items-center">
                     <div class="card-icon rounded-circle d-flex align-items-center justify-content-center">
-                        <i class="bi bi-cart"></i>
-                    </div>
-                    <div class="ps-3">
-                        <h6>145</h6>
-                        <span class="text-success small pt-1 fw-bold">12%</span> <span class="text-muted small pt-2 ps-1">increase</span>
-
+                        <i class="bi bi-people"></i>
+                        <a href="/user" class="card-link">Go to Table</a>
                     </div>
                 </div>
-            </div>
 
+            </div>
         </div>
+
     </div><!-- End Sales Card -->
 
     <!-- Revenue Card -->
     <div class="col-xxl-4 col-xl-12">
-        <div class="card info-card revenue-card">
-
-            <div class="filter">
-                <a class="icon" href="#" data-bs-toggle="dropdown"><i class="bi bi-three-dots"></i></a>
-                <ul class="dropdown-menu dropdown-menu-end dropdown-menu-arrow">
-                    <li class="dropdown-header text-start">
-                        <h6>Filter</h6>
-                    </li>
-
-                    <li><a class="dropdown-item" href="#">Today</a></li>
-                    <li><a class="dropdown-item" href="#">This Month</a></li>
-                    <li><a class="dropdown-item" href="#">This Year</a></li>
-                </ul>
-            </div>
-
-            <div class="card-body">
-                <h5 class="card-title">Inventori</span></h5>
-
-                <div class="d-flex align-items-center">
-                    <div class="card-icon rounded-circle d-flex align-items-center justify-content-center">
-                        <i class="bi bi-currency-dollar"></i>
-                    </div>
-                    <div class="ps-3">
-                        <h6>$3,264</h6>
-                        <span class="text-success small pt-1 fw-bold">8%</span> <span class="text-muted small pt-2 ps-1">increase</span>
-
-                    </div>
-                </div>
-            </div>
-
-        </div>
-    </div><!-- End Revenue Card -->
-
-    <!-- Customers Card -->
-    <div class="col-xxl-4 col-xl-12">
 
         <div class="card info-card customers-card">
-
-            <div class="filter">
-                <a class="icon" href="#" data-bs-toggle="dropdown"><i class="bi bi-three-dots"></i></a>
-                <ul class="dropdown-menu dropdown-menu-end dropdown-menu-arrow">
-                    <li class="dropdown-header text-start">
-                        <h6>Filter</h6>
-                    </li>
-
-                    <li><a class="dropdown-item" href="#">Today</a></li>
-                    <li><a class="dropdown-item" href="#">This Month</a></li>
-                    <li><a class="dropdown-item" href="#">This Year</a></li>
-                </ul>
-            </div>
-
             <div class="card-body">
-                <h5 class="card-title">Absensi</span></h5>
-
+                <h5 class="card-title">Tabel Absensi</span></h5>
+                <h6 class="card-subtitle mb-2 text-muted">Absensi</h6>
                 <div class="d-flex align-items-center">
                     <div class="card-icon rounded-circle d-flex align-items-center justify-content-center">
                         <i class="bi bi-people"></i>
-                    </div>
-                    <div class="ps-3">
-                        <h6>1244</h6>
-                        <span class="text-danger small pt-1 fw-bold">12%</span> <span class="text-muted small pt-2 ps-1">decrease</span>
-
+                        <a href="/absensi" class="card-link">Go to Table</a>
                     </div>
                 </div>
 
             </div>
         </div>
 
-    </div><!-- End Customers Card -->
+    </div>
+    <!-- Customers Card -->
+    <div class="col-xxl-4 col-xl-12">
+        <div class="card info-card customers-card">
+            <div class="card-body">
+                <h5 class="card-title">Tabel Inventori</span></h5>
+                <h6 class="card-subtitle mb-2 text-muted">Inventori</h6>
+                <div class="d-flex align-items-center">
+                    <div class="card-icon rounded-circle d-flex align-items-center justify-content-center">
+                        <i class="bi bi-people"></i>
+                        <a href="/inventori" class="card-link">Go to Table</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="col-xxl-4 col-xl-12">
+        <div class="card info-card customers-card">
+            <div class="card-body">
+                <h5 class="card-title">Tabel Pengambilan</span></h5>
+                <h6 class="card-subtitle mb-2 text-muted">Pengambilan</h6>
+                <div class="d-flex align-items-center">
+                    <div class="card-icon rounded-circle d-flex align-items-center justify-content-center">
+                        <i class="bi bi-people"></i>
+                        <a href="/pengambilan" class="card-link">Go to Table</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="col-xxl-4 col-xl-12">
+        <div class="card info-card customers-card">
+            <div class="card-body">
+                <h5 class="card-title">Tabel Pengeluaran</span></h5>
+                <h6 class="card-subtitle mb-2 text-muted">Pengeluaran</h6>
+                <div class="d-flex align-items-center">
+                    <div class="card-icon rounded-circle d-flex align-items-center justify-content-center">
+                        <i class="bi bi-people"></i>
+                        <a href="/pengeluaran" class="card-link">Go to Table</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
 
 
     <script src="assets/vendor/apexcharts/apexcharts.min.js"></script>

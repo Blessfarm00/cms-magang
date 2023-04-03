@@ -102,18 +102,32 @@ class UserController extends Controller
             "posisi" => $request->get('posisi'),
             "role_id" => $request->get('role_id'),
         ])->getData();
-        dd($store);
+        // dd($store);
         return redirect('/user')->with('success', 'Data Berhasil Di Tambahkan');
     }
 
 
     public function delete($id)
     {
-        $client = new Client();
+        $gateway = new Gateway();
+        $gateway->setHeaders([
+            'Authorization' => 'Bearer ' . Session::get('auth')->token,
+            'Accept' => 'application/json',
+        ]);
+        $deleteUser = $gateway->post('https://kedairona.000webhostapp.com/api/cms/listUser/delete/' . $id);
 
-        $delete = $client->delete('https://syafikmaulafaiz.000webhostapp.com/api/cms/listUser' . $id);
-        return redirect('/user')->with('success', 'User Deleted');
+        return redirect('/user')->with('success', 'inventori Deleted');
     }
+
+    // public function delete($id)
+    // {
+    //     $gateway = new Gateway();
+
+    //     $delete = $gateway->delete('https://syafikmaulafaiz.000webhostapp.com/api/cms/listUser?id' . $id);
+
+    //     return redirect('/user')->with('success', 'Deleted');
+    // }
+
 
 } 
 

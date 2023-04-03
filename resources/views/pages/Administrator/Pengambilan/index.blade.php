@@ -36,8 +36,7 @@
                 <td>
                     <a href="/pengambilan_barang/{{ $pengambilan_barang->id }}/edit" class="btn btn-warning">Edit</a>
 
-                    <form action="/pengambilan_barangs/{{ $pengambilan_barang->id }}" method="post" class="d-inline">
-                        @method('DELETE')
+                    <form action="/pengambilan/{{ $pengambilan_barang->id }}" method="post" class="d-inline">
                         @csrf
                         <button class="btn btn-danger" onclick="return confirm('Yakin Akan Menghapus Data..?')" type="submit">Delete</button>
                     </form>

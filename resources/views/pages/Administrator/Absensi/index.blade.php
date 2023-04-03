@@ -28,8 +28,7 @@
                             <td>{{ $absensi->jam_masuk }}</td>
                             <td>{{ $absensi->jam_keluar }}</td>
                             <td>
-                                <form action="/absensi/{id}{{ $absensi->id }}" method="post" class="d-inline">
-                                    @method('DELETE')
+                                <form action="/absensi/{{ $absensi->id }}" method="post" class="d-inline">
                                     @csrf
                                     <button class="btn btn-danger" onclick="return confirm('Yakin Akan Menghapus Data..?')" type="submit">Delete</button>
                                 </form>

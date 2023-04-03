@@ -30,15 +30,12 @@ class AbsensiController extends Controller
     public function delete($id)
     {
         $gateway = new Gateway();
-        
         $gateway->setHeaders([
             'Authorization' => 'Bearer ' . Session::get('auth')->token,
             'Accept' => 'application/json',
         ]);
-        // dd($gateway);
-        $deleteAbsensi = $gateway->delete('https://kedairona.000webhostapp.com/api/cms/absensi/' .$id);
-        dd($deleteAbsensi);
-        return redirect('/absensi')->with('success', 'absensi Deleted');
-    }
+        $deleteAbsensi = $gateway->post('https://kedairona.000webhostapp.com/api/cms/absensi/delete/' . $id);
 
+        return redirect('/absensi')->with('success', 'inventori Deleted');
+    }
 }
