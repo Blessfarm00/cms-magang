@@ -38,6 +38,9 @@ Route::group([
  
 });
 
+Route::get('/profile','App\Http\Controllers\ProfileController@index');
+Route::post('/profile/update/{id}', 'App\Http\Controllers\ProfileController@update');
+
 
 Route::get('/user', 'App\Http\Controllers\UserController@index');
 Route::get('/fn_get_data', 'App\Http\Controllers\InventoriController@fnGetData');

@@ -1,7 +1,15 @@
 @extends('layouts.main')
 
 @section('container')
-
+<div class="pagetitle">
+    <h1>Pengeluaran</h1>
+    <nav>
+        <ol class="breadcrumb">
+            <li class="breadcrumb-item"><a href="/dashboard">Dashboard</a></li>
+            <li class="breadcrumb-item active">Pengeluaran</li>
+        </ol>
+    </nav>
+</div>
 <div class="card">
     <div class="card-body">
         <h5 class="card-header text-center">Table Pengeluaran</h5><br>
