@@ -62,7 +62,7 @@ class UserController extends Controller
             'Authorization' => 'Bearer ' . Session::get('auth')->token,
             'Accept' => 'application/json',
         ]);
-        $store = $gateway->post('https://kedairona.000webhostapp.com/api/cms/listUser', [
+        $store = $gateway->post('https://kedairona.000webhostapp.com/api/cms/user/', [
             "nama_user" => $request->get('nama_user'),
             "email" => $request->get('email'),
             "password" => $request->get('password'),
@@ -117,14 +117,6 @@ class UserController extends Controller
         return redirect('/user')->with('success', 'inventori Deleted');
     }
 
-    // public function delete($id)
-    // {
-    //     $gateway = new Gateway();
-
-    //     $delete = $gateway->delete('https://syafikmaulafaiz.000webhostapp.com/api/cms/listUser?id' . $id);
-
-    //     return redirect('/user')->with('success', 'Deleted');
-    // }
 
 
 } 

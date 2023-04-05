@@ -7,7 +7,7 @@
         <h5 class="card-header text-center">Table Inventori</h5><br>
         <div class="card-tools">
             <a href="/inventori/create" class="btn btn-success">Tambah Data<i class="fas fa-plus-square"></i></a>
-            <a href="#" class="btn btn-success">Print<i class="fas fa-plus-square"></i></a>
+            <a href="/inventori/cetak-inventori" class="btn btn-success">Print<i class="fas fa-plus-square"></i></a>
         </div>
         <hr>
         <table class="table table-striped">

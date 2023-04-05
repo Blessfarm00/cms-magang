@@ -7,7 +7,7 @@
     <div class="row">
         <div class="col-md-2"></div>
         <div class="col-md-8 mt-5">
-            <form action="/pengambilan/{{ $pengambilan->data->id }}" method="post" enctype="multipart/form-data">
+            <form action="/pengambilan/update/{{ $pengambilan->data->id }}" method="post" enctype="multipart/form-data">
                 @csrf
                 <div class="card">
                     <h5 class="card-header text-center">Tambah Data Pengambilan</h5><br>

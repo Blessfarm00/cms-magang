@@ -35,6 +35,24 @@ class InventoriController extends Controller
         return view('pages.Administrator.Inventori.index',  ['inventoris' => $body]);
     }
 
+    public function cetakInventori()
+    {
+        $gateway = new Gateway();
+        $gateway->setHeaders([
+            'Authorization' => 'Bearer ' . Session::get('auth')->token,
+            'Accept' => 'application/json',
+        ]);
+        // dd($gateway);
+
+        $response = $gateway->post('https://kedairona.000webhostapp.com/api/cms/inventory');
+        $body = $response->getData()->data;
+        // dd($body);
+        // $inventoris = json_decode($body, true);
+        // dd($inventoris);
+
+        return view('pages.Administrator.Inventori.cetak-inventori',  ['inventoris' => $body]);
+    }
+
 
     public function create()
     {

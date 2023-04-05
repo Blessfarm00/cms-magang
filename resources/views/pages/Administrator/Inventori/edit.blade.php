@@ -6,7 +6,7 @@
     <div class="row">
         <div class="col-md-2"></div>
         <div class="col-md-8 mt-5">
-            <form action="/inventori/{{ $inventori->data->id }}" method="post">
+            <form action="/inventori/update/{{ $inventori->data->id }}" method="post">
                 @csrf
                 <div class="card">
                     <h5 class="card-header text-center">Inventori</h5><br>

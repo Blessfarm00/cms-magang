@@ -45,15 +45,16 @@ Route::get('/user/create', 'App\Http\Controllers\UserController@create');
 Route::post('/user', 'App\Http\Controllers\UserController@store');
 Route::get('/user/{id}/edit', 'App\Http\Controllers\UserController@edit');
 Route::post('/user/{id}', 'App\Http\Controllers\UserController@delete');
-Route::post('/user/{id}', 'App\Http\Controllers\UserController@update');
+// Route::post('/user/{id}', 'App\Http\Controllers\UserController@update');
 
 Route::get('/inventori', 'App\Http\Controllers\InventoriController@index');
+Route::post('/inventori/cetak', 'App\Http\Controllers\InventoriController@cetakInventori');
 Route::get('/fn_get_data', 'App\Http\Controllers\InventoriController@fnGetData');
 Route::get('/inventori/create', 'App\Http\Controllers\InventoriController@create');
 Route::post('/inventori', 'App\Http\Controllers\InventoriController@store');
 Route::get('/inventori/{id}/edit', 'App\Http\Controllers\InventoriController@edit');
 Route::post('/inventori/{id}', 'App\Http\Controllers\InventoriController@delete');
-Route::post('/inventori/{id}', 'App\Http\Controllers\InventoriController@update');
+Route::post('/inventori/update/{id}', 'App\Http\Controllers\InventoriController@update');
 
 Route::get('/absensi', 'App\Http\Controllers\AbsensiController@index');
 Route::get('/fn_get_data', 'App\Http\Controllers\AbsensiController@fnGetData');
@@ -68,7 +69,7 @@ Route::get('/pengambilan/create', 'App\Http\Controllers\PengambilanController@cr
 Route::post('/pengambilan', 'App\Http\Controllers\PengambilanController@store');
 Route::get('/pengambilan/{id}/edit', 'App\Http\Controllers\PengambilanController@edit');
 Route::post('/pengambilan/{id}', 'App\Http\Controllers\PengambilanController@delete');
-Route::post('/pengambilan/{id}', 'App\Http\Controllers\PengambilanController@update');
+Route::post('/pengambilan/update/{id}', 'App\Http\Controllers\PengambilanController@update');
 
 Route::get('/pengeluaran', 'App\Http\Controllers\PengeluaranController@index');
 Route::get('/fn_get_data', 'App\Http\Controllers\PengeluaranController@fnGetData');
@@ -76,7 +77,7 @@ Route::get('/test/create', 'App\Http\Controllers\PengeluaranController@create');
 Route::post('/pengeluaran', 'App\Http\Controllers\PengeluaranController@store');
 Route::get('/pengeluaran/{id}/edit', 'App\Http\Controllers\PengeluaranController@edit');
 Route::post('/pengeluaran/{id}', 'App\Http\Controllers\PengeluaranController@delete');
-Route::post('/pengeluaran/{id}', 'App\Http\Controllers\PengeluaranController@update');
+Route::post('/pengeluaran/update/{id}', 'App\Http\Controllers\PengeluaranController@update');
 
 
 
