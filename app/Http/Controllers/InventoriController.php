@@ -11,6 +11,10 @@ use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Http;
 use Illuminate\Support\Facades\Request as FacadesRequest;
 use Illuminate\Support\Facades\Session;
+use PDF;
+use Dompdf\Dompdf;
+use Dompdf\Options;
+
 
 
 
@@ -35,23 +39,40 @@ class InventoriController extends Controller
         return view('pages.Administrator.Inventori.index',  ['inventoris' => $body]);
     }
 
-    public function cetakInventori()
+    public function cetak()
     {
-        $gateway = new Gateway();
-        $gateway->setHeaders([
-            'Authorization' => 'Bearer ' . Session::get('auth')->token,
-            'Accept' => 'application/json',
-        ]);
-        // dd($gateway);
+    $gateway = new Gateway();
+    $gateway->setHeaders([
+        'Authorization' => 'Bearer ' . Session::get('auth')->token,
+        'Accept' => 'application/json',
+    ]);
 
-        $response = $gateway->post('https://kedairona.000webhostapp.com/api/cms/inventory');
-        $body = $response->getData()->data;
-        // dd($body);
-        // $inventoris = json_decode($body, true);
-        // dd($inventoris);
+    // Ambil data dari API
+    $data = $gateway->get('https://kedairona.000webhostapp.com/api/cms/inventory', [
+        'page' => 1,
+        'per_page' => 999,
+        'limit' => 999,
+    ])->getData()->data;
 
-        return view('pages.Administrator.Inventori.cetak-inventori',  ['inventoris' => $body]);
+    // Buat objek options dan set default font
+    $options = new Options();
+    $options->set('defaultFont', 'Arial');
+
+    // Buat objek dompdf dan set options
+    $dompdf = new Dompdf($options);
+
+    // Render view dengan data dan simpan dalam variabel html
+    $html = view('Pages.Administrator.Inventori.Cetak')->with('inventoris', $data);
+
+    // Konversi view menjadi PDF
+    $dompdf->loadHtml($html);
+    $dompdf->setPaper('A4', 'landscape');
+    $dompdf->render();
+
+    // Kirim PDF ke browser untuk di-download
+    return $dompdf->stream('Inventori.pdf');
     }
+
 
 
     public function create()
@@ -67,6 +88,7 @@ class InventoriController extends Controller
             'limit' => 999,
         ])->getData();
         return view('pages.Administrator.Inventori.create')->with('inventoris', $data);
+        
     }
 
     public function store(Request $request)

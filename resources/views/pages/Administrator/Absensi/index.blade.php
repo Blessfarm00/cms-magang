@@ -15,7 +15,7 @@
                 <h5 class="card-header text-center">Table Absensi</h5><br>
         
                 <div class="card-tools">
-                    <a href="#" class="btn btn-success">Print<i class="fas fa-plus-square"></i></a>
+                    <a href="/absensi/cetak" class="btn btn-success">Print<i class="fas fa-plus-square"></i></a>
                 </div>
                 <hr>
                 <table class="table table-striped">

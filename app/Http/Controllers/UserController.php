@@ -104,17 +104,20 @@ class UserController extends Controller
         return redirect('/user')->with('success', 'Data Berhasil Di Tambahkan');
     }
 
-
     public function delete($id)
     {
-        $gateway = new Gateway();
-        $gateway->setHeaders([
-            'Authorization' => 'Bearer ' . Session::get('auth')->token,
-            'Accept' => 'application/json',
-        ]);
-        $deleteUser = $gateway->post('https://kedairona.000webhostapp.com/api/cms/user/delete/' . $id);
+            $gateway = new Gateway();
+            $gateway->setHeaders([
+                'Authorization' => 'Bearer ' . Session::get('auth')->token,
+                'Accept' => 'application/json',
+            ]);
+            $response = $gateway->post('https://kedairona.000webhostapp.com/api/cms/user/delete/' . $id);
 
-        return redirect('/user')->with('success', 'inventori Deleted');
+            if ($response->getStatusCode() == 200) {
+                return redirect('/user')->with('success', 'User Deleted');
+            } else {
+                return redirect('/user')->with('error', 'Unable to delete user');
+            } 
     }
 
 

@@ -13,16 +13,12 @@
 <div class="card">
     <div class="card-body">
         <h5 class="card-header text-center">Table User</h5><br>
-        <div class="card-tools">
-            <a href="#" class="btn btn-success">Print Data User<i class="fas fa-plus-square"></i></a>
-        </div>
         <hr>
         <table class="table table-striped">
             <thead style="background-color:#0112FE">
                 <tr>
                     <th scope="col" style="color:white">No</th>
-                    <th scope="col" style="color:white">ID User</th>
-                    <th scope="col" style="color:white">Nama User</th>
+                    <th scope="col" style="color:white">Nama</th>
                     <th scope="col" style="color:white">Email</th>
                     <th scope="col" style="color:white">Gambar</th>
                     <th scope="col" style="color:white">No HP</th>
@@ -34,7 +30,6 @@
 
                 @foreach ($users as $user)
                 <tr>
-                    <td>{{ $loop->iteration }}</td>
                     <td>{{ $loop->iteration }}</td>
                     <td>{{ $user->nama_user }}</td>
                     <td>{{ $user->email }}</td>
