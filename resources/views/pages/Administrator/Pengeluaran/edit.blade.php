@@ -14,7 +14,7 @@
             <form action="/pengeluaran/update/{{ $pengeluaran->data->id }}" method="post" enctype="multipart/form-data">
                 @csrf
                 <div class="card">
-                    <h5 class="card-header text-center">Tambah Data Pengeluaran</h5><br>
+                    <h5 class="card-header text-center">Edit Data Pengeluaran</h5><br>
                     <div class="card-body">
                         <div class="mb-3">
                             <label for="exampleInputPassword1" class="form-label" style="text-align: center;">Pengeluaran</label>

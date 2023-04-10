@@ -34,9 +34,6 @@
                 <button class="nav-link active" data-bs-toggle="tab" data-bs-target="#profile-overview">Overview</button>
               </li>
 
-              <li class="nav-item">
-                <button class="nav-link" data-bs-toggle="tab" data-bs-target="#profile-edit">Edit Profile</button>
-              </li>
 
             </ul>
             <div class="tab-content pt-2">
@@ -65,59 +62,12 @@
                   <div class="col-lg-9 col-md-8">{{$profiles->posisi}}</div>
                 </div>
 
-              </div>
-
-              <div class="tab-pane fade profile-edit pt-3" id="profile-edit" href="edit">
-
-                <!-- Profile Edit Form -->
-                <form>
-                  <div class="row mb-3">
-                    <label for="profileImage" class="col-md-4 col-lg-3 col-form-label">Profile Image</label>
-                    <div class="col-md-8 col-lg-9">
-                      <img src="assets/img/profile-img.jpg" alt="Profile">
-                      <div class="pt-2">
-                        <a href="#" class="btn btn-primary btn-sm" title="Upload new profile image"><i class="bi bi-upload"></i></a>
-                        <a href="#" class="btn btn-danger btn-sm" title="Remove my profile image"><i class="bi bi-trash"></i></a>
-                      </div>
-                    </div>
-                  </div>
-
-                  <div class="row mb-3">
-                    <label for="fullName" class="col-md-4 col-lg-3 col-form-label">Nama User</label>
-                    <div class="col-md-8 col-lg-9">
-                      <input name="fullName" type="text" class="form-control" id="fullName" value="{{ $profiles->nama_user }}">
-                    </div>
-                  </div>
-
-                  <div class="row mb-3">
-                    <label for="fullName" class="col-md-4 col-lg-3 col-form-label">Email</label>
-                    <div class="col-md-8 col-lg-9">
-                      <input name="fullName" type="text" class="form-control" id="fullName" value="{{ $profiles->email }}">
-                    </div>
-                  </div>
-
-                  <div class="row mb-3">
-                    <label for="company" class="col-md-4 col-lg-3 col-form-label">No Handphone</label>
-                    <div class="col-md-8 col-lg-9">
-                      <input name="company" type="text" class="form-control" id="company" value="{{ $profiles->no_hp }}">
-                    </div>
-                  </div>
-
-                  <div class="row mb-3">
-                    <label for="Job" class="col-md-4 col-lg-3 col-form-label">Posisi</label>
-                    <div class="col-md-8 col-lg-9">
-                      <input name="job" type="text" class="form-control" id="Job" value="{{ $profiles->posisi }}">
-                    </div>
-                  </div>
-
-                  <div class="text-center">
-                    <button type="submit" class="btn btn-primary">Simpan</button>
-                  </div>
-                </form><!-- End Profile Edit Form -->
+                <div class="text-center">
+                  <a href="/profile/{{ $profiles->user_id }}" class="btn btn-warning">Edit Profile</a>
+                </div>
 
               </div>
-
-
+         
             </div><!-- End Bordered Tabs -->
 
           </div>

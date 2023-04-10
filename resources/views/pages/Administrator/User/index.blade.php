@@ -13,7 +13,6 @@
 <div class="card">
     <div class="card-body">
         <h5 class="card-header text-center">Table User</h5><br>
-        <hr>
         <table class="table table-striped">
             <thead style="background-color:#0112FE">
                 <tr>

@@ -29,9 +29,7 @@
                     <th colspan="2" scope="col" style="color:white">Aksi</th>
                 </tr>
             </thead>
-            {{-- @php
-                    dd($pengambilan_barangs->items);
-                @endphp --}}
+            
 
             @foreach ($pengambilan_barangs->items as $pengambilan_barang)
 

@@ -28,13 +28,7 @@
                 <th> Tanggal </th>
             </tr>
 
-            @php
-            dd($pengeluarans)
-            @endphp
-
             @foreach ($pengeluarans->items as $pengeluaran)
-
-
             <tr>
                 <td>{{ $loop->iteration }}</td>
                 <td>{{ $pengeluaran->pengeluaran }}</td>

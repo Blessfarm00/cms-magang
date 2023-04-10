@@ -39,6 +39,7 @@ Route::group([
 });
 
 Route::get('/profile','App\Http\Controllers\ProfileController@index');
+Route::get('/profile/{id}', 'App\Http\Controllers\ProfileController@edit');
 Route::post('/profile/update/{id}', 'App\Http\Controllers\ProfileController@update');
 
 
