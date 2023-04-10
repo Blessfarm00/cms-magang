@@ -17,6 +17,12 @@
             <a href="/pengambilan/create" class="btn btn-success">Tambah Data<i class="fas fa-plus-square"></i></a>
             <a href="/pengambilan/cetak" class="btn btn-success">Print<i class="fas fa-plus-square"></i></a>
         </div>
+        <form action="{{ url('/pengambilan') }}" method="GET" >
+            <div class="input-group mt-4 ">
+                <input type="text" name="search" class="form-control" placeholder="Search by ID Inventori " value="{{ $search }}">
+                <button class="btn btn-primary" type="submit">Search</button>
+            </div>
+        </form>
         <hr>
         <table class="table table-striped">
             <thead style="background-color:#0112FE">
@@ -29,20 +35,20 @@
                     <th colspan="2" scope="col" style="color:white">Aksi</th>
                 </tr>
             </thead>
-            
 
-            @foreach ($pengambilan_barangs->items as $pengambilan_barang)
+
+            @foreach ($pengambilans as $pengambilan)
 
             <tr>
                 <td>{{ $loop->iteration }}</td>
-                <td>{{ $pengambilan_barang->inventori_id }}</td>
-                <td>{{ $pengambilan_barang->jumlah }}</td>
-                <td>{{ $pengambilan_barang->keterangan }}</td>
-                <td>{{ date('l, d-m-y', strtotime($pengambilan_barang->created_at)) }}</td>
+                <td>{{ $pengambilan->inventori_id }}</td>
+                <td>{{ $pengambilan->jumlah }}</td>
+                <td>{{ $pengambilan->keterangan }}</td>
+                <td>{{ date('l, d-m-y', strtotime($pengambilan->created_at)) }}</td>
                 <td>
-                    <a href="/pengambilan/{{ $pengambilan_barang->id }}/edit" class="btn btn-warning">Edit</a>
+                    <a href="/pengambilan/{{ $pengambilan->id }}/edit" class="btn btn-warning">Edit</a>
 
-                    <form action="/pengambilan/{{ $pengambilan_barang->id }}" method="post" class="d-inline">
+                    <form action="/pengambilan/{{ $pengambilan->id }}" method="post" class="d-inline">
                         @csrf
                         <button class="btn btn-danger" onclick="return confirm('Yakin Akan Menghapus Data..?')" type="submit">Delete</button>
                     </form>

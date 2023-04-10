@@ -17,6 +17,13 @@
             <a href="/test/create" class="btn btn-success">Tambah Data<i class="fas fa-plus-square"></i></a>
             <a href="/pengeluaran/cetak" class="btn btn-success">Print<i class="fas fa-plus-square"></i></a>
         </div>
+        <form action="{{ url('/pengeluaran') }}" method="GET">
+
+            <div class="input-group mt-4">
+                <input type="text" name="search" class="form-control" placeholder="Search by ID Inventori " value="{{ $search }}">
+                <button class="btn btn-primary" type="submit" >Search</button>
+            </div>
+        </form>
         <hr>
         <table class="table table-striped">
             <thead style="background-color:#0112FE">
@@ -35,7 +42,7 @@
                     dd($pengeluarans->items);
                 @endphp --}}
 
-                @foreach ($pengeluarans->items as $pengeluaran)
+                @foreach ($pengeluarans as $pengeluaran)
 
 
                 <tr>

@@ -13,32 +13,36 @@ use Dompdf\Options;
 
 class PengeluaranController extends InventoriController
 {
-    
-    public function index()
+
+    public function index(Request $request)
     {
-        
+        $search = $request->query('search');
+
         $gateway = new Gateway();
         $gateway->setHeaders([
             'Authorization' => 'Bearer ' . Session::get('auth')->token,
             'Accept' => 'application/json',
         ]);
-        // dd($gateway);
-
         $response = $gateway->get('https://kedairona.000webhostapp.com/api/cms/pengeluaran');
         $body = $response->getData()->data;
-        return view('pages.Administrator.Pengeluaran.index',  ['pengeluarans' => $body]);
-    }
 
-    public function edit($id)
-    {
-        $gateway = new Gateway();
-        $gateway->setHeaders([
-            'Authorization' => 'Bearer ' . Session::get('auth')->token,
-            'Accept' => 'application/json',
-        ]);
-        $pengeluaran = $gateway->get('https://kedairona.000webhostapp.com/api/cms/pengeluaran/' . $id)->getData();
-        // dd($pengeluaran);
-        return view('pages.Administrator.Pengeluaran.edit', compact('pengeluaran'));
+        if (is_array($body)) {
+            $pengeluarans = $body;
+        } else {
+            $pengeluarans = isset($body->items) ? $body->items : [];
+        }
+
+        if ($search) {
+            $filteredBody = [];
+            foreach ($pengeluarans as $inventori) {
+                if (stripos($inventori->inventori_id, $search) !== false) {
+                    $filteredBody[] = $inventori;
+                }
+            }
+            $pengeluarans = $filteredBody;
+        }
+
+        return view('pages.Administrator.pengeluaran.index', compact('pengeluarans', 'search'));
     }
 
     public function update(Request $request, $id)

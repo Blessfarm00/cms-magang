@@ -21,22 +21,35 @@ use Dompdf\Options;
 
 class InventoriController extends Controller
 {
-        public function index()
+    public function index(Request $request)
     {
+        $search = $request->query('search');
+
         $gateway = new Gateway();
         $gateway->setHeaders([
             'Authorization' => 'Bearer ' . Session::get('auth')->token,
             'Accept' => 'application/json',
         ]);
-        // dd($gateway);
-
         $response = $gateway->get('https://kedairona.000webhostapp.com/api/cms/inventory');
         $body = $response->getData()->data;
-        // dd($body);
-        // $inventoris = json_decode($body, true);
-        // dd($inventoris);
 
-        return view('pages.Administrator.Inventori.index',  ['inventoris' => $body]);
+        if (is_array($body)) {
+            $inventoris = $body;
+        } else {
+            $inventoris = isset($body->items) ? $body->items : [];
+        }
+
+        if ($search) {
+            $filteredBody = [];
+            foreach ($inventoris as $inventori) {
+                if (stripos($inventori->nama_barang, $search) !== false) {
+                    $filteredBody[] = $inventori;
+                }
+            }
+            $inventoris = $filteredBody;
+        }
+
+        return view('pages.Administrator.Inventori.index', compact('inventoris', 'search'));
     }
 
     public function cetak()

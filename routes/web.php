@@ -50,6 +50,7 @@ Route::post('/user', 'App\Http\Controllers\UserController@store');
 Route::get('/user/{id}/edit', 'App\Http\Controllers\UserController@edit');
 Route::post('/user/{id}', 'App\Http\Controllers\UserController@delete');
 Route::get('/user/cetak', 'App\Http\Controllers\UserController@cetak');
+Route::get('/user/filter', 'App\Http\Controllers\UserController@index');
 // Route::post('/user/{id}', 'App\Http\Controllers\UserController@update');
 
 Route::get('/inventori', 'App\Http\Controllers\InventoriController@index');

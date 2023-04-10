@@ -15,30 +15,35 @@ use Dompdf\Options;
 class AbsensiController extends Controller
 {
 
-    public function index(){
+    public function index(Request $request)
+    {
+        $search = $request->query('search');
+
         $gateway = new Gateway();
         $gateway->setHeaders([
             'Authorization' => 'Bearer ' . Session::get('auth')->token,
             'Accept' => 'application/json',
         ]);
-        // dd($gateway);
-
         $response = $gateway->get('https://kedairona.000webhostapp.com/api/cms/absensi');
         $body = $response->getData()->data;
-        // dd($body);
-        return view('pages.Administrator.Absensi.index',  ['absensis'=>$body]);
-    }
 
-    public function delete($id)
-    {
-        $gateway = new Gateway();
-        $gateway->setHeaders([
-            'Authorization' => 'Bearer ' . Session::get('auth')->token,
-            'Accept' => 'application/json',
-        ]);
-        $deleteAbsensi = $gateway->post('https://kedairona.000webhostapp.com/api/cms/absensi/delete/' . $id);
+        if (is_array($body)) {
+            $absensis = $body;
+        } else {
+            $absensis = isset($body->items) ? $body->items : [];
+        }
 
-        return redirect('/absensi')->with('success', 'inventori Deleted');
+        if ($search) {
+            $filteredBody = [];
+            foreach ($absensis as $absensi) {
+                if (stripos($absensi->user_id, $search) !== false) {
+                    $filteredBody[] = $absensi;
+                }
+            }
+            $absensis = $filteredBody;
+        }
+
+        return view('pages.Administrator.absensi.index', compact('absensis', 'search'));
     }
 
     public function cetak()

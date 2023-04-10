@@ -13,20 +13,37 @@ use Dompdf\Options;
 
 class PengambilanController extends InventoriController
 {
-    public function index()
+    public function index(Request $request)
     {
+        $search = $request->query('search');
+
         $gateway = new Gateway();
         $gateway->setHeaders([
             'Authorization' => 'Bearer ' . Session::get('auth')->token,
             'Accept' => 'application/json',
         ]);
-        // dd($gateway);
-
         $response = $gateway->get('https://kedairona.000webhostapp.com/api/cms/pengambilan');
         $body = $response->getData()->data;
-        return view('pages.Administrator.Pengambilan.index',  ['pengambilan_barangs' => $body]);
-        
+
+        if (is_array($body)) {
+            $pengambilans = $body;
+        } else {
+            $pengambilans = isset($body->items) ? $body->items : [];
+        }
+
+        if ($search) {
+            $filteredBody = [];
+            foreach ($pengambilans as $inventori) {
+                if (stripos($inventori-> inventori_id , $search) !== false) {
+                    $filteredBody[] = $inventori;
+                }
+            }
+            $pengambilans = $filteredBody;
+        }
+
+        return view('pages.Administrator.Pengambilan.index', compact('pengambilans', 'search'));
     }
+
 
     public function edit($id)
     {

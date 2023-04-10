@@ -17,6 +17,12 @@
             <a href="/inventori/create" class="btn btn-success">Tambah Data<i class="fas fa-plus-square"></i></a>
             <a href="/inventori/cetak" class="btn btn-success">Print<i class="fas fa-plus-square"></i></a>
         </div>
+        <form action="{{ url('/inventori') }}" method="GET">
+            <div class="input-group mt-4">
+                <input type="text" name="search" class="form-control" placeholder="Search by name " value="{{ $search }}">
+                <button class="btn btn-primary" type="submit">Search</button>
+            </div>
+        </form>
         <hr>
         <table class="table table-striped">
             <thead style="background-color:#0112FE">
@@ -36,8 +42,7 @@
                     dd($inventoris->items);
                 @endphp --}}
 
-                @foreach ($inventoris->items as $inventori)
-
+                @foreach ($inventoris  as $inventori)
                 <tr>
                     <td>{{ $loop->iteration }}</td>
                     <td>{{ $inventori->kd_barang }}</td>
@@ -55,7 +60,9 @@
                     </td>
                 </tr>
                 @endforeach
+
             </tbody>
+
         </table>
     </div>
 
