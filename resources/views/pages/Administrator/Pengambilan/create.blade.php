@@ -23,14 +23,14 @@
 
                         <div class="mb-3">
                             <label for="inventory" class="form-label">Barang</label>
-                            <select class="form-control" name="id_inventori" aria-label="Default select example">
+                            <select class="form-control" name="inventori_id" aria-label="Default select example">
                                 <option selected>- Pilih -</option>
                                 @foreach($inventory->data->items as $p)
-                                    @if (old('id') == $p->id)
-                                        <option value="{{ $p->id }}">{{ $p->nama_barang }}</option>
-                                    @else
-                                        <option value="{{ $p->id }}">{{ $p->kd_barang }} - {{ $p->nama_barang }}</option>
-                                    @endif
+                                @if (old('id') == $p->id)
+                                <option value="{{ $p->id }}">{{ $p->nama_barang }}</option>
+                                @else
+                                <option value="{{ $p->id }}">{{ $p->kd_barang }} - {{ $p->nama_barang }}</option>
+                                @endif
                                 @endforeach
                             </select>
                         </div>
