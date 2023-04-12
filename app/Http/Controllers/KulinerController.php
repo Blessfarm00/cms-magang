@@ -65,6 +65,7 @@ class KulinerController extends Controller
             "latitude" => $request->get('latitude'),
             "longitude" => $request->get('longitude'),
             "gambar_kuliner" => $nama_file,
+            
         ])->getData();
 
         return redirect('/kuliner')->with('success', 'Data Berhasil Di Tambahkan');

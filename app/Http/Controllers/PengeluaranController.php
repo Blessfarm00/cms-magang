@@ -45,6 +45,19 @@ class PengeluaranController extends InventoriController
         return view('pages.Administrator.pengeluaran.index', compact('pengeluarans', 'search'));
     }
 
+    public function edit($id)
+    {
+        $gateway = new Gateway();
+        $gateway->setHeaders([
+            'Authorization' => 'Bearer ' . Session::get('auth')->token,
+            'Accept' => 'application/json',
+        ]);
+        // dd($gateway);
+        $pengeluaran = $gateway->get('https://kedairona.000webhostapp.com/api/cms/pengeluaran/' . $id)->getData();
+        //  dd($pengeluaran);
+        return view('pages.Administrator.Pengeluaran.edit', compact('pengeluaran'));
+    }
+
     public function update(Request $request, $id)
     {
         $gateway = new Gateway();

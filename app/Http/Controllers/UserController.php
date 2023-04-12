@@ -28,20 +28,20 @@ class UserController extends Controller
         return view('pages.Administrator.User.index',  ['users'=>$body]);
     }
 
-    public function create()
-    {
-        $gateway = new Gateway();
-        $gateway->setHeaders([
-            'Authorization' => 'Bearer ' . Session::get('auth')->token,
-            'Accept' => 'application/json',
-        ]);
-        $data = $gateway->get('https://kedairona.000webhostapp.com/api/cms/listUser', [
-            'page' => 1,
-            'per_page' => 999,
-            'limit' => 999,
-        ])->getData();
-        return view('pages.Administrator.User.create')->with('users', $data);
-    }
+    // public function create()
+    // {
+    //     $gateway = new Gateway();
+    //     $gateway->setHeaders([
+    //         'Authorization' => 'Bearer ' . Session::get('auth')->token,
+    //         'Accept' => 'application/json',
+    //     ]);
+    //     $data = $gateway->get('https://kedairona.000webhostapp.com/api/cms/listUser', [
+    //         'page' => 1,
+    //         'per_page' => 999,
+    //         'limit' => 999,
+    //     ])->getData();
+    //     return view('pages.Administrator.User.create')->with('users', $data);
+    // }
 
     public function store(Request $request)
     {
@@ -82,6 +82,7 @@ class UserController extends Controller
             'Accept' => 'application/json',
         ]);
         $user = $gateway->get('https://kedairona.000webhostapp.com/api/cms/user/' . $id)->getData();
+        // dd($user);
         return view('pages.Administrator.User.edit', ['user' => $user]);
     }
 

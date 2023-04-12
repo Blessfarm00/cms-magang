@@ -9,9 +9,10 @@
         <div class="card">
           <div class="card-body profile-card pt-4 d-flex flex-column align-items-center">
 
-            <img src="NiceAdmin/assets/img/profile-img.jpg" alt="Profile" class="rounded-circle">
+            <img src="{{ asset('img/profile/'. $profiles->avatar) }}" alt="Profile" class="rounded-circle">
             <h2></h2>
             <h3>{{ $profiles->nama_user }}</h3>
+            
             <div class="social-links mt-2">
               <a href="#" class="twitter"><i class="bi bi-twitter"></i></a>
               <a href="#" class="facebook"><i class="bi bi-facebook"></i></a>
@@ -61,9 +62,12 @@
                   <div class="col-lg-3 col-md-4 label">Posisi</div>
                   <div class="col-lg-9 col-md-8">{{$profiles->posisi}}</div>
                 </div>
-
+                <div class="row">
+                  <div class="col-lg-3 col-md-4 label">Role</div>
+                  <div class="col-lg-9 col-md-8">{{$profiles->role}}</div>
+                </div>
                 <div class="text-center">
-                  <a href="/profile/{{ $profiles->user_id }}" class="btn btn-warning">Edit Profile</a>
+                  <a href="/profile/{{ $profiles->user_id }}" class="btn btn-dark">Edit Profile</a>
                 </div>
 
               </div>

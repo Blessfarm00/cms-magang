@@ -18,12 +18,11 @@ class ProfileController extends Controller
             'Authorization' => 'Bearer ' . Session::get('auth')->token,
             'Accept' => 'application/json',
         ]);
-        // dd($gateway);
 
-        $response = $gateway->get('https://kedairona.000webhostapp.com/api/cms/profile');
+        $response = $gateway->get('https://kedairona.000webhostapp.com/api/cms/profile/');
         $body = $response->getData()->data;
-
         // dd($body);
+        // var_dump($body);
         return view('pages.Administrator.Profile.index',  ['profiles' => $body]);
     }
 
@@ -35,8 +34,9 @@ class ProfileController extends Controller
             'Accept' => 'application/json',
         ]);
         $profile = $gateway->get('https://kedairona.000webhostapp.com/api/cms/profile/')->getData();
-        // dd($profile);
+
         return view('pages.Administrator.Profile.edit', compact('profile'));
+
     }
 
     public function update(Request $request, $id)
@@ -51,17 +51,20 @@ class ProfileController extends Controller
             $file->move('img/profile', $file->getClientOriginalName());
         }
 
+        // dd($request->all());
         $gateway = new Gateway();
         $gateway->setHeaders([
             'Authorization' => 'Bearer ' . Session::get('auth')->token,
             'Accept' => 'application/json',
         ]);
-        $storeProfile = $gateway->post('https://kedairona.000webhostapp.com/api/cms/profile/update/' . [
+        // dd($gateway);
+        $storeProfile = $gateway->post('https://kedairona.000webhostapp.com/api/cms/profile/update/' . $id ,[
             "nama_user" => $request->get('nama_user'),
             "email" => $request->get('email'),
             "avatar" => $nama_file,
             "no_hp" => $request->get('no_hp'),
             "posisi" => $request->get('posisi'),
+            "role" => $request->get('role'),
         ])->getData();
         // dd($storeProfile);
         return redirect('/profile')->with('success', 'Data Berhasil Di Tambahkan');
@@ -76,28 +79,31 @@ class ProfileController extends Controller
             'avatar' => 'required|image|mimes:jpg,png,jpeg,gif,svg|max:2048',
             'no_hp' => 'required|numeric|max:13',
             'posisi' => 'required',
+            'role' => 'required',
         ]);
 
-        // $path = $request->file('gambar_kuliner')->store('public/images');
+        $path = $request->file('gambar_kuliner')->store('public/images');
         $file = $request->file('avatar');
         //mengambil nama file
         $nama_file = asset('img/profile') . '/' . $file->getClientOriginalName();
 
         //memindahkan file ke folder tujuan
         $file->move('img/profile', $file->getClientOriginalName());
-        // dd($request);
+        dd($request);
         $gateway = new Gateway();
         $gateway->setHeaders([
             'Authorization' => 'Bearer ' . Session::get('auth')->token,
             'Accept' => 'application/json',
         ]);
         // dd($gateway);
-        $storeProfile = $gateway->post('https://kedairona.000webhostapp.com/api/cms/profile/update/' . [
+        $Profile = $gateway->post('https://kedairona.000webhostapp.com/api/cms/profile' , [
             "nama_user" => $request->get('nama_user'),
             "email" => $request->get('email'),
-            "avatar" => $nama_file,
+            // "avatar" => $nama_file,
             "no_hp" => $request->get('no_hp'),
             "posisi" => $request->get('posisi'),
+            "role" => $request->get('role'),
+
         ])->getData();
 
         return redirect('/profile')->with('success', 'Data Berhasil Di Tambahkan');
