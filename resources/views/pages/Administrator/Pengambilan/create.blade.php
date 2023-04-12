@@ -11,7 +11,7 @@
                 <div class="card">
                     <h5 class="card-header text-center">Tambah Data Pengambilan</h5><br>
                     <div class="card-body">
-                        <div class="mb-3">
+                        <!-- <div class="mb-3">
                             <label for="exampleInputPassword1" class="form-label" style="text-align: center;">ID Inventori</label>
                             <input type="text" name="inventori_id" class="form-control @error('id_inventori') is-invalid @enderror" id="id_inventori" value="{{ old('id_inventori') }}" autofocus placeholder="ID Inventori">
                             @error('id_inventori')
@@ -19,6 +19,20 @@
                                 {{ $message }}
                             </div>
                             @enderror
+                        </div> -->
+
+                        <div class="mb-3">
+                            <label for="inventory" class="form-label">Barang</label>
+                            <select class="form-control" name="id_inventori" aria-label="Default select example">
+                                <option selected>- Pilih -</option>
+                                @foreach($inventory->data->items as $p)
+                                    @if (old('id') == $p->id)
+                                        <option value="{{ $p->id }}">{{ $p->nama_barang }}</option>
+                                    @else
+                                        <option value="{{ $p->id }}">{{ $p->kd_barang }} - {{ $p->nama_barang }}</option>
+                                    @endif
+                                @endforeach
+                            </select>
                         </div>
                         <div class="mb-3">
                             <label for="exampleInputPassword1" class="form-label" style="text-align: center;">Jumlah</label>
