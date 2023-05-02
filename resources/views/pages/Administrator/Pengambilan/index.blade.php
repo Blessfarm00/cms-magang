@@ -36,7 +36,7 @@
                 </tr>
             </thead>
 
-
+            
             @foreach ($pengambilans as $pengambilan)
 
             <tr>

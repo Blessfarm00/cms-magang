@@ -25,8 +25,7 @@ Route::group([
 ], function () {
     Route::get('/login', 'LoginController@showLoginForm')->name('login');
     Route::post('/login', 'LoginController@authenticate')->name('authenticate');
-    Route::post('/logout', 'LoginController@logout');
-    Route::post('/logout', 'LoginController@logout')->name('logout');
+    Route::post('/logout', 'LoginController@destroy')->name('destroy');
     //  Route::get('/register', 'RegisterController@showRegistrationForm')->name('register');
     //  Route::post('/register', 'RegisterController@register')->name('register');
 });

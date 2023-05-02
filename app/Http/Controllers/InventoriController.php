@@ -67,7 +67,6 @@ class InventoriController extends Controller
         'limit' => 999,
     ])->getData()->data;
 
-    // Buat objek options dan set default font
     $options = new Options();
     $options->set('defaultFont', 'Arial');
 
