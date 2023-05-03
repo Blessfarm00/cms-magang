@@ -2,6 +2,7 @@
 
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\FrontendController;
+use GuzzleHttp\Middleware;
 
 // /*
 // |--------------------------------------------------------------------------
@@ -25,12 +26,13 @@ Route::group([
 ], function () {
     Route::get('/login', 'LoginController@showLoginForm')->name('login');
     Route::post('/login', 'LoginController@authenticate')->name('authenticate');
-    Route::post('/logout', 'LoginController@destroy')->name('destroy');
+    Route::get('/logout', 'LoginController@logout')->name('logout');
     //  Route::get('/register', 'RegisterController@showRegistrationForm')->name('register');
     //  Route::post('/register', 'RegisterController@register')->name('register');
 });
 
 Route::group([
+    'middleware'=> 'auth',
     'namespace' => 'App\Http\Controllers',
 ], function () {
     Route::get('/dashboard', 'DashboardController@index')->name('dashboard');

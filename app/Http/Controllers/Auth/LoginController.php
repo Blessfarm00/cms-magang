@@ -51,27 +51,31 @@ class LoginController extends Controller
             'password' => $request->get('password'),
         ]);
 
+            Session::put('auth', $response->getData()->data);
+            return view('pages.dashboard');
+        
+        return back()->withErrors([
+            'email' => 'The provided credentials do not match our records.'
+        ]);
+
+
+
         // dd($response);
-        Session::put('auth', $response->getData()->data);
-        return view('pages.dashboard');
+       
 
         // $gateway = new Gateway();
         // $responsePrivileges = $gateway->get('/api/cms/auth/my-privileges')->getData();
         // Session::put('privileges', $responsePrivileges->data);
     }
 
-    public function register(Request $request)
-    {
-        $gateway = new Gateway();
-        $response = $gateway->Post('register', $request->only('name', 'email', 'password'));
-
-        return response()->json($response, $response['code']);
-    }
 
     public function logout(Request $request)
     {
         $request->session()->invalidate();
+        $request->session()->regenerateToken();
         return redirect('/login');
+
+        
     }
 
     
