@@ -50,9 +50,9 @@ class LoginController extends Controller
             'email' => $request->get('email'),
             'password' => $request->get('password'),
         ]);
-
+// dd($response->getStatusCode());
             Session::put('auth', $response->getData()->data);
-            return view('pages.dashboard');
+            return redirect('dashboard');
         
         return back()->withErrors([
             'email' => 'The provided credentials do not match our records.'

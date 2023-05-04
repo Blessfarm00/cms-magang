@@ -37,57 +37,53 @@ Route::group([
 ], function () {
     Route::get('/dashboard', 'DashboardController@index')->name('dashboard');
  
+    Route::get('/profile','ProfileController@index');
+    Route::get('/profile/{id}', 'ProfileController@edit');
+    Route::post('/profile/update/{id}', 'ProfileController@update');
+
+    Route::get('/user', 'UserController@index');
+    Route::get('/fn_get_data', 'InventoriController@fnGetData');
+    Route::get('/user/create', 'UserController@create');
+    Route::post('/user', 'UserController@store');
+    Route::get('/user/{id}/edit', 'UserController@edit');
+    Route::post('/user/{id}', 'UserController@delete');
+    Route::get('/user/cetak', 'UserController@cetak');
+    Route::get('/user/filter', 'UserController@index');
+    Route::post('/user/update/{id}', 'UserController@update');
+
+    Route::get('/inventori', 'InventoriController@index');
+    Route::get('/inventori/cetak', 'InventoriController@cetak');
+    Route::get('/fn_get_data', 'InventoriController@fnGetData');
+    Route::get('/inventori/create', 'InventoriController@create');
+    Route::post('/inventori', 'InventoriController@store');
+    Route::get('/inventori/{id}/edit', 'InventoriController@edit');
+    Route::post('/inventori/{id}', 'InventoriController@delete');
+    Route::post('/inventori/update/{id}', 'InventoriController@update');
+
+    Route::get('/absensi', 'AbsensiController@index');
+    Route::get('/fn_get_data', 'AbsensiController@fnGetData');
+    Route::get('/absensi/create', 'AbsensiController@create');
+    Route::post('/absensi', 'AbsensiController@store');
+    Route::get('/absensi/{id}/edit', 'AbsensiController@edit');
+    Route::post('/absensi/{id}', 'AbsensiController@delete');
+    Route::get('/absensi/cetak', 'AbsensiController@cetak');
+
+    Route::get('/pengambilan', 'PengambilanController@index');
+    Route::get('/fn_get_data', 'PengambilanController@fnGetData');
+    Route::get('/pengambilan/create', 'PengambilanController@create');
+    Route::post('/pengambilan', 'PengambilanController@store');
+    Route::get('/pengambilan/{id}/edit', 'PengambilanController@edit');
+    Route::post('/pengambilan/{id}', 'PengambilanController@delete');
+    Route::post('/pengambilan/update/{id}', 'PengambilanController@update');
+    Route::get('/pengambilan/cetak', 'PengambilanController@cetak');
+
+    Route::get('/pengeluaran', 'PengeluaranController@index');
+    Route::get('/fn_get_data', 'PengeluaranController@fnGetData');
+    Route::get('/test/create', 'PengeluaranController@create');
+    Route::post('/pengeluaran', 'PengeluaranController@store');
+    Route::get('/pengeluaran/{id}/edit', 'PengeluaranController@edit');
+    Route::post('/pengeluaran/{id}', 'PengeluaranController@delete');
+    Route::post('/pengeluaran/update/{id}', 'PengeluaranController@update');
+    Route::get('/pengeluaran/cetak', 'PengeluaranController@cetak');
+
 });
-
-Route::get('/profile','App\Http\Controllers\ProfileController@index');
-Route::get('/profile/{id}', 'App\Http\Controllers\ProfileController@edit');
-Route::post('/profile/update/{id}', 'App\Http\Controllers\ProfileController@update');
-
-
-Route::get('/user', 'App\Http\Controllers\UserController@index');
-Route::get('/fn_get_data', 'App\Http\Controllers\InventoriController@fnGetData');
-Route::get('/user/create', 'App\Http\Controllers\UserController@create');
-Route::post('/user', 'App\Http\Controllers\UserController@store');
-Route::get('/user/{id}/edit', 'App\Http\Controllers\UserController@edit');
-Route::post('/user/{id}', 'App\Http\Controllers\UserController@delete');
-Route::get('/user/cetak', 'App\Http\Controllers\UserController@cetak');
-Route::get('/user/filter', 'App\Http\Controllers\UserController@index');
-// Route::post('/user/{id}', 'App\Http\Controllers\UserController@update');
-
-Route::get('/inventori', 'App\Http\Controllers\InventoriController@index');
-Route::get('/inventori/cetak', 'App\Http\Controllers\InventoriController@cetak');
-Route::get('/fn_get_data', 'App\Http\Controllers\InventoriController@fnGetData');
-Route::get('/inventori/create', 'App\Http\Controllers\InventoriController@create');
-Route::post('/inventori', 'App\Http\Controllers\InventoriController@store');
-Route::get('/inventori/{id}/edit', 'App\Http\Controllers\InventoriController@edit');
-Route::post('/inventori/{id}', 'App\Http\Controllers\InventoriController@delete');
-Route::post('/inventori/update/{id}', 'App\Http\Controllers\InventoriController@update');
-
-Route::get('/absensi', 'App\Http\Controllers\AbsensiController@index');
-Route::get('/fn_get_data', 'App\Http\Controllers\AbsensiController@fnGetData');
-Route::get('/absensi/create', 'App\Http\Controllers\AbsensiController@create');
-Route::post('/absensi', 'App\Http\Controllers\AbsensiController@store');
-Route::get('/absensi/{id}/edit', 'App\Http\Controllers\AbsensiController@edit');
-Route::post('/absensi/{id}', 'App\Http\Controllers\AbsensiController@delete');
-Route::get('/absensi/cetak', 'App\Http\Controllers\AbsensiController@cetak');
-
-Route::get('/pengambilan', 'App\Http\Controllers\PengambilanController@index');
-Route::get('/fn_get_data', 'App\Http\Controllers\PengambilanController@fnGetData');
-Route::get('/pengambilan/create', 'App\Http\Controllers\PengambilanController@create');
-Route::post('/pengambilan', 'App\Http\Controllers\PengambilanController@store');
-Route::get('/pengambilan/{id}/edit', 'App\Http\Controllers\PengambilanController@edit');
-Route::post('/pengambilan/{id}', 'App\Http\Controllers\PengambilanController@delete');
-Route::post('/pengambilan/update/{id}', 'App\Http\Controllers\PengambilanController@update');
-Route::get('/pengambilan/cetak', 'App\Http\Controllers\PengambilanController@cetak');
-
-Route::get('/pengeluaran', 'App\Http\Controllers\PengeluaranController@index');
-Route::get('/fn_get_data', 'App\Http\Controllers\PengeluaranController@fnGetData');
-Route::get('/test/create', 'App\Http\Controllers\PengeluaranController@create');
-Route::post('/pengeluaran', 'App\Http\Controllers\PengeluaranController@store');
-Route::get('/pengeluaran/{id}/edit', 'App\Http\Controllers\PengeluaranController@edit');
-Route::post('/pengeluaran/{id}', 'App\Http\Controllers\PengeluaranController@delete');
-Route::post('/pengeluaran/update/{id}', 'App\Http\Controllers\PengeluaranController@update');
-Route::get('/pengeluaran/cetak', 'App\Http\Controllers\PengeluaranController@cetak');
-
-
-

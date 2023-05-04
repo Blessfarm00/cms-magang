@@ -53,9 +53,16 @@ class UserController extends Controller
             'avatar' => 'required|image|mimes:jpg,png,jpeg,gif,svg|max:2048',
             'no_hp' => 'required|numeric|max:13',
             'posisi' => 'required',
-            'role_id' => 'required',
+            'role' => 'required',
         ]);
 
+        $path = $request->file('gambar_kuliner')->store('public/images');
+        $file = $request->file('avatar');
+        //mengambil nama file
+        $nama_file = asset('img/profile') . '/' . $file->getClientOriginalName();
+
+        //memindahkan file ke folder tujuan
+        $file->move('img/profile', $file->getClientOriginalName());
 
         $gateway = new Gateway();
         $gateway->setHeaders([
@@ -65,10 +72,11 @@ class UserController extends Controller
         $store = $gateway->post('https://kedairona.000webhostapp.com/api/cms/user/', [
             "nama_user" => $request->get('nama_user'),
             "email" => $request->get('email'),
-            "password" => $request->get('password'),
-            "avatar" => $request->get('avatar'),
+            // "password" => $request->get('password'),
+            // "avatar" => $request->get('avatar'),
             "no_hp" => $request->get('no_hp'),
             "posisi" => $request->get('posisi'),
+            "role" => $request->get('role'),
         ])->getData();
 
         return redirect('/user')->with('success', 'Data Berhasil Di Tambahkan');
@@ -83,45 +91,55 @@ class UserController extends Controller
         ]);
         $user = $gateway->get('https://kedairona.000webhostapp.com/api/cms/user/' . $id)->getData();
         // dd($user);
-        return view('pages.Administrator.User.edit', ['user' => $user]);
+        return view('pages.Administrator.User.edit', compact('user'));
     }
 
     public function update(Request $request, $id)
     {
+        $nama_file = '';
+        if ($request->file('avatar')) {
+            $file = $request->file('avatar');
+            //mengambil nama file
+            $nama_file = asset('img/profile') . '/' . $file->getClientOriginalName();
+
+            //memindahkan file ke folder tujuan
+            $file->move('img/profile', $file->getClientOriginalName());
+        }
+
         $gateway = new Gateway();
         $gateway->setHeaders([
             'Authorization' => 'Bearer ' . Session::get('auth')->token,
             'Accept' => 'application/json',
         ]);
-        $store = $gateway->post('https://kedairona.000webhostapp.com/api/cms/user/update/' . $id, [
+        // dd($gateway);
+        $storeUser = $gateway->post('https://kedairona.000webhostapp.com/api/cms/user/update/' . $id, [
             "nama_user" => $request->get('nama_user'),
             "email" => $request->get('email'),
             "password" => $request->get('password'),
-            "avatar" => $request->get('avatar'),
+            "avatar" => $nama_file,
             "no_hp" => $request->get('no_hp'),
             "posisi" => $request->get('posisi'),
+            "role" => $request->get('role'),
+
         ])->getData();
-        // dd($store);
+        dd($storeUser);
         return redirect('/user')->with('success', 'Data Berhasil Di Tambahkan');
     }
 
     public function delete($id)
     {
-            $gateway = new Gateway();
-            $gateway->setHeaders([
-                'Authorization' => 'Bearer ' . Session::get('auth')->token,
-                'Accept' => 'application/json',
-            ]);
-            $response = $gateway->post('https://kedairona.000webhostapp.com/api/cms/user/delete/' . $id);
+         $gateway = new Gateway();
+         $gateway->setHeaders([
+            'Authorization' => 'Bearer ' . Session::get('auth')->token,
+            'Accept' => 'application/json',
+        ]);
+         $response = $gateway->post('https://kedairona.000webhostapp.com/api/cms/user/delete/' . $id);
 
-            if ($response->getStatusCode() == 200) {
-                return redirect('/user')->with('success', 'User Deleted');
-            } else {
-                return redirect('/user')->with('error', 'Unable to delete user');
-            } 
+        if ($response->getStatusCode() == 200) {
+            return redirect('/user')->with('success', 'User Deleted');
+        } else {
+            return redirect('/user')->with('error', 'Unable to delete user');
+        } 
     }
-
-
-
 } 
 

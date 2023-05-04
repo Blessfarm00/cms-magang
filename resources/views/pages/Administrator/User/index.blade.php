@@ -19,9 +19,10 @@
                     <th scope="col" style="color:white">No</th>
                     <th scope="col" style="color:white">Nama</th>
                     <th scope="col" style="color:white">Email</th>
-                    <th scope="col" style="color:white">Gambar</th>
+                    <th scope="col" style="color:white">Avatar</th>
                     <th scope="col" style="color:white">No HP</th>
                     <th scope="col" style="color:white">Posisi</th>
+                    <th scope="col" style="color:white">Role</th>
                     <th colspan="2" scope="col" style="color:white">Aksi</th>
                 </tr>
             </thead>
@@ -32,9 +33,11 @@
                     <td>{{ $loop->iteration }}</td>
                     <td>{{ $user->nama_user }}</td>
                     <td>{{ $user->email }}</td>
+                    {{-- <td>{{ asset($profiles->avatar) }}</td> --}}
                     <td>{{ $user->avatar }}</td>
                     <td>{{ $user->no_hp }}</td>
                     <td>{{ $user->posisi }}</td>
+                    <td>{{ $user->role }}</td>
                     <td>
                         <a href="/user/{{ $user->user_id }}/edit" class="btn btn-warning">Edit</a>
 

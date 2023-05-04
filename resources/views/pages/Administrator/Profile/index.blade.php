@@ -9,7 +9,7 @@
         <div class="card">
           <div class="card-body profile-card pt-4 d-flex flex-column align-items-center">
 
-            <img src="{{ asset($profiles->avatar) }}" alt="Profile" class="rounded-circle">
+            <img src="{{ asset($profiles->avatar) }}" style="border-radius: 50%;" alt="Profile" class="rounded-circle">
             <h2></h2>
             <h3>{{ $profiles->nama_user }}</h3>
           </div>

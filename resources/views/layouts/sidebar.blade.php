@@ -45,12 +45,12 @@
                 <span>Pengeluaran</span>
             </a>
         </li><!-- End Blank Page Nav -->
-        <li>
+        {{-- <li>
             <a class="nav-link {{ Request::is('logout') ? 'active' : '' }}" href="{{ url('logout') }}">
                 <i <span class="bi bi-box-arrow-in-right"></span></i>
                 <span>Sign Out</span>
             </a>
-        </li>
+        </li> --}}
 
     </ul>
 

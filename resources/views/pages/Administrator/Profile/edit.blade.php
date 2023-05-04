@@ -27,7 +27,7 @@
                     </div>
                     <div class="mb-3">
                         <label for="staticEmail" class="form-label" style="text-align: center;">Email</label>
-                        <input type="text" name="email" class="form-control @error('email') is-invalid @enderror" id="email" value="{{ $profile->data->email }}" autofocus placeholder="email">
+                        <input type="text" name="email" class="form-control @error('email') is-invalid @enderror" id="email" readonly value="{{ $profile->data->email }}" autofocus placeholder="email">
                         @error('email')
                         <div class="invalid-feedback">
                             {{ $message }}
@@ -67,24 +67,13 @@
                         </div>
                         @enderror
                     </div>
-                    {{-- <div class="mb-3 row">
-                            <label for="exampleInputPassword1" class="col-sm-2 col-form-label">Posisi   :</label>
-                            <div class="col-sm-10">
-                              <input type="text" readonly class="form-control-plaintext" id="staticEmail" value="{{ $profile->data->posisi }}">
-                    @error('posisi')
-                    <div class="invalid-feedback">
-                        {{ $message }}
+                    <div class="text-center">
+                        <button class="btn btn-primary" type="submit">Simpan</button>
                     </div>
-                    @enderror
                 </div>
-        </div> --}}
-        <div class="text-center">
-            <button class="btn btn-primary" type="submit">Simpan</button>
-        </div>
+            </div>
+        </form>
     </div>
-</div>
-</form>
-</div>
 <div class="col-md-2"></div>
 </div>
 </div><br><br><br><br><br><br><br><br><br><br><br><br>
