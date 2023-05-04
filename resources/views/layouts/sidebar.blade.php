@@ -10,13 +10,29 @@
             </a>
         </li><!-- End Dashboard Nav -->
 
+        @php
+            $test = session()->get('auth');
+            $result = $test->UserAuth->role;
+            // dd($result);
+        @endphp 
 
-        <li class="nav-item">
-            <a class="nav-link {{ Request::is('user') ? 'active' : '' }}" href="{{ url('user') }}">
-                <i <span class="bi bi-person"></span></i>
-                <span>User</span>
-            </a>
-        </li><!-- End Profile Page Nav -->
+        @if ($result == 'admin' && $result == 'karyawan')
+            <li class="nav-item" hidden>
+                <a class="nav-link {{ Request::is('user') ? 'active' : '' }}" href="{{ url('user') }}">
+                    <i <span class="bi bi-person"></span></i>
+                    <span>User</span>
+                </a>
+            </li><!-- End Profile Page Nav -->
+        @elseif($result == 'superadmin')
+            <li class="nav-item">
+                <a class="nav-link {{ Request::is('user') ? 'active' : '' }}" href="{{ url('user') }}">
+                    <i <span class="bi bi-person"></span></i>
+                    <span>User</span>
+                </a>
+            </li><!-- End Profile Page Nav -->
+
+        @endif
+
 
             <li class="nav-item">
                 <a class="nav-link {{ Request::is('absensi') ? 'active' : '' }}" href="{{ url('absensi') }}">

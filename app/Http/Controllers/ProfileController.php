@@ -22,7 +22,9 @@ class ProfileController extends Controller
         $response = $gateway->get('https://kedairona.000webhostapp.com/api/cms/profile/');
         $body = $response->getData()->data;
         // dd($body);
-        // var_dump($body);
+   
+        Session::put('profile', $body);
+
         return view('pages.Administrator.Profile.index',  ['profiles' => $body]);
     }
 
@@ -66,6 +68,8 @@ class ProfileController extends Controller
             "posisi" => $request->get('posisi'),
             "role" => $request->get('role'),
         ])->getData();
+
+
         // dd($storeProfile);
         return redirect('/profile')->with('success', 'Data Berhasil Di Tambahkan');
     }

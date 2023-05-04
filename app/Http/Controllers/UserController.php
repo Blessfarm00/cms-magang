@@ -115,14 +115,14 @@ class UserController extends Controller
         $storeUser = $gateway->post('https://kedairona.000webhostapp.com/api/cms/user/update/' . $id, [
             "nama_user" => $request->get('nama_user'),
             "email" => $request->get('email'),
-            "password" => $request->get('password'),
+            // "password" => $request->get('password'),
             "avatar" => $nama_file,
             "no_hp" => $request->get('no_hp'),
             "posisi" => $request->get('posisi'),
             "role" => $request->get('role'),
 
         ])->getData();
-        dd($storeUser);
+        // dd($storeUser);
         return redirect('/user')->with('success', 'Data Berhasil Di Tambahkan');
     }
 

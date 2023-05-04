@@ -157,6 +157,7 @@ class InventoriController extends Controller
             "harga" => $request->get('harga'),
             "satuan" => $request->get('satuan'),
         ])->getData();
+        // dd($store);
         return redirect('/inventori')->with('success', 'Data Berhasil Di Tambahkan');
     }
 

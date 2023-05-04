@@ -50,6 +50,7 @@ class LoginController extends Controller
             'email' => $request->get('email'),
             'password' => $request->get('password'),
         ]);
+        // dd($response->getData()->data->UserAuth->role);  
 // dd($response->getStatusCode());
             Session::put('auth', $response->getData()->data);
             return redirect('dashboard');
