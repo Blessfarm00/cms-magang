@@ -202,17 +202,17 @@
         </li><!-- End Messages Nav -->
 
         <li class="nav-item dropdown pe-3">
-          @php
+          {{-- @php
             $test = session()->get('profile');
             // $result = $test->UserAuth->role;
             // dd($test);
             $result = $test->avatar;
             $nama_user = $test->nama_user;
-          @endphp 
+          @endphp  --}}
           {{-- @if (Auth::check()) --}}
           <a class="nav-link nav-profile d-flex align-items-center pe-0" href="" data-bs-toggle="dropdown">
-            <h8 style="color:white; margin:9px;">{{$nama_user}}</h8>
-            <img src="{{ $result }}" style="border-radius: 50%;" alt="Profile" class="rounded-circle">
+            {{-- <h8 style="color:white; margin:9px;">{{$nama_user}}</h8> --}}
+            {{-- <img src="{{ $result }}" style="border-radius: 50%;" alt="Profile" class="rounded-circle"> --}}
             <span class="d-none d-md-block dropdown-toggle ps-2"></span>
           </a><!-- End Profile Iamge Icon -->
           {{-- @endif --}}
