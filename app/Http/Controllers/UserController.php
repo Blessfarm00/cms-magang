@@ -21,11 +21,14 @@ class UserController extends Controller
         ]);
         // dd($gateway);
 
+        $imgProfile = $gateway->get('https://kedairona.000webhostapp.com/api/cms/profile/');
+        $resultImg = $imgProfile->getData()->data;
+
         $response = $gateway->get('https://kedairona.000webhostapp.com/api/cms/listUser');
         $body = $response->getData()->data;
-        // dd($inventoris);
+        // dd($body);
 
-        return view('pages.Administrator.User.index',  ['users'=>$body]);
+        return view('pages.Administrator.User.index',  ['users'=>$body, 'imgProfile'=>$resultImg]);
     }
 
     // public function create()

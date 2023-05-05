@@ -27,23 +27,22 @@
                 </tr>
             </thead>
             <tbody class="table-group-divider">
-
-                @foreach ($users as $user)
+                @foreach ($users as $user)           
                 <tr>
                     <td>{{ $loop->iteration }}</td>
                     <td>{{ $user->nama_user }}</td>
                     <td>{{ $user->email }}</td>
-                    {{-- <td>{{ asset($profiles->avatar) }}</td> --}}
-                    <td>{{ $user->avatar }}</td>
+                    <td><img width="60px" height="50px" src="{{ asset($user->avatar) }}" alt=""></td>
+                    {{-- <td>{{ $user->avatar }}</td> --}}
                     <td>{{ $user->no_hp }}</td>
                     <td>{{ $user->posisi }}</td>
                     <td>{{ $user->role }}</td>
                     <td>
-                        <a href="/user/{{ $user->user_id }}/edit" class="btn btn-warning">Edit</a>
+                        <a href="/user/{{ $user->user_id }}/edit" class="btn btn-warning btn-sm inline-block">Edit</a>
 
                         <form action="/user/{{ $user->user_id }}" method="post" class="d-inline">
                         @csrf
-                            <button class="btn btn-danger" onclick="return confirm('Yakin Akan Menghapus Data..?')" type="submit">Delete</button>
+                            <button class="btn btn-danger btn-sm" onclick="return confirm('Yakin Akan Menghapus Data..?')" type="submit">Delete</button>
                         </form>
                     </td>
                 </tr>

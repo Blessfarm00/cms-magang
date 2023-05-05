@@ -101,9 +101,13 @@
                                                 <label class="form-check-label" for="rememberMe">Remember me</label>
                                             </div>
                                         </div> --}}
-                                        <div class="text-center">
+                                        {{-- <div class="text-center">
                                             <button class="btn btn-primary center" type="submit">Login</button>
-                                        </div>
+                                        </div> --}}
+
+                                        <div class="d-grid gap-2">
+                                            <button class="btn btn-primary" type="submit">Login</button>
+                                          </div>
                                         {{-- <div class="col-12">
                                             <p class="small mb-0">Don't have account? <a
                                                     href="/register">Create an account</a></p>
