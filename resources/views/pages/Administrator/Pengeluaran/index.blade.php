@@ -21,7 +21,7 @@
 
             <div class="input-group mt-4">
                 <input type="text" name="search" class="form-control" placeholder="Search by ID Inventori " value="{{ $search }}">
-                <button class="btn btn-primary" type="submit" >Search</button>
+                <button class="btn btn-primary" type="submit">Search</button>
             </div>
         </form>
         <hr>
@@ -47,7 +47,7 @@
 
                 <tr>
                     <td>{{ $loop->iteration }}</td>
-                    <td>{{ $pengeluaran->pengeluaran }}</td>
+                    <td> Rp {{ number_format($pengeluaran->pengeluaran, 0, ',', '.')}}</td>
                     <td>{{ $pengeluaran->inventori_id}}</td>
                     <td>{{ $pengeluaran->jumlah }}</td>
                     <td>{{ $pengeluaran->rincian }}</td>

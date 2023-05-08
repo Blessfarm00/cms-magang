@@ -50,6 +50,7 @@ Route::group([
     Route::get('/user/cetak', 'UserController@cetak');
     Route::get('/user/filter', 'UserController@index');
     Route::post('/user/update/{id}', 'UserController@update');
+    Route::post('/user{id}', 'UserController@destroy');
 
     Route::get('/inventori', 'InventoriController@index');
     Route::get('/inventori/cetak', 'InventoriController@cetak');

@@ -21,13 +21,17 @@
                             @enderror
                         </div>
                         <div class="mb-3">
-                            <label for="exampleInputPassword1" class="form-label" style="text-align: center;">Id Inventori</label>
-                            <input type="text" name="inventori_id" class="form-control @error('inventori_id') is-invalid @enderror" id="inventori_id" value="{{ old('inventori_id') }}" autofocus placeholder="inventori_id">
-                            @error('inventori_id')
-                            <div class="invalid-feedback">
-                                {{ $message }}
-                            </div>
-                            @enderror
+                            <label for="inventory" class="form-label">Barang</label>
+                            <select class="form-control" name="inventori_id" aria-label="Default select example">
+                                <option selected>- Pilih -</option>
+                                @foreach($inventory->data->items as $p)
+                                @if (old('id') == $p->id)
+                                <option value="{{ $p->id }}">{{ $p->nama_barang }}</option>
+                                @else
+                                <option value="{{ $p->id }}">{{ $p->kd_barang }} - {{ $p->nama_barang }}</option>
+                                @endif
+                                @endforeach
+                            </select>
                         </div>
                         <div class="mb-3">
                             <label for="exampleInputPassword1" class="form-label" style="text-align: center;">Rincian</label>

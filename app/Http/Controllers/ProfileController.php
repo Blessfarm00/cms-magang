@@ -6,8 +6,10 @@ namespace App\Http\Controllers;
 use App\Services\Gateway;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
+use Illuminate\Foundation\Auth\User;
 // use Illuminate\Support\Facades\Request as FacadesRequest;
 use Illuminate\Support\Facades\Session;
+use Symfony\Component\HttpKernel\Profiler\Profile;
 
 class ProfileController extends Controller
 {
@@ -112,5 +114,9 @@ class ProfileController extends Controller
 
         return redirect('/profile')->with('success', 'Data Berhasil Di Tambahkan');
     }
+
+   
+
+    
 
 }

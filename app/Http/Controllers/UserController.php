@@ -8,6 +8,7 @@ use \Yajra\DataTables\DataTables;
 use Auth;
 use App\Http\Controllers\Controller;
 use GuzzleHttp\Client;
+use Illuminate\Foundation\Auth\User;
 use Illuminate\Support\Facades\Session;
 
 class UserController extends Controller
@@ -143,6 +144,21 @@ class UserController extends Controller
         } else {
             return redirect('/user')->with('error', 'Unable to delete user');
         } 
+    }
+    public function destroy(User $user)
+    {
+
+        $gateway = new Gateway();
+        // $gateway->setHeaders([
+        //     'Authorization' => 'Bearer ' . Session::get('auth')->token,
+        //     'Accept' => 'application/json',
+        // ]);
+        $deletePengambilan = $gateway->post('https://kedairona.000webhostapp.com/api/user/delete/' . $user->id);
+
+        $data = User::where('id', $user->id)->first();
+        User::delete(public_path('imag/profile' . $data->id)); // corrected method call to delete file
+        User::where('id', $user->id)->delete();
+        return redirect()->route('user.index')->with('success', 'Data Barang Berhasil Dihapus'); // corrected method call to set success message
     }
 } 
 

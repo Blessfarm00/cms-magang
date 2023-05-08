@@ -52,7 +52,20 @@ class LoginController extends Controller
         ]);
         // dd($response->getData()->data->UserAuth->role);  
 // dd($response->getStatusCode());
+
             Session::put('auth', $response->getData()->data);
+
+            $gatewayProfile = new Gateway();
+            $gatewayProfile->setHeaders([
+                'Authorization' => 'Bearer ' . Session::get('auth')->token,
+                'Accept' => 'application/json',
+            ]);
+
+            $avatar = $gatewayProfile->get('https://kedairona.000webhostapp.com/api/cms/profile/');
+            $body = $avatar->getData()->data;
+
+            Session::put('profile', $body);
+
             return redirect('dashboard');
         
         return back()->withErrors([
