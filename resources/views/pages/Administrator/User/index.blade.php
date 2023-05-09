@@ -1,6 +1,25 @@
 @extends('layouts.main')
 
 @section('container')
+<div class="container p-4">
+    @if (session()->has('pesan_tambah'))
+    <div class="alert alert-success alert-dismissible fade show mt-2" role="alert">
+        Data Berhasil di Tambah
+        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+    </div>
+    @elseif(session()->has('pesan_edit'))
+    <div class="alert alert-primary alert-dismissible fade show mt-3" role="alert">
+        {{ session('pesan_edit') }}
+        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+    </div>
+    @elseif(session()->has('pesan_hapus'))
+    <div class="alert alert-danger alert-dismissible fade show mt-3" role="alert">
+        {{ session('pesan_hapus') }}
+        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+    </div>
+    @endif
+</div>
+
 <div class="pagetitle">
     <h1>User</h1>
     <nav>

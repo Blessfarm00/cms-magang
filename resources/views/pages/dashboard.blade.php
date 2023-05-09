@@ -29,7 +29,7 @@
                     <div class="card info-card sales-card">
 
                         <div class="card-body">
-                            <h5 class="card-title">Total Barang<span>| Today</span></h5>
+                            <h5 class="card-title">Total Barang <span>| Hari ini</span></h5>
 
                             <div class="d-flex align-items-center">
                                 <div class="card-icon rounded-circle d-flex align-items-center justify-content-center">
@@ -48,7 +48,7 @@
                     <div class="card info-card revenue-card">
 
                         <div class="card-body">
-                            <h5 class="card-title">Total Pengeluaran <span>| This Month</span></h5>
+                            <h5 class="card-title">Total Pengeluaran <span>| Bulan ini</span></h5>
 
                             <div class="d-flex align-items-center">
                                 <div class="card-icon rounded-circle d-flex align-items-center justify-content-center">
@@ -71,7 +71,7 @@
                     <div class="card info-card customers-card">
 
                         <div class="card-body">
-                            <h5 class="card-title">Total Pengambilan<span>|Today</span></h5>
+                            <h5 class="card-title">Total Pengambilan <span>| Hari ini</span></h5>
 
                             <div class="d-flex align-items-center">
                                 <div class="card-icon rounded-circle d-flex align-items-center justify-content-center">
@@ -92,7 +92,7 @@
                 <div class="col-12">
                     <div class="card top-selling overflow-auto">
                         <div class="card-body pb-0">
-                            <h5 class="card-title">Pengambilan Barang<span>| Today</span></h5>
+                            <h5 class="card-title">Pengambilan Barang <span>| Hari ini</span></h5>
                             <table class="table table-striped">
                                 <thead style="background-color:#0112FE">
                                     <tr>
@@ -122,7 +122,7 @@
                 <div class="col-12">
                     <div class="card top-selling overflow-auto">
                         <div class="card-body pb-0">
-                            <h5 class="card-title">Pengeluaran<span>| Today</span></h5>
+                            <h5 class="card-title">Pengeluaran <span>| Hari ini</span></h5>
 
                             <table class="table table-striped">
                                 <thead style="background-color:#0112FE">
