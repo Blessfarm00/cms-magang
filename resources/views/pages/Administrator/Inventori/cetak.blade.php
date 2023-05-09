@@ -22,7 +22,7 @@
             <div class="row">
                 <div class="col-12">
                     <h2 class="page-header">
-                        <img src="../../images/rona.jpeg">
+                        <img src="{{ public_path ('images/rona.jpeg')}}" alt="Gambar">
                         <i class="fas fa-globe"></i> KEDAI KOPI RONA
                     </h2>
                 </div>
