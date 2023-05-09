@@ -34,7 +34,7 @@
             <h5 class="card-header text-center">Table Pengeluaran</h5><br>
             <div class="card-tools">
                 <a href="/test/create" class="btn btn-success">Tambah Data<i class="fas fa-plus-square"></i></a>
-                <a href="/pengeluaran/cetak" class="btn btn-success">Print<i class="fas fa-plus-square"></i></a>
+                <a href="/pengeluaran/cetak" class="btn btn-success">PDF<i class="fas fa-plus-square"></i></a>
             </div>
             <form action="{{ url('/pengeluaran') }}" method="GET">
 

@@ -34,7 +34,7 @@
             <h5 class="card-header text-center">Table Inventori</h5><br>
             <div class="card-tools">
                 <a href="/inventori/create" class="btn btn-success">Tambah Data<i class="fas fa-plus-square"></i></a>
-                <a href="/inventori/cetak" class="btn btn-success">Print<i class="fas fa-plus-square"></i></a>
+                <a href="/inventori/cetak" class="btn btn-success">PDF<i class="fas fa-plus-square"></i></a>
             </div>
             <form action="{{ url('/inventori') }}" method="GET">
                 <div class="input-group mt-4">

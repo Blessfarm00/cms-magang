@@ -33,7 +33,7 @@
             <h5 class="card-header text-center">Table pengambilan barang</h5><br>
             <div class="card-tools">
                 <a href="/pengambilan/create" class="btn btn-success">Tambah Data<i class="fas fa-plus-square"></i></a>
-                <a href="/pengambilan/cetak" class="btn btn-success">Print<i class="fas fa-plus-square"></i></a>
+                <a href="/pengambilan/cetak" class="btn btn-success">PDF<i class="fas fa-plus-square"></i></a>
             </div>
             <form action="{{ url('/pengambilan') }}" method="GET">
                 <div class="input-group mt-4 ">
