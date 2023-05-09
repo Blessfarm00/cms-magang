@@ -14,10 +14,7 @@ use Illuminate\Support\Facades\Session;
 use PDF;
 use Dompdf\Dompdf;
 use Dompdf\Options;
-
-
-
-
+use Toastr;
 
 class InventoriController extends Controller
 {
@@ -128,7 +125,8 @@ class InventoriController extends Controller
             "satuan" => $request->get('satuan'),
         ])->getData();
 
-        return redirect('/inventori')->with('success', 'Data Berhasil Di Tambahkan');
+       
+        return redirect('/inventori')->with('pesan_tambah','Data Berhasil di Tambah');
     }
 
     public function edit($id)
@@ -140,6 +138,7 @@ class InventoriController extends Controller
         ]);
         $inventori = $gateway->get('https://kedairona.000webhostapp.com/api/cms/inventory/' . $id)->getData();
         // dd($inventori);
+        
         return view('pages.Administrator.Inventori.edit', compact('inventori'));
     }
 
@@ -158,7 +157,7 @@ class InventoriController extends Controller
             "satuan" => $request->get('satuan'),
         ])->getData();
         // dd($store);
-        return redirect('/inventori')->with('success', 'Data Berhasil Di Tambahkan');
+        return redirect('/inventori')->with('pesan_edit', 'Data Berhasil di Ubah');
     }
 
 
@@ -171,7 +170,7 @@ class InventoriController extends Controller
         ]);
         $deleteInventori = $gateway->post('https://kedairona.000webhostapp.com/api/cms/inventory/delete/' . $id);
   
-        return redirect('/inventori')->with('success', 'inventori Deleted');
+        return redirect('/inventori')->with('pesan_hapus', 'inventori Deleted');
     }
  
 }

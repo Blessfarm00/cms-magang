@@ -50,9 +50,9 @@ class LoginController extends Controller
             'email' => $request->get('email'),
             'password' => $request->get('password'),
         ]);
-        // dd($response->getData()->data->UserAuth->role);  
-// dd($response->getStatusCode());
+        // dd($response->getData());  
 
+        if($response->getData()->success == true){
             Session::put('auth', $response->getData()->data);
 
             $gatewayProfile = new Gateway();
@@ -67,10 +67,10 @@ class LoginController extends Controller
             Session::put('profile', $body);
 
             return redirect('dashboard');
-        
-        return back()->withErrors([
-            'email' => 'The provided credentials do not match our records.'
-        ]);
+        }
+
+                    
+        return back()->with('login_error', 'Email Atau Password Yang Anda Masukan Salah, Silahkan Cek Kembali');
 
 
 

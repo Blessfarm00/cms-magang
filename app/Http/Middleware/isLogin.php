@@ -16,9 +16,9 @@ class isLogin
      */
     public function handle(Request $request, Closure $next)
     {
-        if (check()) {
-            return $next($request);
-        }
-        return redirect('/');
+        // if (check()) {
+        //     return $next($request);
+        // }
+        // return redirect('/');
     }
 }

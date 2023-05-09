@@ -73,7 +73,7 @@ class PengeluaranController extends InventoriController
             "tanggal" => $request->get('tanggal'),
         ])->getData();
         // dd($storePengeluaran);
-        return redirect('/pengeluaran')->with('success', 'Data Berhasil Di Tambahkan');
+        return redirect('/pengeluaran')->with('pesan_edit', 'Data Berhasil Diubah');
     }
 
     public function create()
@@ -131,7 +131,7 @@ class PengeluaranController extends InventoriController
         ])->getData();
         // dd($pengeluaran);
 
-        return redirect('/pengeluaran')->with('success', 'Data Berhasil Di Tambahkan');
+        return redirect('/pengeluaran')->with('pesan_tambah', 'Data Berhasil DiTambahkan');
     }
 
     public function delete($id)
@@ -143,7 +143,7 @@ class PengeluaranController extends InventoriController
         ]);
         $deletePengeluaran = $gateway->post('https://kedairona.000webhostapp.com/api/cms/pengeluaran/delete/'. $id);
 
-        return redirect('/pengeluaran')->with('success', 'inventori Deleted');
+        return redirect('/pengeluaran')->with('pesan_hapus', 'Data Deleted');
 
     }
 

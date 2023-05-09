@@ -42,6 +42,7 @@ class Authenticate extends Middleware
     public function handle($request, Closure $next, ...$guards)
     {
         $session = $request->session()->get('auth');
+        // dd($session);
 
         if (!empty($session) && Carbon::now()->format("Y-m-d H:i:s") <= Carbon::createFromTimestamp($session->expiredAt)->format('Y-m-d H:i:s')) {
             return $next($request);

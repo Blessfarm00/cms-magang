@@ -21,7 +21,7 @@ use GuzzleHttp\Middleware;
 
 
 Route::group([
-    // 'middleware' => 'guest',
+    'middleware' => 'isLogin',
     'namespace' => 'App\Http\Controllers\Auth',
 ], function () {
     Route::get('/login', 'LoginController@showLoginForm')->name('login');
