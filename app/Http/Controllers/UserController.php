@@ -127,7 +127,7 @@ class UserController extends Controller
 
         ])->getData();
         // dd($storeUser);
-        return redirect('/user')->with('pesan_edit', 'Data Berhasil Di Tambahkan');
+        return redirect('/user')->with('pesan_edit', 'Data Berhasil di Ubah');
     }
 
     public function delete($id)
