@@ -73,7 +73,7 @@ class ProfileController extends Controller
 
 
         // dd($storeProfile);
-        return redirect('/profile')->with('success', 'Data Berhasil Di Tambahkan');
+        return redirect('/profile')->with('pesan_tambah', 'Data Berhasil Di Tambahkan');
     }
 
     public function store(Request $request)

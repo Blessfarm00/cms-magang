@@ -83,7 +83,7 @@ class UserController extends Controller
             "role" => $request->get('role'),
         ])->getData();
 
-        return redirect('/user')->with('success', 'Data Berhasil Di Tambahkan');
+        return redirect('/user')->with('pesan_tambah', 'Data Berhasil Di Tambahkan');
     }
 
     public function edit($id)
@@ -127,23 +127,19 @@ class UserController extends Controller
 
         ])->getData();
         // dd($storeUser);
-        return redirect('/user')->with('success', 'Data Berhasil Di Tambahkan');
+        return redirect('/user')->with('pesan_edit', 'Data Berhasil Di Tambahkan');
     }
 
     public function delete($id)
     {
-         $gateway = new Gateway();
-         $gateway->setHeaders([
+        $gateway = new Gateway();
+        $gateway->setHeaders([
             'Authorization' => 'Bearer ' . Session::get('auth')->token,
             'Accept' => 'application/json',
         ]);
-         $response = $gateway->post('https://kedairona.000webhostapp.com/api/cms/user/delete/' . $id);
+        $deletePengeluaran = $gateway->post('https://kedairona.000webhostapp.com/api/cms/user/delete/' . $id);
 
-        if ($response->getStatusCode() == 200) {
-            return redirect('/user')->with('success', 'User Deleted');
-        } else {
-            return redirect('/user')->with('error', 'Unable to delete user');
-        } 
+        return redirect('/user')->with('pesan_hapus', 'Data Deleted');
     }
     public function destroy(User $user)
     {
@@ -158,7 +154,7 @@ class UserController extends Controller
         $data = User::where('id', $user->id)->first();
         User::delete(public_path('imag/profile' . $data->id)); // corrected method call to delete file
         User::where('id', $user->id)->delete();
-        return redirect()->route('user.index')->with('success', 'Data Barang Berhasil Dihapus'); // corrected method call to set success message
+        return redirect()->route('user.index')->with('pesan_delete', 'Data Barang Berhasil Dihapus'); // corrected method call to set success message
     }
 } 
 
