@@ -44,8 +44,8 @@
   <header id="header" class="header fixed-top d-flex align-items-center " style="background-color:#0112FE">
     <div class="d-flex align-items-center justify-content-between">
       <a href="{{ url('dashboard') }}" class="logo d-flex align-items-center">
-        <img src="../images/rona.jpeg" alt="">
-        <span class="d-none d-lg-block text-white">Kedai Kopi Rona</span>
+        <img href="/dashboard"  src="../images/rona.jpeg" alt="">
+        <span href="/dashboard" class="d-none d-lg-block text-white">Kedai Kopi Rona</span>
       </a>
       <i class="bi bi-list toggle-sidebar-btn"></i>
     </div><!-- End Logo -->
@@ -202,13 +202,13 @@
         </li><!-- End Messages Nav -->
 
         <li class="nav-item dropdown pe-3">
-           @php
-            $test = session()->get('profile');
-            // $result = $test->UserAuth->role;
-            // dd($test);
-            $result = $test->avatar;
-            
-            $nama_user = $test->nama_user;
+          @php
+          $test = session()->get('profile');
+          // $result = $test->UserAuth->role;
+          // dd($test);
+          $result = $test->avatar;
+
+          $nama_user = $test->nama_user;
           @endphp
           {{-- @if (Auth::check()) --}}
           <a class="nav-link nav-profile d-flex align-items-center pe-0" href="" data-bs-toggle="dropdown">
@@ -244,28 +244,28 @@
               </a>
             </li>
             <li> --}}
-              <hr class="dropdown-divider">
-            </li>
+            <hr class="dropdown-divider">
+        </li>
 
-            <li>
-              <a class="dropdown-item d-flex align-items-center" href="pages-faq.html">
-                <i class="bi bi-question-circle"></i>
-                <span>Need Help?</span>
-              </a>
-            </li>
-            <li>
-              <hr class="dropdown-divider">
-            </li>
+        <li>
+          <a class="dropdown-item d-flex align-items-center" href="pages-faq.html">
+            <i class="bi bi-question-circle"></i>
+            <span>Need Help?</span>
+          </a>
+        </li>
+        <li>
+          <hr class="dropdown-divider">
+        </li>
 
-            <li>
-              <a class="dropdown-item d-flex align-items-center" href="/logout">
-                <i class="bi bi-box-arrow-right"></i>
-                <span>Sign Out</span>
-              </a>
-            </li>
+        <li>
+          <a class="dropdown-item d-flex align-items-center" href="/logout">
+            <i class="bi bi-box-arrow-right"></i>
+            <span>Sign Out</span>
+          </a>
+        </li>
 
-          </ul><!-- End Profile Dropdown Items -->
-        </li><!-- End Profile Nav -->
+      </ul><!-- End Profile Dropdown Items -->
+      </li><!-- End Profile Nav -->
 
       </ul>
     </nav><!-- End Icons Navigation -->

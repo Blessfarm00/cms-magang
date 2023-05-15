@@ -102,7 +102,7 @@ class InventoriController extends Controller
 
     public function store(Request $request)
     {
-
+            
         $this->validate($request, [
             'kd_barang' => 'required|unique:inventories|max:255|min:3',
             'nama_barang' => 'required|max:255|min:3',

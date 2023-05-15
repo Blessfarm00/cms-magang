@@ -79,4 +79,16 @@ class AbsensiController extends Controller
         // Kirim PDF ke browser untuk di-download
         return $dompdf->stream('Absensi.pdf');
     }
+
+    public function delete($id)
+    {
+        $gateway = new Gateway();
+        $gateway->setHeaders([
+            'Authorization' => 'Bearer ' . Session::get('auth')->token,
+            'Accept' => 'application/json',
+        ]);
+        $deleteInventori = $gateway->post('https://kedairona.000webhostapp.com/api/cms/absensi/delete/' . $id);
+
+        return redirect('/absensi')->with('pesan_hapus', 'absensi Deleted');
+    }
 }
