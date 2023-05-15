@@ -67,7 +67,13 @@ class DashboardController extends Controller
         $pengambilan_barangs= DB::table('pengambilan_barangs')->count();
         $pengeluarans = $this->getTotalPengeluaran();
 
-        return view('pages.dashboard', compact('pengambilan_barangs', 'inventories', 'pengeluarans','users','pengambilan','pengeluaran'));
+        $absensi = $gateway->get('https://kedairona.000webhostapp.com/api/cms/cekAbsensi', [
+            'page' => 1,
+            'per_page' => 999,
+            'limit' => 999,
+        ])->getData()->data;
+
+        return view('pages.dashboard', compact('pengambilan_barangs', 'inventories', 'pengeluarans','users','pengambilan','pengeluaran','absensi'));
 }
 
     public function getTotalPengeluaran()

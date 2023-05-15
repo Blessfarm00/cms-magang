@@ -157,6 +157,38 @@
                     </div>
                 </div>
 
+                <div class="col-12">
+                    <div class="card top-selling overflow-auto">
+                        <div class="card-body pb-0">
+                            <h5 class="card-title">Absensi <span>| Hari ini</span></h5>
+
+                            <table class="table table-striped">
+                                <thead style="background-color:#0112FE">
+                                    <tr>
+                                        <th scope="col" style="color:white">No</th>
+                                        <th scope="col" style="color:white">Nama User</th>
+                                        <th scope="col" style="color:white">Email</th>
+                                        <th scope="col" style="color:white">Avatar</th>
+                                    </tr>
+                                </thead>
+                                <tbody class="table-group-divider">
+
+                                    @foreach ($absensi as $absensis)
+
+                                    <tr>
+                                        <td>{{ $loop->iteration }}</td>
+                                        <td>{{ $absensis->nama_user}}</td>
+                                        <td>{{ $absensis->email }}</td>
+                                        <td><img width="50px" height="50px" src="{{ asset($absensis->avatar) }}" alt="{{ $absensis->nama_user }}"></td>
+                                    </tr>
+                                    @endforeach
+                                </tbody>
+                            </table>
+
+                        </div>
+
+                    </div>
+                </div>
             </div>
         </div><!-- End Left side columns -->
 
