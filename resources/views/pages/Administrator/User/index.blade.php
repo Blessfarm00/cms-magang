@@ -51,7 +51,7 @@
                     <td>{{ $loop->iteration }}</td>
                     <td>{{ $user->nama_user }}</td>
                     <td>{{ $user->email }}</td>
-                    <td><img width="60px" height="50px" src="{{ asset($user->avatar) }}" alt=""></td>
+                    <td><img width="60px" height="60px" src="{{ asset($user->avatar) }}" alt=""></td>
                     {{-- <td>{{ $user->avatar }}</td> --}}
                     <td>{{ $user->no_hp }}</td>
                     <td>{{ $user->posisi }}</td>
