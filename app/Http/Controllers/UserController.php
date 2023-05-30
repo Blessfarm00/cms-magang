@@ -126,7 +126,7 @@ class UserController extends Controller
             "role" => $request->get('role'),
 
         ])->getData();
-        // dd($storeUser);
+        dd($storeUser);
         return redirect('/user')->with('pesan_edit', 'Data Berhasil di Ubah');
     }
 

@@ -19,13 +19,20 @@
         <!-- Main content -->
         <section class="invoice">
             <!-- title row -->
-            <div class="row">
+           <div class="row">
                 <div class="col-12">
                     <h2 class="page-header">
-                        <img src="../../images/rona.jpeg">
-                        <i class="fas fa-globe"></i> KEDAI KOPI RONA
+                      <img src="data:image/png;base64, {{ base64_encode(file_get_contents(public_path('images/rona.jpeg'))) }}" style="width: 150px; height: 150px">
                     </h2>
                 </div>
+
+                <div class="col-12">
+                    <h2 class="page-header" style="text-align: center;">
+                        <i class="center"></i> KEDAI KOPI RONA
+                    </h2>
+                </div>
+
+
                 <!-- /.col -->
             </div>
             <!-- info row -->
