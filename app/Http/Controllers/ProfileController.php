@@ -21,7 +21,7 @@ class ProfileController extends Controller
             'Accept' => 'application/json',
         ]);
 
-        $response = $gateway->get('https://kedairona.000webhostapp.com/api/cms/profile/');
+        $response = $gateway->get('https://apirona.cepatpilih.com/api/cms/profile/');
         $body = $response->getData()->data;
         // dd($body);
    
@@ -37,7 +37,7 @@ class ProfileController extends Controller
             'Authorization' => 'Bearer ' . Session::get('auth')->token,
             'Accept' => 'application/json',
         ]);
-        $profile = $gateway->get('https://kedairona.000webhostapp.com/api/cms/profile/')->getData();
+        $profile = $gateway->get('https://apirona.cepatpilih.com/api/cms/profile/')->getData();
 
         return view('pages.Administrator.Profile.edit', compact('profile'));
 
@@ -62,7 +62,7 @@ class ProfileController extends Controller
             'Accept' => 'application/json',
         ]);
         // dd($gateway);
-        $storeProfile = $gateway->post('https://kedairona.000webhostapp.com/api/cms/profile/update/' . $id ,[
+        $storeProfile = $gateway->post('https://apirona.cepatpilih.com/api/cms/profile/update/' . $id ,[
             "nama_user" => $request->get('nama_user'),
             "email" => $request->get('email'),
             "avatar" => $nama_file,
@@ -102,10 +102,10 @@ class ProfileController extends Controller
             'Accept' => 'application/json',
         ]);
         // dd($gateway);
-        $Profile = $gateway->post('https://kedairona.000webhostapp.com/api/cms/profile' , [
+        $Profile = $gateway->post('https://apirona.cepatpilih.com/api/cms/profile' , [
             "nama_user" => $request->get('nama_user'),
             "email" => $request->get('email'),
-            // "avatar" => $nama_file,
+            "avatar" => $nama_file,
             "no_hp" => $request->get('no_hp'),
             "posisi" => $request->get('posisi'),
             "role" => $request->get('role'),

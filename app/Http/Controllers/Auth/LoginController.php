@@ -30,7 +30,7 @@ class LoginController extends Controller
 
         $gateway = new Gateway();
 
-        $token = $gateway->post('https://kedairona.000webhostapp.com/api/token', [
+        $token = $gateway->post('https://apirona.cepatpilih.com/api/token', [
             'client_key' => 'clientKeyCMS',
             'secret_key' => 'secret',
         ]);
@@ -46,7 +46,7 @@ class LoginController extends Controller
             'Accept' => 'application/json',
         ]);
 
-        $response =  $gateway->post('https://kedairona.000webhostapp.com/api/cms/login', [
+        $response =  $gateway->post('https://apirona.cepatpilih.com/api/cms/login', [
             'email' => $request->get('email'),
             'password' => $request->get('password'),
         ]);
@@ -61,7 +61,7 @@ class LoginController extends Controller
                 'Accept' => 'application/json',
             ]);
 
-            $avatar = $gatewayProfile->get('https://kedairona.000webhostapp.com/api/cms/profile/');
+            $avatar = $gatewayProfile->get('https://apirona.cepatpilih.com/api/cms/profile/');
             $body = $avatar->getData()->data;
 
             Session::put('profile', $body);
