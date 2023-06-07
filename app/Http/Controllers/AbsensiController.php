@@ -24,7 +24,7 @@ class AbsensiController extends Controller
             'Authorization' => 'Bearer ' . Session::get('auth')->token,
             'Accept' => 'application/json',
         ]);
-        $response = $gateway->get('https://kedairona.000webhostapp.com/api/cms/absensi');
+        $response = $gateway->get('https://apirona.cepatpilih.com/api/cms/absensi');
         $body = $response->getData()->data;
 
         if (is_array($body)) {
@@ -55,7 +55,7 @@ class AbsensiController extends Controller
         ]);
 
         // Ambil data dari API
-        $data = $gateway->get('https://kedairona.000webhostapp.com/api/cms/absensi', [
+        $data = $gateway->get('https://apirona.cepatpilih.com/api/cms/absensi', [
             'page' => 1,
             'per_page' => 999,
             'limit' => 999,
@@ -87,7 +87,7 @@ class AbsensiController extends Controller
             'Authorization' => 'Bearer ' . Session::get('auth')->token,
             'Accept' => 'application/json',
         ]);
-        $deleteInventori = $gateway->post('https://kedairona.000webhostapp.com/api/cms/absensi/delete/' . $id);
+        $deleteInventori = $gateway->post('https://apirona.cepatpilih.com/api/cms/absensi/delete/' . $id);
 
         return redirect('/absensi')->with('pesan_hapus', 'absensi Deleted');
     }

@@ -11,6 +11,8 @@ use GuzzleHttp\Client;
 use Illuminate\Foundation\Auth\User;
 use Illuminate\Support\Facades\Session;
 
+
+
 class UserController extends Controller
 {
 
@@ -22,10 +24,10 @@ class UserController extends Controller
         ]);
         // dd($gateway);
 
-        $imgProfile = $gateway->get('https://kedairona.000webhostapp.com/api/cms/profile/');
+        $imgProfile = $gateway->get('https://apirona.cepatpilih.com/api/cms/profile/');
         $resultImg = $imgProfile->getData()->data;
 
-        $response = $gateway->get('https://kedairona.000webhostapp.com/api/cms/listUser');
+        $response = $gateway->get('https://apirona.cepatpilih.com/api/cms/listUser');
         $body = $response->getData()->data;
         // dd($body);
 
@@ -39,7 +41,7 @@ class UserController extends Controller
     //         'Authorization' => 'Bearer ' . Session::get('auth')->token,
     //         'Accept' => 'application/json',
     //     ]);
-    //     $data = $gateway->get('https://kedairona.000webhostapp.com/api/cms/listUser', [
+    //     $data = $gateway->get('https://apirona.cepatpilih.com/api/cms/listUser', [
     //         'page' => 1,
     //         'per_page' => 999,
     //         'limit' => 999,
@@ -60,7 +62,7 @@ class UserController extends Controller
             'role' => 'required',
         ]);
 
-        $path = $request->file('gambar_kuliner')->store('public/images');
+        $path = $request->file('avatar')->store('public/images');
         $file = $request->file('avatar');
         //mengambil nama file
         $nama_file = asset('img/profile') . '/' . $file->getClientOriginalName();
@@ -73,11 +75,11 @@ class UserController extends Controller
             'Authorization' => 'Bearer ' . Session::get('auth')->token,
             'Accept' => 'application/json',
         ]);
-        $store = $gateway->post('https://kedairona.000webhostapp.com/api/cms/user/', [
+        $store = $gateway->post('https://apirona.cepatpilih.com/api/cms/user/', [
             "nama_user" => $request->get('nama_user'),
             "email" => $request->get('email'),
             // "password" => $request->get('password'),
-            // "avatar" => $request->get('avatar'),
+            "avatar" => $request->get('avatar'),
             "no_hp" => $request->get('no_hp'),
             "posisi" => $request->get('posisi'),
             "role" => $request->get('role'),
@@ -93,20 +95,22 @@ class UserController extends Controller
             'Authorization' => 'Bearer ' . Session::get('auth')->token,
             'Accept' => 'application/json',
         ]);
-        $user = $gateway->get('https://kedairona.000webhostapp.com/api/cms/user/' . $id)->getData();
+        $user = $gateway->get('https://apirona.cepatpilih.com/api/cms/user/' . $id)->getData();
         // dd($user);
         return view('pages.Administrator.User.edit', compact('user'));
     }
 
+    
+
     public function update(Request $request, $id)
     {
-        $nama_file = '';
-        if ($request->file('avatar')) {
-            $file = $request->file('avatar');
-            //mengambil nama file
-            $nama_file = asset('img/profile') . '/' . $file->getClientOriginalName();
 
-            //memindahkan file ke folder tujuan
+        $nama_file = '';
+        if ($request->hasFile('avatar')) {
+            $file = $request->file('avatar');
+
+            // Memindahkan file avatar ke folder tujuan
+            $nama_file = 'img/profile/' . $file->getClientOriginalName();
             $file->move('img/profile', $file->getClientOriginalName());
         }
 
@@ -115,20 +119,23 @@ class UserController extends Controller
             'Authorization' => 'Bearer ' . Session::get('auth')->token,
             'Accept' => 'application/json',
         ]);
-        // dd($gateway);
-        $storeUser = $gateway->post('https://kedairona.000webhostapp.com/api/cms/user/update/' . $id, [
-            "nama_user" => $request->get('nama_user'),
-            "email" => $request->get('email'),
-            // "password" => $request->get('password'),
-            "avatar" => $nama_file,
-            "no_hp" => $request->get('no_hp'),
-            "posisi" => $request->get('posisi'),
-            "role" => $request->get('role'),
 
-        ])->getData();
-        dd($storeUser);
+        $dataToUpdate = [
+            "nama_user" => $request->input('nama_user'),
+            "email" => $request->input('email'),
+            // "avatar" => $nama_file, 
+            "no_hp" => $request->input('no_hp'),
+            "posisi" => $request->input('posisi'),
+            "role" => $request->input('role'),
+        ];
+
+        $dataToUpdate = $gateway->post('https://apirona.cepatpilih.com/api/cms/user/update/' . $id, $dataToUpdate)->getData();
+
         return redirect('/user')->with('pesan_edit', 'Data Berhasil di Ubah');
     }
+
+    
+
 
     public function delete($id)
     {
@@ -137,7 +144,7 @@ class UserController extends Controller
             'Authorization' => 'Bearer ' . Session::get('auth')->token,
             'Accept' => 'application/json',
         ]);
-        $deletePengeluaran = $gateway->post('https://kedairona.000webhostapp.com/api/cms/user/delete/' . $id);
+        $deletePengeluaran = $gateway->post('https://apirona.cepatpilih.com/api/cms/user/delete/' . $id);
 
         return redirect('/user')->with('pesan_hapus', 'Data Deleted');
     }
@@ -149,7 +156,7 @@ class UserController extends Controller
         //     'Authorization' => 'Bearer ' . Session::get('auth')->token,
         //     'Accept' => 'application/json',
         // ]);
-        $deletePengambilan = $gateway->post('https://kedairona.000webhostapp.com/api/user/delete/' . $user->id);
+        $deletePengambilan = $gateway->post('https://apirona.cepatpilih.com/api/cms/user/delete/' . $user->id);
 
         $data = User::where('id', $user->id)->first();
         User::delete(public_path('imag/profile' . $data->id)); // corrected method call to delete file

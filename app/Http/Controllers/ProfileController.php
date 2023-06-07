@@ -7,9 +7,12 @@ use App\Services\Gateway;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use Illuminate\Foundation\Auth\User;
-// use Illuminate\Support\Facades\Request as FacadesRequest;
+use Illuminate\Support\Facades\Request as FacadesRequest;
 use Illuminate\Support\Facades\Session;
 use Symfony\Component\HttpKernel\Profiler\Profile;
+use Cloudinary\Uploader;
+use Cloudinary\Utils;
+
 
 class ProfileController extends Controller
 {
@@ -49,30 +52,30 @@ class ProfileController extends Controller
         if ($request->file('avatar')) {
             $file = $request->file('avatar');
             //mengambil nama file
-            $nama_file = asset('img/profile') . '/' . $file->getClientOriginalName();
+            $nama_file = $file->getClientOriginalName();
 
-            //memindahkan file ke folder tujuan
-            $file->move('img/profile', $file->getClientOriginalName());
+            // Upload file ke Cloudinary
+            // \Cloudinary\Uploader::upload($file->getPathname(), ['folder' => 'img/profile']);
+
+            // // Mengambil URL file dari Cloudinary
+            // $nama_file = \Cloudinary\Utils::cloudinary_url($nama_file, ['folder' => 'img/profile']);
         }
 
-        // dd($request->all());
         $gateway = new Gateway();
         $gateway->setHeaders([
             'Authorization' => 'Bearer ' . Session::get('auth')->token,
             'Accept' => 'application/json',
         ]);
-        // dd($gateway);
-        $storeProfile = $gateway->post('https://apirona.cepatpilih.com/api/cms/profile/update/' . $id ,[
+
+        $storeProfile = $gateway->post('https://apirona.cepatpilih.com/api/cms/profile/update/' . $id, [
             "nama_user" => $request->get('nama_user'),
             "email" => $request->get('email'),
-            "avatar" => $nama_file,
+            // "avatar" => $nama_file,
             "no_hp" => $request->get('no_hp'),
             "posisi" => $request->get('posisi'),
             "role" => $request->get('role'),
         ])->getData();
 
-
-        // dd($storeProfile);
         return redirect('/profile')->with('pesan_tambah', 'Data Berhasil Di Tambahkan');
     }
 

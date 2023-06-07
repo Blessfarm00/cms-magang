@@ -28,13 +28,13 @@ class DashboardController extends Controller
             'Accept' => 'application/json',
         ]);
 
-        $inventory = $gateway->get('https://kedairona.000webhostapp.com/api/cms/inventory', [
+        $inventory = $gateway->get('https://apirona.cepatpilih.com/api/cms/inventory', [
             'page' => 1,
             'per_page' => 999,
             'limit' => 999,
         ])->getData();
 
-        $pengambilan = $gateway->get('https://kedairona.000webhostapp.com/api/cms/pengambilan', [
+        $pengambilan = $gateway->get('https://apirona.cepatpilih.com/api/cms/pengambilan', [
             'page' => 1,
             'per_page' => 999,
             'limit' => 999,
@@ -42,7 +42,7 @@ class DashboardController extends Controller
 
         
             // dd($pengambilan);
-        $pengeluaran = $gateway->get('https://kedairona.000webhostapp.com/api/cms/pengeluaran', [
+        $pengeluaran = $gateway->get('https://apirona.cepatpilih.com/api/cms/pengeluaran', [
             'page' => 1,
             'per_page' => 999,
             'limit' => 999,
@@ -50,7 +50,7 @@ class DashboardController extends Controller
 
         // dd($pengeluaran);
         
-        $users = $gateway->get('https://kedairona.000webhostapp.com/api/cms/listUser');
+        $users = $gateway->get('https://apirona.cepatpilih.com/api/cms/listUser');
         $body = $users->getData()->data;
 
         $pengambilan->items = DB::table('pengambilan_barangs')
@@ -67,7 +67,7 @@ class DashboardController extends Controller
         $pengambilan_barangs= DB::table('pengambilan_barangs')->count();
         $pengeluarans = $this->getTotalPengeluaran();
 
-        $absensi = $gateway->get('https://kedairona.000webhostapp.com/api/cms/cekAbsensi', [
+        $absensi = $gateway->get('https://apirona.cepatpilih.com/api/cms/cekAbsensi', [
             'page' => 1,
             'per_page' => 999,
             'limit' => 999,

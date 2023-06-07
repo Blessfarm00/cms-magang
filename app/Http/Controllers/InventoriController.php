@@ -27,7 +27,7 @@ class InventoriController extends Controller
             'Authorization' => 'Bearer ' . Session::get('auth')->token,
             'Accept' => 'application/json',
         ]);
-        $response = $gateway->get('https://kedairona.000webhostapp.com/api/cms/inventory');
+        $response = $gateway->get('https://apirona.cepatpilih.com/api/cms/inventory');
         $body = $response->getData()->data;
 
         if (is_array($body)) {
@@ -58,7 +58,7 @@ class InventoriController extends Controller
     ]);
 
     // Ambil data dari API
-    $data = $gateway->get('https://kedairona.000webhostapp.com/api/cms/inventory', [
+    $data = $gateway->get('https://apirona.cepatpilih.com/api/cms/inventory', [
         'page' => 1,
         'per_page' => 999,
         'limit' => 999,
@@ -91,7 +91,7 @@ class InventoriController extends Controller
             'Authorization' => 'Bearer ' . Session::get('auth')->token,
             'Accept' => 'application/json',
         ]);
-        $data = $gateway->get('https://kedairona.000webhostapp.com/api/cms/inventory', [
+        $data = $gateway->get('https://apirona.cepatpilih.com/api/cms/inventory', [
             'page' => 1,
             'per_page' => 999,
             'limit' => 999,
@@ -117,7 +117,7 @@ class InventoriController extends Controller
             'Authorization' => 'Bearer ' . Session::get('auth')->token,
             'Accept' => 'application/json',
         ]);
-        $store = $gateway->post('https://kedairona.000webhostapp.com/api/cms/inventory', [
+        $store = $gateway->post('https://apirona.cepatpilih.com/api/cms/inventory', [
             "kd_barang" => $request->get('kd_barang'),
             "nama_barang" => $request->get('nama_barang'),
             "stok" => $request->get('stok'),
@@ -136,7 +136,7 @@ class InventoriController extends Controller
             'Authorization' => 'Bearer ' . Session::get('auth')->token,
             'Accept' => 'application/json',
         ]);
-        $inventori = $gateway->get('https://kedairona.000webhostapp.com/api/cms/inventory/' . $id)->getData();
+        $inventori = $gateway->get('https://apirona.cepatpilih.com/api/cms/inventory/' . $id)->getData();
         // dd($inventori);
         
         return view('pages.Administrator.Inventori.edit', compact('inventori'));
@@ -149,7 +149,7 @@ class InventoriController extends Controller
             'Authorization' => 'Bearer ' . Session::get('auth')->token,
             'Accept' => 'application/json',
         ]);
-        $store = $gateway->post('https://kedairona.000webhostapp.com/api/cms/inventory/update/' . $id, [
+        $store = $gateway->post('https://apirona.cepatpilih.com/api/cms/inventory/update/' . $id, [
             "kd_barang" => $request->get('kd_barang'),
             "nama_barang" => $request->get('nama_barang'),
             "stok" => $request->get('stok'),
@@ -168,7 +168,7 @@ class InventoriController extends Controller
             'Authorization' => 'Bearer ' . Session::get('auth')->token,
             'Accept' => 'application/json',
         ]);
-        $deleteInventori = $gateway->post('https://kedairona.000webhostapp.com/api/cms/inventory/delete/' . $id);
+        $deleteInventori = $gateway->post('https://apirona.cepatpilih.com/api/cms/inventory/delete/' . $id);
   
         return redirect('/inventori')->with('pesan_hapus', 'inventori Deleted');
     }
