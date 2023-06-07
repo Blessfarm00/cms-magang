@@ -10,7 +10,7 @@
   <meta content="" name="keywords">
 
   <!-- Favicons -->
-  <link href="../images/rona.jpeg" rel="icon">
+  <link href="{{asset("images/rona.jpeg")}}" rel="icon">
   <link href="/NiceAdmin/assets/img/apple-touch-icon.png" rel="apple-touch-icon">
 
   <!-- Google Fonts -->
@@ -44,7 +44,7 @@
   <header id="header" class="header fixed-top d-flex align-items-center " style="background-color:#0112FE">
     <div class="d-flex align-items-center justify-content-between">
       <a href="{{ url('dashboard') }}" class="logo d-flex align-items-center">
-        <img href="/dashboard"  src="../images/rona.jpeg" alt="">
+        <img href="/dashboard"  src="{{asset("../images/rona.jpeg")}}" alt="">
         <span href="/dashboard" class="d-none d-lg-block text-white">Kedai Kopi Rona</span>
       </a>
       <i class="bi bi-list toggle-sidebar-btn"></i>
